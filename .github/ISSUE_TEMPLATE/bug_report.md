@@ -16,7 +16,7 @@ Eine klare und prägnante Beschreibung des Fehlers:
 Schritte, um das Verhalten zu reproduzieren:
 
 **Erwartetes Verhalten** 
-Eine klare und prägnante Beschreibung dessen, was Sie erwartet haben.
+Eine klare und prägnante Beschreibung dessen, was Sie erwartet haben:
 
 **Screenshots** 
 Fügen Sie ggf. Screenshots hinzu, um Ihr Problem zu erläutern:
