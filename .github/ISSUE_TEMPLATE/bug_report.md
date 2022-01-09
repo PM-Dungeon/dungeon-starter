@@ -27,7 +27,7 @@ Fügen Sie ggf. Screenshots hinzu, um Ihr Problem zu erläutern:
 - Java Version (JDK):
 
 **Zusätzlicher Kontext**
-Fügen Sie hier weitere Informationen über das Problem hinzu
+Fügen Sie hier weitere relevante Informationen über das Problem hinzu:
 
 ------------------------------------------------------------------------------------
 
