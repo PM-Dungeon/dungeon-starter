@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-*Note: An English description can be found below.* 
+*Note: An English version can be found below.* 
 
 **Fehlerbeschreibung** 
 Eine klare und prägnante Beschreibung des Fehlers.
