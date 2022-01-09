@@ -22,7 +22,7 @@ Eine klare und prägnante Beschreibung dessen, was Sie erwartet haben.
 Fügen Sie ggf. Screenshots hinzu, um Ihr Problem zu erläutern.
 
 **Systembeschreibung (Bitte füllen Sie die folgenden Informationen aus)**
-- Betriebssystem
+- Betriebssystem:
 - Version des Dungeon
 - Java Version (JDK)
 
