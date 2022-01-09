@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'eclipse'
+    id 'com.github.spotbugs' version '4.7.9' apply true
 }
 
 repositories {
@@ -13,14 +14,25 @@ repositories {
 
 dependencies {
     implementation files('libs/code-1.0.jar')
+
+    // JUnit 4, Mockito and Powermock for testing:
+    // https://mvnrepository.com/artifact/junit/junit
+    testImplementation 'junit:junit:4.13.2'
+
+    // https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+    // https://mvnrepository.com/artifact/org.powermock/powermock-api-mockito2
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
 }
 
 sourceCompatibility = 17
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 sourceSets.main.java.srcDirs = ["desktop/src/"]
-sourceSets.main.resources.srcDirs = ["../code/assets"]
+sourceSets.main.resources.srcDirs = ["assets"]
+sourceSets.test.java.srcDirs = ["desktop/test/"]
 
 project.ext.mainClassName = "desktop.DesktopLauncher"
-project.ext.assetsDir = new File("../code/assets")
+project.ext.assetsDir = new File("assets")
 
 //dist.dependsOn classes
 eclipse.project.name = "pmdungeon-desktop"
@@ -40,4 +52,25 @@ task debug(dependsOn: classes, type: JavaExec) {
     workingDir = project.assetsDir
     ignoreExitValue = true
     debug = true
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+spotbugs {
+    toolVersion = '4.2.2'
+    ignoreFailures = true
+    showStackTraces = false
+}
+
+spotbugsMain {
+    reports {
+        xml {
+            enabled = true
+            destination = file("$buildDir/reports/spotbugsXml.xml")
+        }
+    }
 }
