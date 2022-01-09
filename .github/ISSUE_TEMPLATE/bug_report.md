@@ -26,7 +26,7 @@ Fügen Sie ggf. Screenshots hinzu, um Ihr Problem zu erläutern:
 - Version des Dungeon:
 - Java Version (JDK):
 
-**Zusätzliche Kontext**
+**Zusätzlicher Kontext**
 Fügen Sie hier weitere Informationen über das Problem hinzu
 
 ------------------------------------------------------------------------------------
