@@ -19,7 +19,7 @@ Schritte, um das Verhalten zu reproduzieren:
 Eine klare und prägnante Beschreibung dessen, was Sie erwartet haben.
 
 **Screenshots** 
-Fügen Sie ggf. Screenshots hinzu, um Ihr Problem zu erläutern.
+Fügen Sie ggf. Screenshots hinzu, um Ihr Problem zu erläutern:
 
 **Systembeschreibung (Bitte füllen Sie die folgenden Informationen aus)**
 - Betriebssystem:
