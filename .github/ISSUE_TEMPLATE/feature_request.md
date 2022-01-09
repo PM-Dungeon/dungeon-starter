@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-*Note: An English description can be found below.* 
+*Note: An English version can be found below.* 
 
 **Bezieht sich Ihre Funktionsanfrage auf ein Problem? Bitte beschreiben Sie es.**
 Eine klare und prägnante Beschreibung des Problems. Beispiel: Ich bin immer frustriert, wenn [...]
