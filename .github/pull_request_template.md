@@ -1,6 +1,6 @@
 Fixes #XYZ 
 
-Beschreibung der im Pull Request vorgeschlagenen Änderungen:
+Beschreibung der im Pull-Request vorgeschlagenen Änderungen:
 
 - tbd
 - tbd
