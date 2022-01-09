@@ -23,7 +23,7 @@ Fügen Sie ggf. Screenshots hinzu, um Ihr Problem zu erläutern:
 
 **Systembeschreibung (Bitte füllen Sie die folgenden Informationen aus)**
 - Betriebssystem:
-- Version des Dungeon
+- Version des Dungeon:
 - Java Version (JDK)
 
 **Zusätzliche Kontext**
