@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "eclipse"
-    id "com.github.spotbugs" version "4.7.9" apply true
+    id "com.github.spotbugs" version "4.7.9"
 }
 
 repositories {
@@ -17,7 +17,7 @@ ext {
 }
 
 dependencies {
-    implementation 'io.github.pm-dungeon:core:1.0.5'
+    implementation "io.github.pm-dungeon:core:1.0.+"
 
     // LibGDX
     implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
