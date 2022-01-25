@@ -2,6 +2,7 @@ plugins {
     id "java"
     id "eclipse"
     id "com.github.spotbugs" version "4.7.9"
+    id "checkstyle"
 }
 
 repositories {
@@ -84,4 +85,10 @@ spotbugsMain {
             destination = file("$buildDir/reports/spotbugsXml.xml")
         }
     }
+}
+
+checkstyle {
+    configFile file("checkstyle-config/google_checks.xml")
+    toolVersion "9.2.1"
+    showViolations = true
 }
