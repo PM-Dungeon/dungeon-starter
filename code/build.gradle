@@ -88,7 +88,7 @@ spotbugsMain {
 }
 
 checkstyle {
-    configFile file("checkstyle-config/modified_google_checks.xml")
+    configFile file("checkstyle-config/checks.xml")
     toolVersion "9.2.1"
     showViolations = true
 }
