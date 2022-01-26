@@ -16,6 +16,12 @@
     Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
  -->
 
+<!--
+    This configuration file has been changed.
+    The indentation depth has been changed from 2 to 4 within "<module name="Indentation">".
+    The file was modified on 01/26/2022 by Tobias Grothe.
+-->
+
 <module name="Checker">
     <property name="charset" value="UTF-8"/>
 
