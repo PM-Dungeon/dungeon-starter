@@ -2,7 +2,7 @@ plugins {
     id "java"
     id "eclipse"
     id "com.github.spotbugs" version "4.7.9"
-    id "checkstyle"
+    id "com.github.sherter.google-java-format" version "0.9"
 }
 
 repositories {
@@ -87,8 +87,22 @@ spotbugsMain {
     }
 }
 
-checkstyle {
-    configFile file("checkstyle-config/checks.xml")
-    toolVersion "9.2.1"
-    showViolations = true
+googleJavaFormat {
+    options style: "AOSP"
+}
+
+import com.github.sherter.googlejavaformatgradleplugin.GoogleJavaFormat
+import com.github.sherter.googlejavaformatgradleplugin.VerifyGoogleJavaFormat
+
+task format(type: GoogleJavaFormat) {
+    source "src/main"
+    source "src/test"
+    include "**/*.java"
+    exclude "**/*Template.java"
+}
+
+task verifyFormatting(type: VerifyGoogleJavaFormat) {
+    source "src/main"
+    include "**/*.java"
+    ignoreFailures true
 }

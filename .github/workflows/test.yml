@@ -62,7 +62,7 @@ jobs:
         with:
           path: '**/spotbugsXml.xml'
           name: 'SpotBugs Test Report'
-  checkstyle-test:
+  google-java-format-test:
     name: Checkstyle Test
     runs-on: ubuntu-latest
     steps:
@@ -73,9 +73,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: Test with Checkstyle
-        run: ./gradlew check
+      - name: Test with verGJF
+        run: ./gradlew verGJF
         working-directory: code
-      - uses: jwgmeligmeyling/checkstyle-github-action@master
-        with:
-          path: '**/checkstyle/*.xml'
