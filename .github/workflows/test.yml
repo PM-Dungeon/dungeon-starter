@@ -63,7 +63,7 @@ jobs:
           path: '**/spotbugsXml.xml'
           name: 'SpotBugs Test Report'
   google-java-format-test:
-    name: Checkstyle Test
+    name: verGJF Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
