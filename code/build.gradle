@@ -1,6 +1,7 @@
 plugins {
     id "java"
     id "eclipse"
+    id "checkstyle"
     id "com.github.spotbugs" version "4.7.9"
     id "com.github.sherter.google-java-format" version "0.9"
 }
@@ -70,6 +71,12 @@ test {
     testLogging {
         events "passed", "skipped", "failed"
     }
+}
+
+checkstyle {
+    configFile file("checkstyle-config/checks.xml")
+    toolVersion "9.2.1"
+    showViolations = true
 }
 
 spotbugs {
