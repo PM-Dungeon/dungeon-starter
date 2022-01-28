@@ -79,8 +79,8 @@ jobs:
       - uses: jwgmeligmeyling/checkstyle-github-action@master
         with:
           path: '**/checkstyle/*.xml'
-  google-java-format-test:
-    name: verGJF Test
+  spotless-java-format-test:
+    name: Spotless Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -90,6 +90,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: Test with verGJF
-        run: ./gradlew verGJF
+      - name: Test with Spotless
+        run: ./gradlew spotlessJavaCheck
         working-directory: code

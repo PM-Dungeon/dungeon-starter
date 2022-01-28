@@ -6,11 +6,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.Animation;
 import graphic.Painter;
 import interfaces.IAnimatable;
-import level.elements.Level;
-import tools.Point;
-
 import java.util.ArrayList;
 import java.util.List;
+import level.elements.Level;
+import tools.Point;
 
 public class Hero implements IAnimatable {
     private SpriteBatch batch;
@@ -22,8 +21,13 @@ public class Hero implements IAnimatable {
 
     private Animation idleAnimation;
 
+    /**
+     * a
+     *
+     * @param batch b
+     * @param painter c
+     */
     public Hero(SpriteBatch batch, Painter painter) {
-        // Test comment
         List<String> idle = new ArrayList<>();
 
         idle.add("character/knight/knight_m_idle_anim_f0.png");

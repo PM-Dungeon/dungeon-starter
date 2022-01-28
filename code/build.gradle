@@ -3,7 +3,7 @@ plugins {
     id "eclipse"
     id "checkstyle"
     id "com.github.spotbugs" version "4.7.9"
-    id "com.github.sherter.google-java-format" version "0.9"
+    id "com.diffplug.spotless" version "6.2.0"
 }
 
 repositories {
@@ -94,22 +94,12 @@ spotbugsMain {
     }
 }
 
-googleJavaFormat {
-    options style: "AOSP"
-}
-
-import com.github.sherter.googlejavaformatgradleplugin.GoogleJavaFormat
-import com.github.sherter.googlejavaformatgradleplugin.VerifyGoogleJavaFormat
-
-task format(type: GoogleJavaFormat) {
-    source "src/main"
-    source "src/test"
-    include "**/*.java"
-    exclude "**/*Template.java"
-}
-
-task verifyFormatting(type: VerifyGoogleJavaFormat) {
-    source "src/main"
-    include "**/*.java"
-    ignoreFailures true
+spotless {
+    java {
+        googleJavaFormat().aosp()
+        // optional: you can specify a specific version and/or switch to AOSP style
+        //   and/or reflow long strings (requires at least 1.8)
+        //   and/or use custom group artifact (you probably don't need this)
+        // googleJavaFormat("1.8").aosp().reflowLongStrings().groupArtifact('com.google.googlejavaformat:google-java-format')
+    }
 }

@@ -7,7 +7,7 @@ public class MyGame extends MainController {
 
     @Override
     public void setup() {
-
+        // Test
         hero = new Hero(batch, painter);
 
         entityController.add(hero);
