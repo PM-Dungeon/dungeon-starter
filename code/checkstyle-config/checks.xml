@@ -4,7 +4,6 @@
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 <!--    This configuration file is intended for later use and customization.    -->
 <module name="Checker">
-    <!--    <module name="JavadocPackage"/>-->
     <module name="TreeWalker">
         <module name="AvoidStarImport"/>
         <module name="ConstantName"/>
