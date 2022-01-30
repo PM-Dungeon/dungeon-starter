@@ -1,7 +1,9 @@
 plugins {
     id "java"
     id "eclipse"
+    id "checkstyle"
     id "com.github.spotbugs" version "4.7.9"
+    id "com.diffplug.spotless" version "6.2.0"
 }
 
 repositories {
@@ -71,6 +73,12 @@ test {
     }
 }
 
+checkstyle {
+    configFile file("checkstyle-config/checks.xml")
+    toolVersion "9.2.1"
+    showViolations = true
+}
+
 spotbugs {
     toolVersion = "4.2.2"
     ignoreFailures = true
@@ -83,5 +91,11 @@ spotbugsMain {
             enabled = true
             destination = file("$buildDir/reports/spotbugsXml.xml")
         }
+    }
+}
+
+spotless {
+    java {
+        googleJavaFormat().aosp()
     }
 }
