@@ -41,20 +41,18 @@ dependencies {
 sourceCompatibility = 17
 [compileJava, compileTestJava]*.options*.encoding = "UTF-8"
 sourceSets.main.java.srcDirs = ["desktop/src/"]
-sourceSets.main.resources.srcDirs = ["assets"]
+sourceSets.main.resources.srcDirs = ["assets/"]
 sourceSets.test.java.srcDirs = ["desktop/test/"]
 
 project.ext.mainClassName = "desktop.DesktopLauncher"
 project.ext.assetsDir = new File("assets")
 
-//dist.dependsOn classes
 eclipse.project.name = "pmdungeon-desktop"
 
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
-    workingDir = project.assetsDir
     ignoreExitValue = true
 }
 
@@ -62,7 +60,6 @@ task debug(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
-    workingDir = project.assetsDir
     ignoreExitValue = true
     debug = true
 }
