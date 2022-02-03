@@ -10,7 +10,7 @@ build-job:
         - ./gradlew assemble
         - echo "Compile complete."
 
-junit-test-job:
+junit-job:
     stage: test
     script:
         - echo "Running JUnit tests..."
@@ -18,7 +18,7 @@ junit-test-job:
         - ./gradlew test
         - echo "JUnit tests complete."
 
-spotbugs-test-job:
+spotbugs-job:
     stage: test
     script:
         - echo "Running SpotBugs tests..."
