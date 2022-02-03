@@ -1,5 +1,6 @@
 stages:
     - build
+    - test
 
 build-job:
     stage: build
@@ -8,3 +9,36 @@ build-job:
         - cd code
         - ./gradlew assemble
         - echo "Compile complete."
+
+junit-test-job:
+    stage: test
+    script:
+        - echo "Running JUnit tests..."
+        - cd code
+        - ./gradlew test
+        - echo "JUnit tests complete."
+
+spotbugs-test-job:
+    stage: test
+    script:
+        - echo "Running SpotBugs tests..."
+        - cd code
+        - ./gradlew spotbugsMain
+        - ./gradlew spotbugsTest
+        - echo "SpotBugs tests complete."
+
+checkstyle-job:
+    stage: test
+    script:
+        - echo "Checkstyle..."
+        - cd code
+        - ./gradlew check
+        - echo "Checkstyle complete."
+
+spotless-job:
+    stage: test
+    script:
+        - echo "Spotless..."
+        - cd code
+        - ./gradlew spotlessJavaCheck
+        - echo "Spotless complete."
