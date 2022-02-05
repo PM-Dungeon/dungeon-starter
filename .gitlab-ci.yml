@@ -8,7 +8,7 @@ build-job:
     script:
         - echo "Compiling the code..."
         - cd code
-        - ./gradlew assemble &> assemble.txt
+        - ./gradlew assemble > assemble.txt 2>&1
         - echo "Compile complete."
     artifacts:
         paths:
@@ -19,7 +19,7 @@ junit-job:
     script:
         - echo "Running JUnit tests..."
         - cd code
-        - ./gradlew test &> junit.txt
+        - ./gradlew test > junit.txt 2>&1
         - echo "JUnit tests complete."
     artifacts:
         paths:
@@ -30,8 +30,8 @@ spotbugs-job:
     script:
         - echo "Running SpotBugs tests..."
         - cd code
-        - ./gradlew spotbugsMain &> spotbugsMain.txt
-        - ./gradlew spotbugsTest &> spotbugsTest.txt
+        - ./gradlew spotbugsMain > spotbugsMain.txt 2>&1
+        - ./gradlew spotbugsTest > spotbugsTest.txt 2>&1
         - echo "SpotBugs tests complete."
     artifacts:
         paths:
@@ -43,7 +43,7 @@ checkstyle-job:
     script:
         - echo "Checkstyle..."
         - cd code
-        - ./gradlew check &> checkstyle.txt
+        - ./gradlew check > checkstyle.txt 2>&1
         - echo "Checkstyle complete."
     artifacts:
         paths:
@@ -54,7 +54,7 @@ spotless-job:
     script:
         - echo "Spotless..."
         - cd code
-        - ./gradlew spotlessJavaCheck &> spotless.txt
+        - ./gradlew spotlessJavaCheck > spotless.txt 2>&1
         - echo "Spotless complete."
     artifacts:
         paths:
