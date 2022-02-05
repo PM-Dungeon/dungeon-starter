@@ -11,6 +11,7 @@ build-job:
         - ./gradlew assemble > assemble.txt 2>&1
         - echo "Compile complete."
     artifacts:
+        when: always
         paths:
             - code/assemble.txt
 
@@ -22,6 +23,7 @@ junit-job:
         - ./gradlew test > junit.txt 2>&1
         - echo "JUnit tests complete."
     artifacts:
+        when: always
         paths:
             - code/junit.txt
 
@@ -34,6 +36,7 @@ spotbugs-job:
         - ./gradlew spotbugsTest > spotbugsTest.txt 2>&1
         - echo "SpotBugs tests complete."
     artifacts:
+        when: always
         paths:
             - code/spotbugsMain.txt
             - code/spotbugsTest.txt
@@ -46,6 +49,7 @@ checkstyle-job:
         - ./gradlew check > checkstyle.txt 2>&1
         - echo "Checkstyle complete."
     artifacts:
+        when: always
         paths:
             - code/checkstyle.txt
 
@@ -57,6 +61,7 @@ spotless-job:
         - ./gradlew spotlessJavaCheck > spotless.txt 2>&1
         - echo "Spotless complete."
     artifacts:
+        when: always
         paths:
             - code/spotless.txt
 
