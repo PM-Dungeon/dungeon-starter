@@ -8,71 +8,73 @@ build-job:
     script:
         - echo "Compiling the code..."
         - cd code
-        - ./gradlew assemble > assemble.txt 2>&1
+        - ./gradlew assemble 2>&1 | tee output_1.txt
         - echo "Compile complete."
     artifacts:
         when: always
         paths:
-            - code/assemble.txt
+            - code/output_1.txt
 
 junit-job:
+    when: always
     stage: test
     script:
         - echo "Running JUnit tests..."
         - cd code
-        - ./gradlew test > junit.txt 2>&1
+        - ./gradlew test 2>&1 | tee output_2.txt
         - echo "JUnit tests complete."
     artifacts:
         when: always
         paths:
-            - code/junit.txt
+            - code/output_2.txt
 
 spotbugs-job:
+    when: always
     stage: test
     script:
         - echo "Running SpotBugs tests..."
         - cd code
-        - ./gradlew spotbugsMain > spotbugsMain.txt 2>&1
-        - ./gradlew spotbugsTest > spotbugsTest.txt 2>&1
+        - ./gradlew spotbugsMain 2>&1 | tee output_3.txt
+        - ./gradlew spotbugsTest 2>&1 | tee output_4.txt
         - echo "SpotBugs tests complete."
     artifacts:
         when: always
         paths:
-            - code/spotbugsMain.txt
-            - code/spotbugsTest.txt
+            - code/output_3.txt
+            - code/output_4.txt
 
 checkstyle-job:
+    when: always
     stage: test
     script:
         - echo "Checkstyle..."
         - cd code
-        - ./gradlew check > checkstyle.txt 2>&1
+        - ./gradlew check 2>&1 | tee output_5.txt
         - echo "Checkstyle complete."
     artifacts:
         when: always
         paths:
-            - code/checkstyle.txt
+            - code/output_5.txt
 
 spotless-job:
+    when: always
     stage: test
     script:
         - echo "Spotless..."
         - cd code
-        - ./gradlew spotlessJavaCheck > spotless.txt 2>&1
+        - ./gradlew spotlessJavaCheck 2>&1 | tee output_6.txt
         - echo "Spotless complete."
     artifacts:
         when: always
         paths:
-            - code/spotless.txt
+            - code/output_6.txt
 
 package-job:
     when: always
     stage: package
     script:
         - cd code
-        - cat assemble.txt junit.txt spotbugsMain.txt spotbugsTest.txt checkstyle.txt spotless.txt > tests.txt
-        - gzip -k tests.txt
+        - cat output_*.txt 2>&1 | tee output_7.txt
     artifacts:
         paths:
-            - code/tests.txt
-            - code/tests.txt.gz
+            - code/output_7.txt
