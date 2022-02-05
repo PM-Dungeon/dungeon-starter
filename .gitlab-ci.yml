@@ -61,6 +61,7 @@ spotless-job:
             - code/spotless.txt
 
 package-job:
+    when: always
     stage: package
     script:
         - cd code
