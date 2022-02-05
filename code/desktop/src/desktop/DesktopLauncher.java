@@ -7,7 +7,7 @@ import controller.MainController;
 import tools.Constants;
 
 public final class DesktopLauncher {
-    public static void run(MainController mc)  {
+    public static void run(MainController mc)
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.width = Constants.WINDOW_WIDTH;
         config.height = Constants.WINDOW_HEIGHT;
