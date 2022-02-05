@@ -1,13 +1,14 @@
 stages:
     - build
     - test
+    - package
 
 build-job:
     stage: build
     script:
         - echo "Compiling the code..."
         - cd code
-        - ./gradlew assemble
+        - ./gradlew assemble > assemble.txt
         - echo "Compile complete."
 
 junit-job:
@@ -15,7 +16,7 @@ junit-job:
     script:
         - echo "Running JUnit tests..."
         - cd code
-        - ./gradlew test
+        - ./gradlew test > junit.txt
         - echo "JUnit tests complete."
 
 spotbugs-job:
@@ -23,8 +24,8 @@ spotbugs-job:
     script:
         - echo "Running SpotBugs tests..."
         - cd code
-        - ./gradlew spotbugsMain
-        - ./gradlew spotbugsTest
+        - ./gradlew spotbugsMain > spotbugsMain.txt
+        - ./gradlew spotbugsTest > spotbugsTest.txt
         - echo "SpotBugs tests complete."
 
 checkstyle-job:
@@ -32,7 +33,7 @@ checkstyle-job:
     script:
         - echo "Checkstyle..."
         - cd code
-        - ./gradlew check
+        - ./gradlew check > checkstyle.txt
         - echo "Checkstyle complete."
 
 spotless-job:
@@ -40,5 +41,14 @@ spotless-job:
     script:
         - echo "Spotless..."
         - cd code
-        - ./gradlew spotlessJavaCheck
+        - ./gradlew spotlessJavaCheck > spotless.txt
         - echo "Spotless complete."
+
+package-job:
+    stage: package
+    script:
+        - cd code
+        - cat assemble.txt junit.txt spotbugsMain.txt spotbugsTest.txt checkstyle.txt spotless.txt | gzip > tests.gz
+    artifacts:
+        paths:
+            - tests.gz
