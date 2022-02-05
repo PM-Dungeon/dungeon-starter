@@ -64,7 +64,9 @@ package-job:
     stage: package
     script:
         - cd code
-        - cat assemble.txt junit.txt spotbugsMain.txt spotbugsTest.txt checkstyle.txt spotless.txt | gzip > tests.gz
+        - cat assemble.txt junit.txt spotbugsMain.txt spotbugsTest.txt checkstyle.txt spotless.txt > tests.txt
+        - gzip -k tests.txt
     artifacts:
         paths:
-            - code/tests.gz
+            - code/tests.txt
+            - code/tests.txt.gz
