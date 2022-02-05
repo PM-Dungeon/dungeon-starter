@@ -63,6 +63,7 @@ jobs:
           path: '**/spotbugsXml.xml'
           name: 'SpotBugs Test Report'
   checkstyle-test:
+    needs: build
     name: Checkstyle Test
     runs-on: ubuntu-latest
     steps:
@@ -80,6 +81,7 @@ jobs:
         with:
           path: '**/checkstyle/*.xml'
   spotless-java-format-test:
+    needs: build
     name: Spotless Test
     runs-on: ubuntu-latest
     steps:
