@@ -156,10 +156,14 @@ latex.out/
 
 
 # IntelliJ IDEA #
-#########
+#################
 .idea
 
 # Gradle #
-#########
+##########
 .gradle/
 war/
+
+# GitLab #
+##########
+code/output_*.txt
