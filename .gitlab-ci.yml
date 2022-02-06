@@ -1,7 +1,7 @@
 stages:
     - build
-    - check
     - test
+    - check
     - package
 
 build-job:
@@ -16,20 +16,33 @@ build-job:
         paths:
             - code/output_1.txt
 
+junit-job:
+    when: always
+    stage: test
+    script:
+        - echo "Running JUnit tests..."
+        - cd code
+        - ./gradlew test 2>&1 | tee output_2.txt
+        - echo "JUnit tests complete."
+    artifacts:
+        when: always
+        paths:
+            - code/output_2.txt
+
 spotbugs-job:
     when: always
     stage: check
     script:
         - echo "Running SpotBugs tests..."
         - cd code
-        - ./gradlew spotbugsMain 2>&1 | tee output_2.txt
-        - ./gradlew spotbugsTest 2>&1 | tee output_3.txt
+        - ./gradlew spotbugsMain 2>&1 | tee output_3.txt
+        - ./gradlew spotbugsTest 2>&1 | tee output_4.txt
         - echo "SpotBugs tests complete."
     artifacts:
         when: always
         paths:
-            - code/output_2.txt
             - code/output_3.txt
+            - code/output_4.txt
 
 checkstyle-job:
     when: always
@@ -37,12 +50,12 @@ checkstyle-job:
     script:
         - echo "Checkstyle..."
         - cd code
-        - ./gradlew check 2>&1 | tee output_4.txt
+        - ./gradlew check 2>&1 | tee output_5.txt
         - echo "Checkstyle complete."
     artifacts:
         when: always
         paths:
-            - code/output_4.txt
+            - code/output_5.txt
 
 spotless-job:
     when: always
@@ -50,21 +63,8 @@ spotless-job:
     script:
         - echo "Spotless..."
         - cd code
-        - ./gradlew spotlessJavaCheck 2>&1 | tee output_5.txt
+        - ./gradlew spotlessJavaCheck 2>&1 | tee output_6.txt
         - echo "Spotless complete."
-    artifacts:
-        when: always
-        paths:
-            - code/output_5.txt
-
-junit-job:
-    when: always
-    stage: test
-    script:
-        - echo "Running JUnit tests..."
-        - cd code
-        - ./gradlew test 2>&1 | tee output_6.txt
-        - echo "JUnit tests complete."
     artifacts:
         when: always
         paths:
