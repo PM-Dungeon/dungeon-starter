@@ -74,7 +74,8 @@ package-job:
     when: always
     stage: package
     script:
-        - cat code/output_*.txt 2>&1 | tee output_7.txt
+        - cd code
+        - cat output_*.txt 2>&1 | tee output_7.txt
     artifacts:
         paths:
-            - output_7.txt
+            - code/output_7.txt
