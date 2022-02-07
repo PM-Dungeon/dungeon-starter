@@ -9,12 +9,12 @@ build-job:
     script:
         - echo "Compiling the code..."
         - cd code
-        - ./gradlew assemble 2>&1 | tee output_1.txt
+        - ./gradlew assemble 2>&1 | tee 01_assemble_log.txt
         - echo "Compile complete."
     artifacts:
         when: always
         paths:
-            - code/output_1.txt
+            - code/01_assemble_log.txt
 
 junit-job:
     when: always
@@ -22,12 +22,12 @@ junit-job:
     script:
         - echo "Running JUnit tests..."
         - cd code
-        - ./gradlew test 2>&1 | tee output_2.txt
+        - ./gradlew test 2>&1 | tee 02_junit_log.txt
         - echo "JUnit tests complete."
     artifacts:
         when: always
         paths:
-            - code/output_2.txt
+            - code/02_junit_log.txt
 
 spotbugs-job:
     when: always
@@ -35,14 +35,14 @@ spotbugs-job:
     script:
         - echo "Running SpotBugs tests..."
         - cd code
-        - ./gradlew spotbugsMain 2>&1 | tee output_3.txt
-        - ./gradlew spotbugsTest 2>&1 | tee output_4.txt
+        - ./gradlew spotbugsMain 2>&1 | tee 03_spotbugs_log.txt
+        - ./gradlew spotbugsTest 2>&1 | tee 04_spotbugs_log.txt
         - echo "SpotBugs tests complete."
     artifacts:
         when: always
         paths:
-            - code/output_3.txt
-            - code/output_4.txt
+            - code/03_spotbugs_log.txt
+            - code/04_spotbugs_log.txt
 
 checkstyle-job:
     when: always
@@ -50,12 +50,12 @@ checkstyle-job:
     script:
         - echo "Checkstyle..."
         - cd code
-        - ./gradlew check 2>&1 | tee output_5.txt
+        - ./gradlew check 2>&1 | tee 05_checkstyle_log.txt
         - echo "Checkstyle complete."
     artifacts:
         when: always
         paths:
-            - code/output_5.txt
+            - code/05_checkstyle_log.txt
 
 spotless-job:
     when: always
@@ -63,19 +63,19 @@ spotless-job:
     script:
         - echo "Spotless..."
         - cd code
-        - ./gradlew spotlessJavaCheck 2>&1 | tee output_6.txt
+        - ./gradlew spotlessJavaCheck 2>&1 | tee 06_spotless_log.txt
         - echo "Spotless complete."
     artifacts:
         when: always
         paths:
-            - code/output_6.txt
+            - code/06_spotless_log.txt
 
 package-job:
     when: always
     stage: package
     script:
         - cd code
-        - cat output_*.txt 2>&1 | tee output_7.txt
+        - cat *_log.txt 2>&1 | tee 07_summary_log.txt
     artifacts:
         paths:
-            - code/output_7.txt
+            - code/07_summary_log.txt
