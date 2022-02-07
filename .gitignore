@@ -166,4 +166,4 @@ war/
 
 # GitLab #
 ##########
-code/output_*.txt
+code/*_log.txt
