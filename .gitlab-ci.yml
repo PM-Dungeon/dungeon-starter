@@ -7,10 +7,10 @@ stages:
 build-job:
     stage: build
     script:
-        - echo "Compiling the code..."
+        - echo "Build..."
         - cd code
         - ./gradlew assemble 2>&1 | tee 01_assemble_log.txt
-        - echo "Compile complete."
+        - echo "Build complete."
     artifacts:
         when: always
         paths:
@@ -20,10 +20,10 @@ junit-job:
     when: always
     stage: test
     script:
-        - echo "Running JUnit tests..."
+        - echo "JUnit..."
         - cd code
         - ./gradlew test 2>&1 | tee 02_junit_log.txt
-        - echo "JUnit tests complete."
+        - echo "JUnit complete."
     artifacts:
         when: always
         paths:
@@ -33,11 +33,11 @@ spotbugs-job:
     when: always
     stage: check
     script:
-        - echo "Running SpotBugs tests..."
+        - echo "SpotBugs..."
         - cd code
         - ./gradlew spotbugsMain 2>&1 | tee 03_spotbugs_log.txt
         - ./gradlew spotbugsTest 2>&1 | tee 04_spotbugs_log.txt
-        - echo "SpotBugs tests complete."
+        - echo "SpotBugs complete."
     artifacts:
         when: always
         paths:
@@ -74,8 +74,10 @@ package-job:
     when: always
     stage: package
     script:
+        - echo "Summary..."
         - cd code
         - cat *_log.txt 2>&1 | tee 07_summary_log.txt
+        - echo "Summary complete."
     artifacts:
         paths:
             - code/07_summary_log.txt
