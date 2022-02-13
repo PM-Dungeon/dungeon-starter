@@ -4,7 +4,7 @@ stages:
     - check
     - package
 
-build-job:
+build:
     stage: build
     script:
         - echo "Build..."
@@ -16,7 +16,7 @@ build-job:
         paths:
             - code/01_assemble_log.txt
 
-junit-job:
+junit:
     when: always
     stage: test
     script:
@@ -29,7 +29,7 @@ junit-job:
         paths:
             - code/02_junit_log.txt
 
-spotbugs-job:
+spotbugs:
     when: always
     stage: check
     script:
@@ -44,7 +44,7 @@ spotbugs-job:
             - code/03_spotbugs_log.txt
             - code/04_spotbugs_log.txt
 
-checkstyle-job:
+checkstyle:
     when: always
     stage: check
     script:
@@ -57,7 +57,7 @@ checkstyle-job:
         paths:
             - code/05_checkstyle_log.txt
 
-spotless-job:
+spotless:
     when: always
     stage: check
     script:
@@ -70,7 +70,7 @@ spotless-job:
         paths:
             - code/06_spotless_log.txt
 
-package-job:
+package:
     when: always
     stage: package
     script:
