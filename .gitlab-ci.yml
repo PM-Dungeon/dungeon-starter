@@ -4,47 +4,47 @@ stages:
     - check
     - package
 
-build-job:
+build:
     stage: build
     script:
-        - echo "Compiling the code..."
+        - echo "Build..."
         - cd code
         - ./gradlew assemble 2>&1 | tee 01_assemble_log.txt
-        - echo "Compile complete."
+        - echo "Build complete."
     artifacts:
         when: always
         paths:
             - code/01_assemble_log.txt
 
-junit-job:
+junit:
     when: always
     stage: test
     script:
-        - echo "Running JUnit tests..."
+        - echo "JUnit..."
         - cd code
         - ./gradlew test 2>&1 | tee 02_junit_log.txt
-        - echo "JUnit tests complete."
+        - echo "JUnit complete."
     artifacts:
         when: always
         paths:
             - code/02_junit_log.txt
 
-spotbugs-job:
+spotbugs:
     when: always
     stage: check
     script:
-        - echo "Running SpotBugs tests..."
+        - echo "SpotBugs..."
         - cd code
         - ./gradlew spotbugsMain 2>&1 | tee 03_spotbugs_log.txt
         - ./gradlew spotbugsTest 2>&1 | tee 04_spotbugs_log.txt
-        - echo "SpotBugs tests complete."
+        - echo "SpotBugs complete."
     artifacts:
         when: always
         paths:
             - code/03_spotbugs_log.txt
             - code/04_spotbugs_log.txt
 
-checkstyle-job:
+checkstyle:
     when: always
     stage: check
     script:
@@ -57,7 +57,7 @@ checkstyle-job:
         paths:
             - code/05_checkstyle_log.txt
 
-spotless-job:
+spotless:
     when: always
     stage: check
     script:
@@ -70,12 +70,14 @@ spotless-job:
         paths:
             - code/06_spotless_log.txt
 
-package-job:
+package:
     when: always
     stage: package
     script:
+        - echo "Summary..."
         - cd code
         - cat *_log.txt 2>&1 | tee 07_summary_log.txt
+        - echo "Summary complete."
     artifacts:
         paths:
             - code/07_summary_log.txt
