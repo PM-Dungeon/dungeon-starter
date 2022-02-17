@@ -1,6 +1,6 @@
 package desktop;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.DungeonApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import controller.LibgdxSetup;
 import controller.MainController;
@@ -12,6 +12,6 @@ public final class DesktopLauncher {
         config.width = Constants.WINDOW_WIDTH;
         config.height = Constants.WINDOW_HEIGHT;
         config.foregroundFPS = Constants.FRAME_RATE;
-        new LwjglApplication(new LibgdxSetup(mc), config);
+        new DungeonApplication(new LibgdxSetup(mc), config, 0);
     }
 }
