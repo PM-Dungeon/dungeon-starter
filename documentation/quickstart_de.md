@@ -59,7 +59,7 @@ In diesen Abschnitt werden alle Schritte erläutert, die zum ersten Start der An
 - Implementieren Sie alle notwendigen Methoden. *Hinweis: Weitere Informationen zu diesen Methoden erfolgen im Laufe der Dokumentation.*
     - `setup()`
     - `beginFrame()`
-    - `enFrame()`
+    - `endFrame()`
     - `onLevelLoad()`
 - Rufen Sie zum Ende der `setup()`-Methode `levelAPI.loadLevel()` auf um das erste Level zu laden:
 
