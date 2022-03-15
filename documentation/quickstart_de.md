@@ -89,7 +89,7 @@ Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen k
 
 Bevor wir nun unseren Helden implementieren sollten wir verstehen, was genau der `MainController` eigentlich ist. Wie der Name schon vermuten lässt, ist dies die Haupt-Steuerung des Spiels. Er bereitet alles für den Start des Spieles vor, verwaltet die anderen Controller und enthält die Game-Loop. Wir nutzen `MyGame` um selbst in die Game-Loop einzugreifen und unsere eigenen Objekte wie Helden und Monster zu verwalten. Der `MainController` ist der Punkt, an dem alle Fäden des Dungeons zusammenlaufen. Im Folgenden wird Ihnen erklärt, wie Sie erfolgreich mit dem `MainController` arbeiten.
 
-![first_start](figs/quickstart_de_erster_start_level0.png)
+![first_start](figs/quickstart_level0.png)
 
 ## Eigener Held
 
