@@ -101,6 +101,8 @@ import graphic.Animation;
 import graphic.Painter;
 import interfaces.IAnimatable;
 import tools.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Hero implements IAnimatable {
     // Die SpriteBatch ist "das Papier" auf dem unser Held dargestellt werden soll.
