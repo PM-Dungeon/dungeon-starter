@@ -12,6 +12,8 @@ public final class DesktopLauncher {
         config.width = Constants.WINDOW_WIDTH;
         config.height = Constants.WINDOW_HEIGHT;
         config.foregroundFPS = Constants.FRAME_RATE;
+        config.title = "pm_dungeon";
+        config.addIcon("hud/logo.png", Files.FileType.Internal);
         new DungeonApplication(new LibgdxSetup(mc), config, 0);
     }
 }
