@@ -102,6 +102,7 @@ import graphic.Painter;
 import interfaces.IAnimatable;
 import tools.Point;
 
+
 public class Hero implements IAnimatable {
     // Die SpriteBatch ist "das Papier" auf dem unser Held dargestellt werden soll.
     private SpriteBatch batch;
@@ -218,6 +219,12 @@ public void update() {
 Jetzt ist unsere erste Version vom Helden fast fertig, wir benötigen lediglich noch ein paar kleinere Informationen. Zuerst muss unser Held wissen, wo er überhaupt im Dungeon steht, dafür benötigt er eine Position. Zusätzlich wäre es hilfreich, wenn unser Held das Level (die Dungeon-Ebene) kennen würde, da wir so vermeiden können, dass sich unser Held durch Wände bewegt oder sich außerhalb des eigentlichen Spielbereiches aufhält.
 
 ```java
+...
+
+import level.elements.Level;
+
+...
+
 //Positionen werden als float x und float y in der Klasse Point gespeichert
 private Point position;
 //Das Level
