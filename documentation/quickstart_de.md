@@ -62,15 +62,15 @@ Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen k
 Bevor wir nun unseren Helden implementieren sollten wir verstehen, wie genau die Vorgaben aufgebaut sind.
 Öffnen Sie dafür das `desktop/code` Verzeichnis als Gradle-Projekt in Ihrer bevorzugten IDE.
 
-Betrachten wir nun die `desktop.MyGame.class`. Diese Klasse ist Ihr einstiegspunkt in das Dungeon. Hier werden Sie später Ihre Inhalte erzeugen und in das Dungeon hinzufügen.
+Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in das Dungeon. Hier werden Sie später Ihre Inhalte erzeugen und in das Dungeon hinzufügen.
 
-`MyGame` erbt von den `MainController`. Wie der Name schon vermuten lässt, ist der MainController die Haupt-Steuerung des Spiels. Er bereitet alles für den Start des Spieles vor, verwaltet die anderen Controller und enthält die Game-Loop. Wir nutzen `MyGame` um selbst in die Game-Loop einzugreifen und unsere eigenen Objekte wie Helden und Monster zu verwalten. Der `MainController` ist der Punkt, an dem alle Fäden des Dungeons zusammenlaufen.
+`MyGame` erbt von `MainController`. Wie der Name schon vermuten lässt, ist der MainController die Haupt-Steuerung des Spiels. Er bereitet alles für den Start des Spieles vor, verwaltet die anderen Controller und enthält die Game-Loop. Wir nutzen `MyGame` um selbst in die Game-Loop einzugreifen und unsere eigenen Objekte wie Helden und Monster zu verwalten. Der `MainController` ist der Punkt, an dem alle Fäden des Dungeons zusammenlaufen.
 
 `MyGame` implementiert bereits einige Methoden:
 - `setup` wird zu Beginn der Anwendung aufgerufen. In dieser Methode werden später die Objekte initialisiert und konfiguriert, welche bereits vor dem Spielstart existieren müssen. In der Vorgabe wird hier bereits das erste Level geladen.  
 - `beginFrame` wird am Anfang jedes Frames aufgerufen. Hier werden später Abfragen und Berechnungen implementiert.  
 - `endFrame` wird am Ende jedes Frames aufgerufen. Hier werden später Abfragen und Berechnungen implementiert.  
-- `onLevelLoad` wird immer dann aufgerufen, wenn ein Level geladen wird. Hier werden später Monster und Items im Level verteilt. 
+- `onLevelLoad` wird immer dann aufgerufen, wenn ein Level geladen wird. Hier werden später Monster und Items erstellt, die initial im Level verteilt werden. 
 - `main` startet das Spiel.
 
 ## Eigener Held
@@ -81,15 +81,15 @@ Fangen wir damit an eine neue Klasse für den Helden anzulegen. Unser Held soll 
 
 Das Interface `IEntity` liefert einige Methoden, welche wir implementieren müssen.
 
-- `update` diese Methode wird später vom `EntityController` in jedem Frame einmal aufgerufen. Änderungen am Status des Helden, wie zum Beispiel die Position, werden hier berechnet. 
-- `removeable` wenn diese Methode `true` zurückgibt, wird das Objekt aus dem `EntityController` entfernt und nicht mehr verwaltet. Besiegt unser Held später ein Monster, sollte dieses nach dem Ableben `true` zurückgeben. 
-- `getBatch` die SpriteBatch ist die Zeichenfläche auf dem unser Objekt gezeichnet werden soll. Jede Entität muss wissen, worauf Sie gezeichnet werden soll. 
+- `update`: Diese Methode wird später vom `EntityController` in jedem Frame einmal aufgerufen. Änderungen am Status des Helden, wie zum Beispiel die Position, werden hier berechnet. 
+- `removeable`: Wenn diese Methode `true` zurückgibt, wird das Objekt aus dem `EntityController` entfernt und nicht mehr verwaltet. Besiegt unser Held beispielsweise später ein Monster, sollte dieses nach dem Ableben `true` zurückgeben. 
+- `getBatch`: Die SpriteBatch ist die Zeichenfläche, auf dem unser Objekt gezeichnet werden soll. Jede Entität muss wissen, worauf sie gezeichnet werden soll. 
 - `getPainter` ist der Zeichner, der unser Objekt zeichnet. Jede Entität muss wissen, von wem es gezeichnet wird.
 - `getPosition` gibt an, wo unser Held im Dungeon steht. 
 - `getTexture` gibt an, welche Textur verwendet werden soll, wenn unser Held gezeichnet wird. 
 
 Wir sollten einige dieser Methoden mit Code füllen.
-Die `SpriteBatch` und den `Painter` bekommt unser Held bei der Erstellung übergeben. Daher legen wir Variablen an und erstellen einen Konstruktor für unseren Helden. Die Textur für unseren Helden können wir auch schon implementieren. Dafür geben wir den Pfad zu unserer Textur als String an.
+Die `SpriteBatch` und den `Painter` bekommt unser Held bei der Erstellung übergeben. Daher legen wir Attribute an und erstellen einen Konstruktor für unseren Helden. Die Textur für unseren Helden können wir auch schon implementieren. Dafür geben wir den Pfad zu unserer Textur als String an.
 
 ```java
     private Painter painter;
@@ -103,9 +103,9 @@ Die `SpriteBatch` und den `Painter` bekommt unser Held bei der Erstellung überg
     }
 ```
 
-In den jeweiligen `get` Methoden, geben wir nun die jeweiligen Variablen zurück.
+In den jeweiligen `get`-Methoden geben wir nun die jeweiligen Werte zurück.
 
-Unser Held benötigt aber noch eine Position im Level. Dafür muss unser Held auch das Level kenne. Wir implementieren daher eine `setLevel` Methode in unseren Helden, speichern das Level ab (das werden wir später noch brauchen) und suchen uns die Startposition im Level und platzieren unseren Helden darauf.
+Unser Held benötigt aber noch eine Position im Level. Dafür muss unser Held auch das Level kennen. Wir implementieren daher eine `setLevel`-Methode in unserem Helden, speichern das Level ab (das werden wir später noch brauchen) und suchen uns die Startposition im Level und platzieren unseren Helden darauf.
 
 ```java
    public void setLevel(Level level){
@@ -114,9 +114,9 @@ Unser Held benötigt aber noch eine Position im Level. Dafür muss unser Held au
     }
 ```
 
-Bevor wir weiter machen, sollten wir uns einmal den aufbau des Level anschauen. Level werden als 2D-Tile-Array gespeichert. Ein `Tile` ist dabei ein Feld im Level, also eine Wand oder ein Bodenfeld. Jedes `Tile` hat eine feste `Coordinate` im Array (also wo im Array das `Tile` abgespeichert ist). Diese `Coordinate` gibt auch an, wo das `Tile` im Level liegt. `Coordinate` sind zwei Integerwerte (`x` und `y`). Die Position von Entitäten geben wir als `Point` an. Ein `Point` sind zwei Floatwerte (`x` und `y`). Das machen wir darum, weil unsere Entitäten auch zwischen zwei `Tiles`stehen können. Wenn wir später die Steuerrung für unseren Helden implementieren, wird dieses noch deutlicher. Jetzt ist wichtig, dass wir mit `Coordinate.toPoint()` unseren Helden auf die Position des Starttiles setzen können.
+Bevor wir weiter machen, sollten wir uns einmal den Aufbau des Level anschauen. Level werden als 2D-Tile-Array gespeichert. Ein `Tile` ist dabei ein Feld im Level, also eine Wand oder ein Bodenfeld. Jedes `Tile` hat eine feste `Coordinate` im Array (also einen Index, wo im Array das `Tile` abgespeichert ist). Diese `Coordinate` gibt auch an, wo das `Tile` im Level liegt. `Coordinate` sind zwei Integerwerte (`x` und `y`). Die Position von Entitäten geben wir als `Point` an. Ein `Point` sind zwei Floatwerte (`x` und `y`). Das machen wir, weil unsere Entitäten auch zwischen zwei `Tiles` stehen können. Wenn wir später die Steuerung für unseren Helden implementieren, wird dieses noch deutlicher. Jetzt ist wichtig, dass wir mit `Coordinate.toPoint()` unseren Helden auf die Position des Starttiles setzen können.
 
-Wir müssen noch dafür sorgen, dass unser Held auch gezeichnet wird. Da unser Held später vom `EntityController`verwaltet wird, nutzen wir dafür die `update` Methode.
+Wir müssen noch dafür sorgen, dass unser Held auch gezeichnet wird. Da unser Held später vom `EntityController`verwaltet wird, nutzen wir dafür die `update`-Methode.
 
 ```java
     @Override
@@ -124,9 +124,9 @@ Wir müssen noch dafür sorgen, dass unser Held auch gezeichnet wird. Da unser H
         draw();
     }
 ```
-Die Methode `draw()` ist eine im Interface `IEntity` vorimplementierte Methode (was das bedeutet lernen Sie im laufe des Semesters) und sorgt dafür, dass unser Held an der entsprechenden Position im Dungeon gezeichnet wird.
+Die Methode `draw()` ist eine im Interface `IEntity` vorimplementierte Methode (was das bedeutet lernen Sie im Laufe des Semesters) und sorgt dafür, dass unser Held an der entsprechenden Position im Dungeon gezeichnet wird.
 
-Wir haben die erste Version unseres Helden implementiert. Jetzt müssen wir ihn noch Erstellen.
+Wir haben die erste Version unseres Helden implementiert. Jetzt müssen wir ihn noch erstellen.
 Dafür gehen wir wieder in `MyGame` und legen eine Variable `MyHero hero` an.
 In `setup` erstellen wir nun unseren Helden und registrieren ihn im `EntityController`. Außerdem wollen wir, dass die Kamera auf unseren Helden zentriert wird.
 
@@ -141,7 +141,7 @@ In `setup` erstellen wir nun unseren Helden und registrieren ihn im `EntityContr
     }
 ```
 
-Jetzt müssen wir den Helden nurnoch im Dungeon platzieren. Dafür rufen wir die `setLevel` Methode auf, nachdem ein Level geladen wurde.
+Jetzt müssen wir den Helden nur noch im Dungeon platzieren. Dafür rufen wir die `setLevel`-Methode auf, nachdem ein Level geladen wurde.
 
 ```java
     @Override
@@ -150,7 +150,7 @@ Jetzt müssen wir den Helden nurnoch im Dungeon platzieren. Dafür rufen wir die
     }
 ```
 
-Wenn Sie das Spiel nun starten, sollten Sie ihren unbeweglichen Helden im Dungeon sehen können.
+Wenn Sie das Spiel nun starten, sollten Sie ihren (unbeweglichen) Helden im Dungeon sehen können.
 
 ### Intermezzo: Der Assets-Ordner
 
@@ -173,13 +173,13 @@ Später werden Sie es wahrscheinlich praktischer finden, anstelle von relativen 
 
 ### Der bewegte (animierte) Held
 
-Aktuell besitzt unser Held nur eine feste Textur, in diesen Abschnitt animieren wir unseren Helden.
-Im PM-Dungeon ist eine Animation ein Loop verschiedener Texturen die im wechsel gezeichnet werden.
-Um unseren Helden zu animieren, nutzen wir eine erweiterte Version des `IEntity` interfaces `IAnimatable`.
+Aktuell besitzt unser Held nur eine feste Textur, in diesem Abschnitt animieren wir unseren Helden.
+Im PM-Dungeon ist eine Animation ein Loop verschiedener Texturen, die im Wechsel gezeichnet werden.
+Um unseren Helden zu animieren, nutzen wir eine erweiterte Version des `IEntity`-Interfaces `IAnimatable`.
 
 `public class MyHero implements IAnimatable`
 
-Die Methode `getTexture` müssen wir nun mit der Methode `getgetActiveAnimation` ersetzten. Ebenso ersetzten wir unsere `texture` Varibale durch eine `idle` Variable (`private Animation idle`).
+Die Methode `getTexture` müssen wir nun mit der Methode `getgetActiveAnimation` ersetzen. Ebenso ersetzen wir unser `texture`-Attribut durch ein Attribut `idle` (`private Animation idle`).
 
 
 ```java
@@ -206,11 +206,11 @@ public Hero(SpriteBatch batch, Painter painter) {
 }
 ```
 
-Um eine Animation zu erstellen benötigen Sie eine Liste mit verschiedenen Texturen. Dann können Sie mit `new Animation()` eine Animation erstellen. Dabei übergeben Sie zu einem die Liste mit den Texturen und zu anderen ein `int` (hier 8). Dieser Wert gibt an, nach wie vielen Frames die nächste Textur geladen werden soll. In unserem Beispiel wird also 8 Frames lang die Textur `texture_1` angezeigt, dann 8 Frames die Textur `texture_2` und dann wieder 8 Frames die Textur `texture_1` usw.
+Um eine Animation zu erstellen benötigen Sie eine Liste mit verschiedenen Texturen. Dann können Sie mit `new Animation()` eine Animation erstellen. Dabei übergeben Sie die Liste mit den Texturen und einen Integerwert, der angibt, nach wie vielen Frames die nächste Textur geladen werden soll (hier im Beispiel der Wert 8). In unserem Beispiel wird also 8 Frames lang die Textur `texture_1` angezeigt, dann 8 Frames die Textur `texture_2` und dann wieder 8 Frames die Textur `texture_1` usw.
 
-Sie können (und sollten) auch verschiedene Animationen für verschiedene situationen ertellen (stehen, laufen etc.). Geben Sie einfach in `getActiveAnimation` immer die Animation zurück, die grade verwendet werden soll.
+Sie können (und sollten) auch verschiedene Animationen für verschiedene Situationen ertellen (Stehen, Laufen, ...). Geben Sie einfach in `getActiveAnimation` immer die Animation zurück, die gerade verwendet werden soll.
 
-Wenn Sie das Spiel nun starten, sollten Sie Ihren animierten unbeweglichen Helden sehen.
+Wenn Sie das Spiel nun starten, sollten Sie Ihren animierten (aber immer noch unbeweglichen) Helden sehen.
 
 
 ### WASD oder die Steuerung des Helden über die Tastatur
@@ -234,21 +234,21 @@ Es wird Zeit, dass unser Held sich bewegen kann. Dafür fügen wir Steuerungsopt
     if(level.getTileAt(newPosition.toCoordinate()).isAccessible())
         this.position = newPosition;
 ```
-Damit unser Held sich nicht durch Wände bewegt, berechnen wir zuerst die neue Position, kontrollieren dann ob diese gültig ist und platzieren dann unseren Helden (oder auch nicht).
+Damit unser Held sich nicht durch Wände bewegt, berechnen wir zuerst die neue Position, kontrollieren dann, ob diese gültig ist, und platzieren dann unseren Helden (oder auch nicht).
 Mit `Gdx.input.isKeyPressed` können wir überprüfen, ob eine Taste gedrückt ist.
-Jenachdem welche Taste gedrückt wurde, ändern wie die (nächste) Position des Helden.
-mit `level.getTileAt(newPosition.toCoordinate()).isAccessible()` können wir überprüfen, ob es sich bei der neuen Position um ein betretbares `Tile` handelt oder nicht.
+Je nachdem welche Taste gedrückt wurde, ändern wir die (nächste) Position des Helden.
+Mit `level.getTileAt(newPosition.toCoordinate()).isAccessible()` können wir überprüfen, ob es sich bei der neuen Position um ein betretbares `Tile` handelt oder nicht.
 
-Wenn Sie nun das Spiel starten, sollten Sie sich mit Ihren Helden bewegen können.
-Fügen Sie eine Animation für jede Laufrichtung hinzu.
+Wenn Sie nun das Spiel starten, sollten Sie Ihren Helden bewegen können.
+Fügen Sie eine unterschiedliche Animation für jede Laufrichtung hinzu.
 
 ### Nächstes Level laden
 
 Da unser Held immer tiefer in das Dungeon gelangen soll, lassen wir jetzt ein neues Level laden, wenn der Held auf die Leiter tritt.
 
-Dafür nutzen wir die `endFrame` Methode in `MyGame`. Mit `levelAPI.getCurrentLevel().isOnTile()` können wir überprüfen, ob unser Held auf dem EndTile steht. Ist dies der Fall, lassen wir ein neues Level laden.
+Dafür nutzen wir die `endFrame`-Methode in `MyGame`. Mit `levelAPI.getCurrentLevel().isOnTile()` können wir überprüfen, ob unser Held auf dem EndTile steht. Ist dies der Fall, lassen wir ein neues Level laden.
 
-Da wir unseren Helden in `onLevelLoad` beim laden eines neuen Level automatisch neu platzieren, müssen wir uns darum nicht mehr kümmern.
+Da wir unseren Helden in `onLevelLoad` beim Laden eines neuen Levels automatisch neu platzieren, müssen wir uns darum nicht mehr kümmern.
 
 ```java
     @Override
@@ -258,17 +258,17 @@ Da wir unseren Helden in `onLevelLoad` beim laden eines neuen Level automatisch 
     }
 ```
 
-*Anmerkung: Später werden Sie viele weitere Entitäten im Level platziert haben (Monster, Schatztruhen, Falle etc.). Diese sollten Sie beim laden eines neuen Level löschen oder in das nächste Level "mitnehmen".*
+_Anmerkung_: Später werden Sie viele weitere Entitäten im Level platziert haben (Monster, Schatztruhen, Fallen ...). Diese sollten Sie beim Laden eines neuen Levels löschen oder in das nächste Level "mitnehmen".
 
-Starten Sie nun das Spiel sollten Sie sich mit Ihrem Helden durch das Level bewegen können und auch in das nächste Level gelangen können.
+Starten Sie nun das Spiel, sollten Sie Ihren Helden durch das Level bewegen können und auch in das nächste Level gelangen können.
 
 ## Levelgenerator
 
-Das PM-Dungeon nutzt einen eigenen prozeduralen Levelgenerator. Eigentlich müssen Sie sich nicht damit beschäftigen, unter umständen kann die Brechnung von Level aber viel Zeit auf Ihrer Maschine benötigen, sie können daher auch abgespeicherte Level anstelle von "frisch generierten" Level verweden. Fügen Sie dafür einfach `levelAPI.setGenerator(new LevelLoader());` zu Beginn der `MyGame#setup` Methode hinzu. Die Level werden aus `.json` im `assets/level/files/` Verzeichnis geladen.
+Das PM-Dungeon nutzt einen eigenen prozeduralen Levelgenerator. Eigentlich müssen Sie sich nicht damit beschäftigen, unter Umständen kann die Berechnung von Leveln aber viel Zeit auf Ihrer Maschine benötigen. Sie können daher auch abgespeicherte Level anstelle von "frisch generierten" Leveln verwenden. Fügen Sie dafür einfach `levelAPI.setGenerator(new LevelLoader());` zu Beginn der `MyGame#setup`-Methode hinzu. Die Level werden aus `.json` im `assets/level/files/`-Verzeichnis geladen.
 
 ## Abschlussworte
 
-Sie haben nun die ersten Schritte im Dungeon gemacht. Von nun an müssen Sie selbst entscheiden, wie Sie die Aufgaben im Praktikum umsetzten möchten. Ihnen ist mit Sicherheit aufgefallen, dass einige Interface-Methoden in diesem Dokument noch nicht erläutert wurden. Machen Sie sich daher mit der Javadoc des Frameworks vertraut.
+Sie haben nun die ersten Schritte im Dungeon gemacht. Von nun an müssen Sie selbst entscheiden, wie Sie die Aufgaben im Praktikum umsetzen möchten. Ihnen ist mit Sicherheit aufgefallen, dass einige Interface-Methoden in diesem Dokument noch nicht erläutert wurden. Machen Sie sich daher mit der Javadoc des [Frameworks](https://github.com/PM-Dungeon/core) vertraut.
 
 ## Zusätzliche Funktionen
 
@@ -380,7 +380,7 @@ Genauere Informationen zu den Parametern entnehmen Sie bitte der JavaDoc.
 ### Level-API
 
 Sie haben viele Möglichkeiten mit dem Level zu interagieren.
-Schauen Sie in die Javadoc um herauszufinden, wie Sie optionale Räume identifizieren oder Wände wegsprengen können.
+Schauen Sie in die [Javadoc](https://github.com/PM-Dungeon/core) um herauszufinden, wie Sie optionale Räume identifizieren oder Wände wegsprengen können.
 
 ### Sound
 
@@ -400,5 +400,5 @@ bumSound.play(1f);
 bumSound.loop();
 ```
 
-Sie können noch weitere Parameter und Methoden verwenden, um den Sound Ihren Wünschen anzupassen. Schauen Sie dafür in die [`libGDX`-Dokumentation](https://libgdx.badlogicgames.com/ci/nightlies/docs/api/com/badlogic/gdx/audio/Sound.html)
+Sie können noch weitere Parameter und Methoden verwenden, um den Sound Ihren Wünschen anzupassen. Schauen Sie dafür in die [`libGDX`-Dokumentation](https://libgdx.badlogicgames.com/ci/nightlies/docs/api/com/badlogic/gdx/audio/Sound.html).
 
