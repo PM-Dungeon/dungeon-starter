@@ -60,7 +60,7 @@ Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen k
 ## Blick in den Code
 
 Bevor wir nun unseren Helden implementieren sollten wir verstehen, wie genau die Vorgaben aufgebaut sind.
-Öffnene Sie dafür das `desktop/code` Verzeichnis als Gradle-Projekt in Ihrer bevorzugten IDE.
+Öffnen Sie dafür das `desktop/code` Verzeichnis als Gradle-Projekt in Ihrer bevorzugten IDE.
 
 Betrachten wir nun die `desktop.MyGame.class`. Diese Klasse ist Ihr einstiegspunkt in das Dungeon. Hier werden Sie später Ihre Inhalte erzeugen und in das Dungeon hinzufügen.
 
