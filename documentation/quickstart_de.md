@@ -53,22 +53,22 @@ Das untenstehende UML-Klassendiagramm soll Ihnen einen reduzierten und vereinfac
 
 Die Vorgaben sind bereits lauffähig und können direkt ausgeführt werden.
 Dafür können Sie die Vorgaben entweder als Projekt in Ihrer IDE laden und die Anwendung über die Run-Funktion starten oder Sie starten die Anwendung über die Kommandozeile.
-Gehen Sie dafür in das `desktop/code` Verzeichnis und öffnen Sie die Kommandozeile und geben Sie folgenden Befehl ein:
+Gehen Sie dafür in das `desktop/code`-Verzeichnis und öffnen Sie die Kommandozeile und geben Sie folgenden Befehl ein:
 - Unter Windows: `bash gradlew run`
 - Unter Linux: `./gradlew run`
 
-*Anmerkung: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie in das [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).Sollten Sie Ihr Problem dennoch nicht lösen, melden Sie sich bitte frühzeitig bei uns.* 
+_Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie in die [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
 
 Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen können.
 
 ## Blick in den Code
 
 Bevor wir nun unseren Helden implementieren sollten wir verstehen, wie genau die Vorgaben aufgebaut sind.
-Öffnen Sie dafür das `desktop/code` Verzeichnis als Gradle-Projekt in Ihrer bevorzugten IDE.
+Öffnen Sie dafür das `desktop/code`-Verzeichnis als Gradle-Projekt in Ihrer bevorzugten IDE.
 
-Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in das Dungeon. Hier werden Sie später Ihre Inhalte erzeugen und in das Dungeon hinzufügen.
+Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in den Dungeon. Hier werden Sie später Ihre Inhalte erzeugen und in den Dungeon hinzufügen.
 
-`MyGame` erbt von `MainController`. Wie der Name schon vermuten lässt, ist der MainController die Haupt-Steuerung des Spiels. Er bereitet alles für den Start des Spieles vor, verwaltet die anderen Controller und enthält die Game-Loop. Wir nutzen `MyGame` um selbst in die Game-Loop einzugreifen und unsere eigenen Objekte wie Helden und Monster zu verwalten. Der `MainController` ist der Punkt, an dem alle Fäden des Dungeons zusammenlaufen.
+`MyGame` erbt von `MainController`. Wie der Name schon vermuten lässt, ist der MainController die Haupt-Steuerung des Spiels. Er bereitet alles für den Start des Spieles vor, verwaltet die anderen Controller und enthält die Game-Loop. Wir nutzen `MyGame`, um selbst in die Game-Loop einzugreifen und unsere eigenen Objekte wie Helden und Monster zu verwalten. Der `MainController` ist der Punkt, an dem alle Fäden des Dungeons zusammenlaufen.
 
 `MyGame` implementiert bereits einige Methoden:
 - `setup` wird zu Beginn der Anwendung aufgerufen. In dieser Methode werden später die Objekte initialisiert und konfiguriert, welche bereits vor dem Spielstart existieren müssen. In der Vorgabe wird hier bereits das erste Level geladen.  
@@ -81,7 +81,7 @@ Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in
 
 Jetzt, wo Sie sichergestellt haben, dass das Dungeon ausgeführt werden kann, geht es darum, das Spiel mit Ihren Inhalten zu erweitern. Im Folgenden wird ein rudimentärer Held implementiert, um Ihnen die verschiedenen Aspekte des Dungeon zu erläutern.
 
-Fangen wir damit an eine neue Klasse für den Helden anzulegen. Unser Held soll grafisch dargestellt werden und vom `EntityController` verwaltet werden können. Daher implementiert er das Interface `IEntity`.
+Fangen wir damit an, eine neue Klasse für den Helden anzulegen. Unser Held soll grafisch dargestellt werden und vom `EntityController` verwaltet werden können. Daher implementiert er das Interface `IEntity`.
 
 Das Interface `IEntity` liefert einige Methoden, welche wir implementieren müssen.
 
@@ -120,7 +120,7 @@ Unser Held benötigt aber noch eine Position im Level. Dafür muss unser Held au
 
 Bevor wir weiter machen, sollten wir uns einmal den Aufbau des Level anschauen. Level werden als 2D-Tile-Array gespeichert. Ein `Tile` ist dabei ein Feld im Level, also eine Wand oder ein Bodenfeld. Jedes `Tile` hat eine feste `Coordinate` im Array (also einen Index, wo im Array das `Tile` abgespeichert ist). Diese `Coordinate` gibt auch an, wo das `Tile` im Level liegt. `Coordinate` sind zwei Integerwerte (`x` und `y`). Die Position von Entitäten geben wir als `Point` an. Ein `Point` sind zwei Floatwerte (`x` und `y`). Das machen wir, weil unsere Entitäten auch zwischen zwei `Tiles` stehen können. Wenn wir später die Steuerung für unseren Helden implementieren, wird dieses noch deutlicher. Jetzt ist wichtig, dass wir mit `Coordinate.toPoint()` unseren Helden auf die Position des Starttiles setzen können.
 
-Wir müssen noch dafür sorgen, dass unser Held auch gezeichnet wird. Da unser Held später vom `EntityController`verwaltet wird, nutzen wir dafür die `update`-Methode.
+Wir müssen noch dafür sorgen, dass unser Held auch gezeichnet wird. Da unser Held später vom `EntityController` verwaltet wird, nutzen wir dafür die `update`-Methode.
 
 ```java
     @Override
@@ -130,7 +130,7 @@ Wir müssen noch dafür sorgen, dass unser Held auch gezeichnet wird. Da unser H
 ```
 Die Methode `draw()` ist eine im Interface `IEntity` vorimplementierte Methode (was das bedeutet lernen Sie im Laufe des Semesters) und sorgt dafür, dass unser Held an der entsprechenden Position im Dungeon gezeichnet wird.
 
-Wir haben die erste Version unseres Helden implementiert. Jetzt müssen wir ihn noch erstellen.
+Wir haben die erste Version unseres Helden implementiert. Jetzt müssen wir ihn noch im Spiel instantiieren.
 Dafür gehen wir wieder in `MyGame` und legen eine Variable `MyHero hero` an.
 In `setup` erstellen wir nun unseren Helden und registrieren ihn im `EntityController`. Außerdem wollen wir, dass die Kamera auf unseren Helden zentriert wird.
 
