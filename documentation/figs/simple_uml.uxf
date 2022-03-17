@@ -1,4 +1,4 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>510</x><y>360</y><w>240</w><h>190</h></coordinates><panel_attributes>/MainController/
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>410</x><y>394</y><w>240</w><h>190</h></coordinates><panel_attributes>/MainController/
 --
 # batch: SpriteBatch
 # hudBatch: SpriteBatch
@@ -9,13 +9,13 @@
 # beginFrame(): void
 # endFrame():void
 + render(delta: float): void
-+ setSpriteBatch(batch: SpriteBatch): void </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>880</x><y>250</y><w>250</w><h>100</h></coordinates><panel_attributes>EntityController
++ setSpriteBatch(batch: SpriteBatch): void </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>780</x><y>284</y><w>250</w><h>100</h></coordinates><panel_attributes>EntityController
 --
 + update(): void
 + contains(o: Object): boolean
 + add(t: IEntity): boolean
 + remove(o: Object): boolean
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>460</x><y>90</y><w>300</w><h>150</h></coordinates><panel_attributes>HUDController
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>124</y><w>300</w><h>150</h></coordinates><panel_attributes>HUDController
 --
 - hudCamera: HUDCamera
 - batch: Spritebatch
@@ -26,7 +26,7 @@
 + add(t: IHUDElement): boolean
 + remove(o: Object): boolean
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>450</x><y>650</y><w>330</w><h>190</h></coordinates><panel_attributes>LevelAPI
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>684</y><w>330</w><h>190</h></coordinates><panel_attributes>LevelAPI
 --
 - batch: SpriteBatch
 - painter: Painter
@@ -38,7 +38,7 @@
 + update(): void
 + getCurrentLevel(): Level
 + setGenerator(generator: IGenerator): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>900</x><y>570</y><w>270</w><h>140</h></coordinates><panel_attributes>DungeonCamera
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>800</x><y>604</y><w>270</w><h>140</h></coordinates><panel_attributes>DungeonCamera
 -
 - follows: IEntity
 - focusPoint: Point
@@ -47,10 +47,28 @@
 + follow(entity: IEntity): void
 + getFollowedObject(): IEntity
 + setFocusPoint(point: Point): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>270</y><w>250</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;90;10;10;230;10</additional_attributes></element><element><id>Relation</id><coordinates><x>740</x><y>480</y><w>330</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;310;10;310;90</additional_attributes></element><element><id>Relation</id><coordinates><x>600</x><y>540</y><w>30</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>100</x><y>360</y><w>240</w><h>60</h></coordinates><panel_attributes>&lt;interface&gt; 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>550</x><y>304</y><w>250</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;90;10;10;230;10</additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>514</y><w>330</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;310;10;310;90</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>574</y><w>30</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>394</y><w>240</w><h>70</h></coordinates><panel_attributes>&lt;interface&gt; 
 IOnLevelLoader
 -
+-
 + onLevelLoad(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>370</y><w>200</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;180;10</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>230</y><w>30</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>910</x><y>160</y><w>180</w><h>30</h></coordinates><panel_attributes>/AbstractController/
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>980</x><y>180</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>160</y><w>180</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>910</x><y>100</y><w>180</w><h>30</h></coordinates><panel_attributes>/LinkedHashSet/
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>980</x><y>120</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>404</y><w>200</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;180;10</additional_attributes></element><element><id>Relation</id><coordinates><x>460</x><y>264</y><w>30</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>194</y><w>180</w><h>30</h></coordinates><panel_attributes>/AbstractController/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>880</x><y>214</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>194</y><w>180</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>810</x><y>134</y><w>180</w><h>30</h></coordinates><panel_attributes>/LinkedHashSet/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>880</x><y>154</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1120</x><y>294</y><w>240</w><h>110</h></coordinates><panel_attributes>&lt;interface&gt; 
+IEntity
+-
+-
++ update(): void
++ getTexture(): String
++ getPosition(): Position
++ draw(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1110</x><y>474</y><w>250</w><h>70</h></coordinates><panel_attributes>&lt;interface&gt; 
+IAnimatable
+-
+-
++ getActiveAnimation(): Animation</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>144</y><w>240</w><h>100</h></coordinates><panel_attributes>&lt;interface&gt; 
+IHUDElement
+-
+-
++ update(): void
++ getTexture(): String
++ draw(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>190</y><w>120</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>450</y><w>270</w><h>360</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>250;340;10;340;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1220</x><y>389</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>1020</x><y>314</y><w>120</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;100;10</additional_attributes></element></diagram>
