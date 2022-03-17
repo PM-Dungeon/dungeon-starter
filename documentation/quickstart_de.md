@@ -268,7 +268,7 @@ Wenn Sie nun das Spiel starten, sollten Sie Ihren Helden durch die Spielwelt bew
 
 ## Levelgenerator
 
-Das PM-Dungeon nutzt einen eigenen prozeduralen Levelgenerator. Eigentlich müssen Sie sich nicht damit beschäftigen, unter Umständen kann die Berechnung von Leveln aber viel Zeit auf Ihrer Maschine benötigen. Sie können daher auch abgespeicherte Level anstelle von "frisch generierten" Leveln verwenden. Fügen Sie dafür einfach `levelAPI.setGenerator(new LevelLoader());` zu Beginn der `MyGame#setup`-Methode hinzu. Die Level werden aus `.json`-Datein im `assets/level/files/`-Verzeichnis geladen.
+Das PM-Dungeon nutzt einen eigenen prozeduralen Levelgenerator. Eigentlich müssen Sie sich nicht damit beschäftigen, unter Umständen kann die Berechnung von Leveln aber viel Zeit auf Ihrer Maschine benötigen. Sie können daher auch abgespeicherte Level anstelle von "frisch generierten" Leveln verwenden. Fügen Sie dafür einfach `levelAPI.setGenerator(new LevelLoader());` zu Beginn der `MyGame#setup`-Methode hinzu. Die Level werden aus `.json`-Dateien im `assets/level/files/`-Verzeichnis geladen.
 
 ## Abschlussworte
 
