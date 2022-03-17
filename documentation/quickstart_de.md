@@ -9,7 +9,7 @@ Das Framework ist in `core` und `desktop` aufgeteilt, wobei `core` das Framework
 
 Sie werden das Java SE Development Kit 17.0.x oder höher benötigen.
 
-Um das PM-Dungeon-Framework zu nutzen erstellen Sie sich einen Fork des [`desktop`-Repository](https://github.com/PM-Dungeon/desktop) und ziehen Sie sich einen lokalen Klon auf Ihr Gerät.
+Um das PM-Dungeon-Framework zu nutzen erstellen Sie sich einen Fork des [`desktop`-Repository](https://github.com/PM-Dungeon/desktop) und ziehen sich einen lokalen Klon auf Ihr Gerät.
 
 ## Arbeiten mit dem Framework
 
@@ -179,7 +179,7 @@ Um unseren Helden zu animieren, nutzen wir eine erweiterte Version des `IEntity`
 
 `public class MyHero implements IAnimatable`
 
-Die Methode `getTexture` müssen wir nun mit der Methode `getgetActiveAnimation` ersetzen. Ebenso ersetzen wir unser `texture`-Attribut durch ein Attribut `idle` (`private Animation idle`).
+Die Methode `getTexture` müssen wir nun mit der Methode `getActiveAnimation` ersetzen. Ebenso ersetzen wir unser `texture`-Attribut durch ein Attribut `idle` (`private Animation idle`).
 
 
 ```java
@@ -191,7 +191,7 @@ Die Methode `getTexture` müssen wir nun mit der Methode `getgetActiveAnimation`
 Jetzt müssen wir die Animation noch erstellen. Dafür gehen wir wieder in den Konstruktor unseres Helden.
 
 ```java
-public Hero(SpriteBatch batch, Painter painter) {
+public MyHero(SpriteBatch batch, Painter painter) {
     this.batch=batch;
     this.painter=painter;
 
@@ -260,11 +260,11 @@ Da wir unseren Helden in `onLevelLoad` beim Laden eines neuen Levels automatisch
 
 _Anmerkung_: Später werden Sie viele weitere Entitäten im Level platziert haben (Monster, Schatztruhen, Fallen ...). Diese sollten Sie beim Laden eines neuen Levels löschen oder in das nächste Level "mitnehmen".
 
-Starten Sie nun das Spiel, sollten Sie Ihren Helden durch das Level bewegen können und auch in das nächste Level gelangen können.
+Wenn Sie nun das Spiel starten, sollten Sie Ihren Helden durch die Spielwelt bewegen können und auch in das nächste Level gelangen.
 
 ## Levelgenerator
 
-Das PM-Dungeon nutzt einen eigenen prozeduralen Levelgenerator. Eigentlich müssen Sie sich nicht damit beschäftigen, unter Umständen kann die Berechnung von Leveln aber viel Zeit auf Ihrer Maschine benötigen. Sie können daher auch abgespeicherte Level anstelle von "frisch generierten" Leveln verwenden. Fügen Sie dafür einfach `levelAPI.setGenerator(new LevelLoader());` zu Beginn der `MyGame#setup`-Methode hinzu. Die Level werden aus `.json` im `assets/level/files/`-Verzeichnis geladen.
+Das PM-Dungeon nutzt einen eigenen prozeduralen Levelgenerator. Eigentlich müssen Sie sich nicht damit beschäftigen, unter Umständen kann die Berechnung von Leveln aber viel Zeit auf Ihrer Maschine benötigen. Sie können daher auch abgespeicherte Level anstelle von "frisch generierten" Leveln verwenden. Fügen Sie dafür einfach `levelAPI.setGenerator(new LevelLoader());` zu Beginn der `MyGame#setup`-Methode hinzu. Die Level werden aus `.json`-Datein im `assets/level/files/`-Verzeichnis geladen.
 
 ## Abschlussworte
 
@@ -390,7 +390,7 @@ Es werden die Formate `.mp3`, `.wav` und `.ogg` unterstützt. Das Vorgehen unter
 
 ```Java
 //Datei als Sound-Objekt einladen
-Sound bumSound = Gdx.audio.newSound(Gdx.files.internal("assets/sound/bum.mp3"));
+Sound bumSound = Gdx.audio.newSound(Gdx.files.internal("assets/sound/sound.mp3"));
 bumSound.play();
 //Sound leise abspielen
 bumSound.play(0.1f);
