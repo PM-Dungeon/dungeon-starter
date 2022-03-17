@@ -45,7 +45,9 @@ Bevor wir mit der eigentlichen Implementierung des Spiels anfangen, eine kurze E
 - `DungeonCamera`: Ihr Auge in das Dungeon.
 - Unterschiedliche Interfaces, welche Sie im Verlauf dieses Dokumentes kennen lernen werden.
 
-**TODO UML**
+Das untenstehende UML-Klassendiagramm soll Ihnen einen reduzierten und vereinfachten Überblick über den Aufbau des Frameworks geben. Es bildet daher nicht alle Klassen/Methoden/Attribute ab. Nutzen Sie es als Starpunkt und erforschen Sie die Codebase auf eigene Faust.
+
+![simple_uml](figs/simple_uml.png)
 
 ## Erster Start
 
