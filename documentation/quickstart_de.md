@@ -85,7 +85,7 @@ Das Interface `IEntity` liefert einige Methoden, welche wir implementieren müss
 - `removeable`: Wenn diese Methode `true` zurückgibt, wird das Objekt aus dem `EntityController` entfernt und nicht mehr verwaltet. Besiegt unser Held beispielsweise später ein Monster, sollte dieses nach dem Ableben `true` zurückgeben. 
 - `getBatch`: Die SpriteBatch ist die Zeichenfläche, auf dem unser Objekt gezeichnet werden soll. Jede Entität muss wissen, worauf sie gezeichnet werden soll. 
 - `getPainter` ist der Zeichner, der unser Objekt zeichnet. Jede Entität muss wissen, von wem es gezeichnet wird.
-- `getPosition` gibt an, wo unser Held im Dungeon steht. 
+- `getPosition` gibt an, wo unser Held im Dungeon steht. Weiter unten folgt eine genauere Erklärung des verwendeten Koordinaten- und Positionssystem.
 - `getTexture` gibt an, welche Textur verwendet werden soll, wenn unser Held gezeichnet wird. 
 
 Wir sollten einige dieser Methoden mit Code füllen.
