@@ -1,5 +1,6 @@
 package desktop;
 
+import com.badlogic.gdx.Gdx;
 import controller.MainController;
 import level.generator.dungeong.graphg.NoSolutionException;
 
@@ -14,7 +15,7 @@ public class MyGame extends MainController {
         } catch (NoSolutionException e) {
             System.out.println(
                     "Es konnte kein Level geladen werden, bitte den \"assets\" Ordner überprüfen.");
-            System.exit(0);
+            Gdx.app.exit();
         }
     }
 
