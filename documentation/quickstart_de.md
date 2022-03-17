@@ -55,6 +55,8 @@ Gehen Sie dafür in das `desktop/code` Verzeichnis und öffnen Sie die Kommandoz
 - Unter Windows: `bash gradlew run`
 - Unter Linux: `./gradlew run`
 
+*Anmerkung: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie in das [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).Sollten Sie Ihr Problem dennoch nicht lösen, melden Sie sich bitte frühzeitig bei uns.* 
+
 Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen können.
 
 ## Blick in den Code
