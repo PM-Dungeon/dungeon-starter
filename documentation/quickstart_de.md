@@ -61,6 +61,8 @@ _Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schaue
 
 Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen können.
 
+![first_start](figs/pm-dungeon_start.png)
+
 ## Blick in den Code
 
 Bevor wir nun unseren Helden implementieren sollten wir verstehen, wie genau die Vorgaben aufgebaut sind.
@@ -156,6 +158,8 @@ Jetzt müssen wir den Helden nur noch im Dungeon platzieren. Dafür rufen wir di
 
 Wenn Sie das Spiel nun starten, sollten Sie ihren (unbeweglichen) Helden im Dungeon sehen können.
 
+![first_start](figs/pm-dungeon_myhero.png)
+
 ### Intermezzo: Der Assets-Ordner
 
 Im Ordner [`code/assets/`](https://github.com/PM-Dungeon/desktop/tree/master/code/assets) werden alle Assets gespeichert, die im Dungeon verwendet werden. Assets sind dabei im Prinzip die Texturen, die später gezeichnet werden sollen.
@@ -216,6 +220,8 @@ Sie können (und sollten) auch verschiedene Animationen für verschiedene Situat
 
 Wenn Sie das Spiel nun starten, sollten Sie Ihren animierten (aber immer noch unbeweglichen) Helden sehen.
 
+![first_start](figs/pm-dungeon_wasd.png)
+
 
 ### WASD oder die Steuerung des Helden über die Tastatur
 
@@ -265,6 +271,8 @@ Da wir unseren Helden in `onLevelLoad` beim Laden eines neuen Levels automatisch
 _Anmerkung_: Später werden Sie viele weitere Entitäten im Level platziert haben (Monster, Schatztruhen, Fallen ...). Diese sollten Sie beim Laden eines neuen Levels löschen oder in das nächste Level "mitnehmen".
 
 Wenn Sie nun das Spiel starten, sollten Sie Ihren Helden durch die Spielwelt bewegen können und auch in das nächste Level gelangen.
+
+![first_start](figs/pm-dungeon_level_unknown.png)
 
 ## Levelgenerator
 
@@ -381,6 +389,8 @@ public class MyGame extends MainController {
 
 Genauere Informationen zu den Parametern entnehmen Sie bitte der JavaDoc.
 
+![first_start](figs/pm-dungeon_hud_icons.png)
+
 ### Level-API
 
 Sie haben viele Möglichkeiten mit dem Level zu interagieren.
@@ -405,4 +415,3 @@ bumSound.loop();
 ```
 
 Sie können noch weitere Parameter und Methoden verwenden, um den Sound Ihren Wünschen anzupassen. Schauen Sie dafür in die [`libGDX`-Dokumentation](https://libgdx.badlogicgames.com/ci/nightlies/docs/api/com/badlogic/gdx/audio/Sound.html).
-
