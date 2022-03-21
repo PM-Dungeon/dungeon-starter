@@ -14,7 +14,7 @@ public final class DesktopLauncher {
         config.height = Constants.WINDOW_HEIGHT;
         config.foregroundFPS = Constants.FRAME_RATE;
         config.title = Constants.WINDOW_TITLE;
-        config.addIcon("logo/logo32x32.png", Files.FileType.Internal);
+        config.addIcon(Constants.LOGO_PATH, Files.FileType.Internal);
         new DungeonApplication(new LibgdxSetup(mc), config, 0);
     }
 }
