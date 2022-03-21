@@ -1,9 +1,9 @@
 # Quickstart
 
-This document provides an introduction to the PM Dungeon. It explains the installation of the framework and the first steps to add your own content to the dungeon. It serves as a basis for all further practical courses. Therefore, read the document carefully and additionally try to familiarise yourself with the structure.
+This document provides an introduction to the PM-Dungeon. It explains the installation of the framework and the first steps to add your own content to the dungeon. It serves as a basis for all further practical courses. Therefore, read the document carefully and additionally try to familiarise yourself with the structure.
 The framework is divided into `core` and `desktop`, where `core` is the framework and `desktop` is a basic starter.
 
-*Note: Be careful to only load data into public Git repos if you have the necessary rights to that data. This applies in particular to artefacts such as images, bitmaps, music or sound effects.
+*Note: Be careful to only load data into public Git repos if you have the necessary rights to that data. This applies in particular to artefacts such as images, bitmaps, music or sound effects.*
 
 ## Installation
 
@@ -39,7 +39,8 @@ Before we start with the actual implementation of the game, a short explanation 
     - `LevelAPI`: Takes care of creating and loading new levels.
     - `HUDController`: Manages all screen displays that you implement.
     - `MainController`: Manages the other controllers and includes the game loop. Your implementation becomes part of the `MainController`.
-- Game-Loop: The game loop is the most important component of the game. It is an infinite loop that is called once per [frame](https://de.wikipedia.org/wiki/Bildfrequenz). The game runs in 30 FPS (30 *frames per seconds*), so the game loop is called 30 times per second. All actions that have to be executed repeatedly, such as moving and drawing figures, must take place within the game loop. The framework allows you to integrate your own actions into the game loop. You will learn exactly how to do this in the course of this tutorial. *Note: The game loop is executed automatically, you do not have to actively call it up.
+- Game-Loop: The game loop is the most important component of the game. It is an infinite loop that is called once per [frame](https://de.wikipedia.org/wiki/Bildfrequenz). The game runs in 30 FPS (30 *frames per second*), so the game loop is called 30 times per second. All actions that have to be executed repeatedly, such as moving and drawing figures, must take place within the game loop. The framework allows you to integrate your own actions into the game loop. You will learn exactly how to do this in the course of this tutorial
+*Note: The game loop is executed automatically, you do not have to actively call it up.*
 - In addition, there are a number of other helper classes with which you will sometimes have more or sometimes less contact.
 - `Painter`: Takes care that the contents are displayed graphically.
 - `DungeonCamera`: Your eye into the dungeon.
@@ -51,16 +52,22 @@ The UML class diagram below is intended to give you a reduced and simplified ove
 
 ## First start
 
-The defaults are already executable and can be run directly.
+The **{specifications/defaults/presets}** are already executable and can be run directly.
 To do this, you can either load the presets as a project in your IDE and start the application via the run function or you can start the application via the command line.
-To do this, go to the `desktop/code` directory and open the command line and enter the following command:
+To do this, go to the `desktop/code` directory, open the command line and enter the following command:
 
 - If you are using Windows: `bash gradlew run`
 - If you are running Linux: `./gradlew run`
 
+_Note_: If you have problems starting the application, please check the [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).If you still cannot solve your problem, please contact us **early**.
+
+The game should now start and you should be able to see a section of the level for the first time.
+
+![first_start](figs/pm-dungeon_start.png)
+
 ## A look at the code
 
-Now before we implement our hero we should understand how exactly the defaults are built.
+Now before we implement our hero we should understand how exactly the **{specifications/defaults/presets}** are built.
 To do this, open the `desktop/code` directory as a Gradle project in your favourite IDE.
 
 Let us now look at `desktop.MyGame.java`. This class is your entry point into the dungeon. This is where you will later create your content and add it to the dungeon.
