@@ -52,14 +52,14 @@ The UML class diagram below is intended to give you a reduced and simplified ove
 
 ## First start
 
-The **{specifications/defaults/presets}** are already executable and can be run directly.
+The **{specifications/defaults/presets/requirements}** are already executable and can be run directly.
 To do this, you can either load the presets as a project in your IDE and start the application via the run function or you can start the application via the command line.
 To do this, go to the `desktop/code` directory, open the command line and enter the following command:
 
 - If you are using Windows: `bash gradlew run`
 - If you are running Linux: `./gradlew run`
 
-_Note_: If you have problems starting the application, please check the [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).If you still cannot solve your problem, please contact us **early**.
+_Note_: If you have problems starting the application, please check the [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt). If you still cannot solve your problem, please contact us **early**.
 
 The game should now start and you should be able to see a section of the level for the first time.
 
@@ -67,7 +67,7 @@ The game should now start and you should be able to see a section of the level f
 
 ## A look at the code
 
-Now before we implement our hero we should understand how exactly the **{specifications/defaults/presets}** are built.
+Now before we implement our hero we should understand how exactly the **{specifications/defaults/presets/requirements}** are **{structured/built}**.
 To do this, open the `desktop/code` directory as a Gradle project in your favourite IDE.
 
 Let us now look at `desktop.MyGame.java`. This class is your entry point into the dungeon. This is where you will later create your content and add it to the dungeon.
@@ -111,7 +111,7 @@ The `SpriteBatch` and the `Painter` are passed to our hero during creation. Ther
     }
 ```
 
-In the respective `get` methods we now return the respective values.
+In the respective `get`-methods we now return the corresponding values.
 
 However, our hero still needs a position in the level. For this, our hero must also know the level. We therefore implement a `setLevel` method in our hero, save the level (we will need this later) and look for the starting position in the level and place our hero on it.
 
@@ -189,7 +189,7 @@ Currently, our hero has only one fixed texture, in this section, we animate our 
 In the PM dungeon, an animation is a loop of different textures that are drawn in alternation.
 To animate our hero we use an extended version of the `IEntity` interface `IAnimatable`.
 
-public class MyHero implements IAnimatable`.
+`public class MyHero implements IAnimatable`.
 
 We now need to replace the `getTexture` method with the `getActiveAnimation` method. Similarly, we replace our `texture` attribute with an attribute `idle` (`private animation idle`).
 
@@ -207,13 +207,14 @@ public MyHero(SpriteBatch batch, Painter painter) {
     this.batch=batch;
     this.painter=painter;
 
-    // Erstellen einer ArrayList
+    // create an ArrayList
     List<String> animation = new ArrayList<>();
-    // Laden der Texturen für die Animation (relativen Pfad angeben)
+    // load the texture(s) of the animation (use the relative path)
     animation.add("assets_path_to_texture/texture_1.png");
     animation.add("assets_path_to_texture/texture_2.png");
-    // Erstellen einer Animation, als Parameter wird die Liste mit den Texturen
-    // und die Wartezeit (in Frames) zwischen den Wechsel der Texturen angegeben
+    // creation of the animation. As parameter the list of animation textures and
+    // the time between swapping of animation textures must be specified during
+    // creation.
     idle = new Animation(idle, 8);
 }
 ```
@@ -231,19 +232,19 @@ When you start the game now, you should see your animated (but still immobile) h
 It is time for our hero to be able to move. For this we add control options in the `MyHero#update`-Method:
 
 ```java
-    // Temporären Point um den Held nur zu bewegen, wenn es keine Kollision gab
+    // a temporary point to move the hero if no collision was detected
     Point newPosition = new Point(this.position);
-    // Unser Held soll sich pro Schritt um 0.1 Felder bewegen.
+    // our hero should move along at 0.1 fields per step.
     float movementSpeed = 0.1f;
-    // Wenn die Taste W gedrückt ist, bewege dich nach oben
+    // if the key W is pressed, move up
     if (Gdx.input.isKeyPressed(Input.Keys.W)) newPosition.y += movementSpeed;
-    // Wenn die Taste S gedrückt ist, bewege dich nach unten
+    // if the key S is pressed, move down
     if (Gdx.input.isKeyPressed(Input.Keys.S)) newPosition.y -= movementSpeed;
-    // Wenn die Taste D gedrückt ist, bewege dich nach rechts
+    // if the key D is pressed, move right
     if (Gdx.input.isKeyPressed(Input.Keys.D)) newPosition.x += movementSpeed;
-    // Wenn die Taste A gedrückt ist, bewege dich nach links
+    // if the key A is pressed, move left
     if (Gdx.input.isKeyPressed(Input.Keys.A)) newPosition.x -= movementSpeed;
-    // Wenn der übergebene Punkt betretbar ist, ist das nun die aktuelle Position
+    // if the given point is reachable, this is our new position
     if(level.getTileAt(newPosition.toCoordinate()).isAccessible())
         this.position = newPosition;
 ```
@@ -348,19 +349,19 @@ The method `getTexture` returns the path to the desired texture, this works iden
 
 Now we just need to display our graphics. Similar to the already known controllers, there is also a control class for the HUD, which can be addressed in the `MainController` with `hud`.
 
-```
+```java
 public class YourClass extends MainController {
      @Override
     protected void setup() {
         ...
-        // hinzufügen eines Elementes zum HUD
+        // add an element to the hud
         hudController.add(
                 new MyIcon(
                         hudBatch,
                         hudPainter,
                         new Point(0f, 0f),
                         TextureHandler.getInstance().getTextures("ui_heart_full.png").get(0)));
-        //so entfernt man ein Element
+        // this is how you delete an hud element
         //hud.remove(OBJECT);
     }
 }
@@ -372,7 +373,7 @@ Use the `HUDController#drawText` method to draw a string on your screen. You hav
 
 In the example below, a text is implemented that displays the current level.
 
-```
+```java
 public class MyGame extends MainController {
     .....
     Label levelLabel;
@@ -407,16 +408,16 @@ If you want to add sound effects or background music to your dungeon, `libGDX` o
 
 The formats `.mp3`, `.wav` and `.ogg` are supported. The procedure does not differ between the formats.
 
-```Java
-//Datei als Sound-Objekt einladen
+```java
+// load the file as a sound object
 Sound mySound = Gdx.audio.newSound(Gdx.files.internal("assets/sound/sound.mp3"));
-    mySound.play();
-//Sound leise abspielen
-    mySound.play(0.1f);
-//Sound mit maximal Lautstärke abspielen
-    mySound.play(1f);
-//Soud endlos abspielen
-    mySound.loop();
+mySound.play();
+// play the sound very dimmed
+mySound.play(0.1f);
+// play the sound at maximum volume
+mySound.play(1f);
+// loop the sound endlessly
+mySound.loop();
 ```
 
 You can use other parameters and methods to adjust the sound to your liking. See the [`libGDX` documentation](https://libgdx.badlogicgames.com/ci/nightlies/docs/api/com/badlogic/gdx/audio/Sound.html).
