@@ -52,7 +52,7 @@ The UML class diagram below is intended to give you a reduced and simplified ove
 
 ## First start
 
-The **{specifications/defaults/presets/requirements}** are already executable and can be run directly.
+The files given in the [`desktop` repository](https://github.com/PM-Dungeon/desktop) are already executable and can be run directly.
 To do this, you can either load the presets as a project in your IDE and start the application via the run function or you can start the application via the command line.
 To do this, go to the `desktop/code` directory, open the command line and enter the following command:
 
@@ -67,7 +67,7 @@ The game should now start and you should be able to see a section of the level f
 
 ## A look at the code
 
-Now before we implement our hero we should understand how exactly the **{specifications/defaults/presets/requirements}** are **{structured/built}**.
+Now, before we implement our hero we should understand how the sample project and its corresponding code is structured.
 To do this, open the `desktop/code` directory as a Gradle project in your favourite IDE.
 
 Let us now look at `desktop.MyGame.java`. This class is your entry point into the dungeon. This is where you will later create your content and add it to the dungeon.
