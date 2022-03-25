@@ -412,7 +412,7 @@ The formats `.mp3`, `.wav` and `.ogg` are supported. The procedure does not diff
 // load the file as a sound object
 Sound mySound = Gdx.audio.newSound(Gdx.files.internal("assets/sound/sound.mp3"));
 mySound.play();
-// play the sound very dimmed
+// play the sound at a volume level of 10%
 mySound.play(0.1f);
 // play the sound at maximum volume
 mySound.play(1f);
