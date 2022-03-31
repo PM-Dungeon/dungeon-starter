@@ -159,7 +159,7 @@ Now we just have to place the hero in the dungeon. To do this, we call the `setL
     }
 ```
 
-When you start the game now, you should be able to see your (rather immobile) hero in the dungeon.
+When you start the game, you should be able to see your (rather immobile) hero in the dungeon.
 
 ![first_start](figs/pm-dungeon_myhero.png)
 
