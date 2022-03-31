@@ -20,7 +20,7 @@ The framework is divided into a frontend ([`desktop`]((https://github.com/PM-Dun
 The frontend sets the parameters, creates a window and starts the application.
 The backend provides the interfaces you work with and integrates the `libGDX`.
 
-You yourself write the logic of the game and implement the heroes/monsters/items.
+You write the logic of the game and implement the heroes/monsters/items.
 
 With rare (documented) exceptions, you will not be forced to make changes to the specifications.
 
