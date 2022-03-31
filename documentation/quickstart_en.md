@@ -24,7 +24,7 @@ You write the logic of the game and implement the heroes/monsters/items.
 
 With rare (documented) exceptions, you will not be forced to make changes to the specifications.
 
-You will need various assets in the course of the internships. By default, these are located in the `asset` directory. You can adjust the default directory in `build.gradle`.
+You will need various assets. By default, these are located in the `asset` directory. You can adjust the default directory in `build.gradle`.
 - Default path for textures: `assets/`
 - Default path for levels: `assets/level`.
 - Default path for level textures: `assets/textures/level`
