@@ -190,7 +190,7 @@ To animate our hero we use an extended version of the `IEntity` interface `IAnim
 
 `public class MyHero implements IAnimatable`.
 
-We now need to replace the `getTexture` method with the `getActiveAnimation` method. Similarly, we replace our `texture` attribute with an attribute `idle` (`private animation idle`).
+We now need to replace the `getTexture` method with the `getActiveAnimation` method. Similarly, we replace our `texture` attribute with an attribute `idle` (`private Animation idle`).
 
 ```java
     @Override
