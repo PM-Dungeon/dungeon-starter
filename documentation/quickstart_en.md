@@ -288,7 +288,7 @@ You have now made the first steps in the dungeon. From now on, you have to decid
 
 ## Additional functions
 
-Here you will find additional functions that you may need in the course of the practical course.
+Here you will find additional functions that you may want to use. 
 
 ### Head-up Display (HUD)
 
