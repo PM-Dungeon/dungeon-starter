@@ -1,6 +1,6 @@
 # Quickstart
 
-This document provides an introduction to the PM-Dungeon. It explains the installation of the framework and the first steps to add your own content to the dungeon. It serves as a basis for all further practical courses. Therefore, read the document carefully and additionally try to familiarise yourself with the structure.
+This document provides an introduction to the PM-Dungeon. It explains the installation of the framework and the first steps to add your own content to the dungeon. 
 The framework is divided into `core` and `desktop`, where `core` is the framework and `desktop` is a basic starter.
 
 *Note: Be careful to only load data into public Git repos if you have the necessary rights to that data. This applies in particular to artefacts such as images, bitmaps, music or sound effects.*
