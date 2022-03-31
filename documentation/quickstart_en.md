@@ -14,7 +14,7 @@ To use the PM-Dungeon framework, create a fork of the [`desktop` repository](htt
 
 To start with, here are some basic principles you should understand before working with the Dungeon.
 
-The PM-Dungeon currently uses the cross-platform Java framework [`libGDX`](https://libgdx.com) as a backend. This is already integrated in the `core` and `desktop` project as a dependency in the Gradle configuration, you do not need to install it separately. The defaults provided to you are implemented in such a way that you do not need a deeper understanding of the framework or `libGDX` to solve the tasks. However, should you encounter problems, it may help to have a look at the documentation of `libGDX`.
+The PM-Dungeon currently uses the cross-platform Java framework [`libGDX`](https://libgdx.com) as a backend. This is already integrated in the `core` and `desktop` project as a dependency in the Gradle configuration, you do not need to install it separately. The provided PM-Dungeon-Framework is implemented in such a way that you do not need a deeper understanding of the framework or `libGDX` to solve the tasks. However, should you encounter problems, it may help to have a look at the documentation of `libGDX`.
 
 The framework is divided into a frontend ([`desktop`]((https://github.com/PM-Dungeon/desktop))) and a backend ([`core`]((https://github.com/PM-Dungeon/core)).
 The frontend sets the parameters, creates a window and starts the application.
