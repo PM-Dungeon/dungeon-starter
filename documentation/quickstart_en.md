@@ -222,7 +222,7 @@ To create an animation you need a list of different textures. Then you can creat
 
 You can (and should) also create different animations for different situations (standing, walking, ...). Just return in `getActiveAnimation` always the animation that should be used at the moment.
 
-When you start the game now, you should see your animated (but still immobile) hero.
+When you start the game, you should see your animated (but still immobile) hero.
 
 ![first_start](figs/pm-dungeon_wasd.png)
 
