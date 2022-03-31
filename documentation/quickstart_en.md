@@ -284,7 +284,7 @@ The PM Dungeon uses its own procedural level generator. Actually, you don't have
 
 ## Final words
 
-You have now made the first steps in the dungeon. From now on, you have to decide for yourself how you want to implement the tasks in the lab. You will have noticed that some interface methods have not yet been explained in this document. Therefore, familiarise yourself with the Javadoc of the [Framework](https://github.com/PM-Dungeon/core).
+You have now made the first steps in the dungeon. From now on, you have to decide for yourself how and what you want to implement in your dungeon. You will have noticed that some interface methods have not yet been explained in this document. Therefore, familiarise yourself with the Javadoc of the [Framework](https://github.com/PM-Dungeon/core).
 
 ## Additional functions
 
