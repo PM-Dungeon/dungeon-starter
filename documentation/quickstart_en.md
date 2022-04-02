@@ -38,7 +38,7 @@ Before we start with the actual implementation of the game, a short explanation 
     - `LevelAPI`: Takes care of creating and loading new levels.
     - `HUDController`: Manages all screen displays that you implement.
     - `MainController`: Manages the other controllers and includes the game loop. Your implementation becomes part of the `MainController`.
-- Game-Loop: The game loop is the most important component of the game. It is an infinite loop that is called once per [frame](https://de.wikipedia.org/wiki/Bildfrequenz). The game runs in 30 FPS (30 *frames per second*), so the game loop is called 30 times per second. All actions that have to be executed repeatedly, such as moving and drawing figures, must take place within the game loop. The framework allows you to integrate your own actions into the game loop. You will learn exactly how to do this in the course of this tutorial
+- Game-Loop: The game loop is the most important component of the game. It is an infinite loop that is called once per [frame](https://en.wikipedia.org/wiki/Frame_rate). The game runs in 30 FPS (30 *frames per second*), so the game loop is called 30 times per second. All actions that have to be executed repeatedly, such as moving and drawing characters, must take place within the game loop. The framework allows you to integrate your own actions into the game loop. You will learn exactly how to do this in the course of this tutorial
 *Note: The game loop is executed automatically, you do not have to actively call it up.*
 - In addition, there are a number of other helper classes with which you will sometimes have more or sometimes less contact.
 - `Painter`: Takes care that the contents are displayed graphically.
