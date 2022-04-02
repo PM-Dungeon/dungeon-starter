@@ -1,6 +1,6 @@
 # PM-Dungeon-Desktop
 
-Das Desktop-Projekt liefert eine rudimentäre Basis Implementation des PM-Dungeon und erlaubt einen schnellen Einstieg um das eigene Dungeon zu entwickeln.
+Das Desktop-Projekt liefert eine rudimentäre Basis-Implementation des PM-Dungeon und erlaubt einen schnellen Einstieg, um das eigene Dungeon zu entwickeln.
 
 ## Framework Version anpassen
 
