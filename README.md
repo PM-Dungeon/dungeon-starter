@@ -1,6 +1,8 @@
-# pmdungeon
+# PM-Dungeon-Desktop
 
+Das Desktop-Projekt liefert eine rudimentäre Basis-Implementation des PM-Dungeon und erlaubt einen schnellen Einstieg, um das eigene Dungeon zu entwickeln.
 
+Dieses Projekt wird für den einfacheren Zugriff als Git-Subtree im Unterordner "`desktop/`" im Semester-Repository bereitgestellt.
 
 ## Framework Version anpassen
 
