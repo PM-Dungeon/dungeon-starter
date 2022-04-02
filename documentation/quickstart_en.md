@@ -77,7 +77,7 @@ Let us now look at `desktop.MyGame.java`. This class is your entry point into th
 - `setup` is called at the beginning of the application. This method will later initialise and configure the objects that must already exist before the game starts. By default, the first level is already loaded here.
 - `beginFrame` is called at the beginning of each frame. Queries and calculations, such as combat situations, will be implemented here.
 - `EndFrame` is called at the end of each frame. This is where queries and calculations, such as collision checks, are implemented.
-  `OnLevelLoad` is called whenever a level is loaded. This is where monsters and items are created later, which are initially distributed in the level.
+  `OnLevelLoad` is called whenever a level is loaded. This is where monsters and items are created, which are initially distributed in the level.
 - `main` starts the game.
 
 ## Your own hero
