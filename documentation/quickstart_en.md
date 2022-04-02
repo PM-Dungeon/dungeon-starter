@@ -132,7 +132,7 @@ We still have to make sure that our hero is also drawn. Since our hero will late
     }
 ```
 
-The method `draw()` is a pre-implemented method in the interface `IEntity` (you will learn what this means in the course of the semester) and ensures that our hero is drawn at the appropriate position in the dungeon.
+The method `draw()` is a pre-implemented method in the interface `IEntity` and ensures that our hero is drawn at the appropriate position in the dungeon.
 
 We have implemented the first version of our hero. Now we still have to instantiate him in the game.
 To do this, we go back to `MyGame` and create a variable `MyHero hero`.
