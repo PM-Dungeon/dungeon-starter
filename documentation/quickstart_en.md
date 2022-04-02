@@ -121,7 +121,7 @@ However, our hero still needs a position in the level. For this, our hero must a
     }
 ```
 
-Before we continue, we should take a look at the structure of the level. Levels are saved as 2D tile arrays. A 'tile' is a field in the level, i.e. a wall or a floor field. Each 'tile' has a fixed 'coordinate' in the array (i.e. an index where the 'tile' is stored in the array). This `coordinate` also indicates where the `file` is located in the level. Coordinates are two integer values (x and y). We specify the position of entities as `Point`. A `Point` is two float values (`x` and `y`). We do this because our entities can also be between two `tiles`. Later, when we implement the controls for our hero, this will become even clearer. Now it is important that we can use `Coordinate.toPoint()` to set our hero to the position of the starting tile.
+Before we continue, we should take a look at the structure of the level. Levels are saved as 2D tile arrays. A 'tile' is a field in the level, i.e. a wall or a floor field. Each 'tile' has a fixed 'coordinate' in the array (i.e. an index where the 'tile' is stored in the array). This `coordinate` also indicates where the `tile` is located in the level. Coordinates are two integer values (x and y). We specify the position of entities as `Point`. A `Point` is two float values (`x` and `y`). We do this because our entities can also be between two `tiles`. Later, when we implement the controls for our hero, this will become even clearer. Now it is important that we can use `Coordinate.toPoint()` to set our hero to the position of the starting tile.
 
 We still have to make sure that our hero is also drawn. Since our hero will later be managed by the `EntityController`, we use the `update` method for this.
 
