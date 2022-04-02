@@ -89,7 +89,7 @@ Let's start by creating a new class for the hero. Our hero should be represented
 The interface `IEntity` provides some methods which we have to implement.
 
 - `update`: This method is later called once in each frame by the `EntityController`. Changes to the status of the hero, such as the position, are calculated here.
-- `removeable`: If this method returns `true`, the object is removed from the `EntityController` and is no longer managed. For example, if our hero defeats a monster later, it should return `true` after its death.
+- `removeable`: If this method returns `true`, the object is removed from the `EntityController` and is no longer managed. For example, if our hero defeats a monster, it should return `true` after its death.
 - `getBatch`: The SpriteBatch is the drawing surface on which our object should be drawn. Each entity must know what it is to be drawn on.
 - `getPainter` is the painter that draws our object. Each entity needs to know who it is being drawn by.
 - `getPosition` indicates where our hero is standing in the dungeon. Below is a more detailed explanation of the coordinate and position system used.
