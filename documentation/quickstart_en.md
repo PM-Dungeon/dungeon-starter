@@ -381,10 +381,10 @@ public class MyGame extends MainController {
     public void onLevelLoad() {
         levelCounter++;
         if (levelCounter==1){
-            levelLabel=hudController.drawText("Level"+x,"PATH/TO/FONT.ttf",Color.RED,30,50,50,30,30);
+            levelLabel=hudController.drawText("Level "+levelCounter,"PATH/TO/FONT.ttf",Color.RED,30,50,50,30,30);
         }
         else{
-            levelLabel.setText("Level"+x);
+            levelLabel.setText("Level "+levelCounter);
         }
     }
     //remove label
