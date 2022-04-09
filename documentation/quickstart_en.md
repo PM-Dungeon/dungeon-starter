@@ -214,7 +214,7 @@ public MyHero(SpriteBatch batch, Painter painter) {
     // creation of the animation. As parameter the list of animation textures and
     // the time between swapping of animation textures must be specified during
     // creation.
-    idle = new Animation(idle, 8);
+    idle = new Animation(animation, 8);
 }
 ```
 

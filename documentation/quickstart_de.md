@@ -210,7 +210,7 @@ public MyHero(SpriteBatch batch, Painter painter) {
     animation.add("assets_path_to_texture/texture_2.png");
     // Erstellen einer Animation, als Parameter wird die Liste mit den Texturen
     // und die Wartezeit (in Frames) zwischen den Wechsel der Texturen angegeben
-    idle = new Animation(idle, 8);
+    idle = new Animation(animation, 8);
 }
 ```
 
