@@ -27,7 +27,7 @@ Bis auf seltene (dokumentierte) Ausnahmen werden Sie nicht gezwungen sein, an de
 
 Sie werden im Laufe der Praktika verschiedene Assets benötigen. Diese liegen per Default im `asset`-Verzeichnis. Sie können das Standardverzeichnis in der `build.gradle` anpassen.
   - Standardpfad für Texturen: `assets/`
-  - Standardpfad für Level: `assets/level`
+  - Standardpfad für Level: `assets/level/files`
   - Standardpfad für Level-Texturen: `assets/textures/level`
 
 ## Strukturen

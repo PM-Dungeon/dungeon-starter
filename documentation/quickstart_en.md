@@ -26,7 +26,7 @@ With rare (documented) exceptions, you will not be forced to make changes to the
 
 You will need various assets. By default, these are located in the `asset` directory. You can adjust the default directory in `build.gradle`.
 - Default path for textures: `assets/`
-- Default path for levels: `assets/level`.
+- Default path for levels: `assets/level/files`.
 - Default path for level textures: `assets/textures/level`
 
 ## Structures
