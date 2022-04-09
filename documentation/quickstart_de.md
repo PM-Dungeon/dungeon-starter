@@ -27,7 +27,7 @@ Bis auf seltene (dokumentierte) Ausnahmen werden Sie nicht gezwungen sein, an de
 
 Sie werden im Laufe der Praktika verschiedene Assets benötigen. Diese liegen per Default im `asset`-Verzeichnis. Sie können das Standardverzeichnis in der `build.gradle` anpassen.
   - Standardpfad für Texturen: `assets/`
-  - Standardpfad für Level: `assets/level`
+  - Standardpfad für Level: `assets/level/files`
   - Standardpfad für Level-Texturen: `assets/textures/level`
 
 ## Strukturen
@@ -276,7 +276,8 @@ Wenn Sie nun das Spiel starten, sollten Sie Ihren Helden durch die Spielwelt bew
 
 ## Levelgenerator
 
-Das PM-Dungeon nutzt einen eigenen prozeduralen Levelgenerator. Eigentlich müssen Sie sich nicht damit beschäftigen, unter Umständen kann die Berechnung von Leveln aber viel Zeit auf Ihrer Maschine benötigen. Sie können daher auch abgespeicherte Level anstelle von "frisch generierten" Leveln verwenden. Fügen Sie dafür einfach `levelAPI.setGenerator(new LevelLoader());` zu Beginn der `MyGame#setup`-Methode hinzu. Die Level werden aus `.json`-Dateien im `assets/level/files/`-Verzeichnis geladen.
+Das PM-Dungeon verfügt über einen eigenen prozeduralen Levelgenerator. Dieser ist standardmäßig nicht aktiviert, da unter Umständen die Berechnung von Leveln viel Zeit auf Ihrer Maschine benötigen kann.
+Um den prozeduralen Levelgenerator zu verwenden, löschen Sie die Zeile `levelAPI.setGenerator(new LevelLoader());` in `MyGame#setup()`.
 
 ## Abschlussworte
 
