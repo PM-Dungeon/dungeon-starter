@@ -280,7 +280,7 @@ When you now start the game, you should be able to move your hero through the ga
 
 ## Level generator
 
-The PM Dungeon has its own procedural level generator. This is not enabled by default, because in some circumstances the calculation of levels can take a lot of time on your machine. To use the procedural level generator, delete the line `levelAPI.setGenerator(new LevelLoader());` in `MyGame#setup()`.
+The PM Dungeon provides its own procedural level generator. This is not enabled by default, because in some circumstances the calculation of levels can take a lot of time on your machine. To use the procedural level generator, delete the line `levelAPI.setGenerator(new LevelLoader());` in `MyGame#setup()`.
 
 ## Final words
 
