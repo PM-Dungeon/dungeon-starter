@@ -57,7 +57,7 @@ Gehen Sie dafür in das `desktop/code`-Verzeichnis und öffnen Sie die Kommandoz
 - Unter Windows: `bash gradlew run`
 - Unter Linux: `./gradlew run`
 
-_Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie in die [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
+_Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie in die [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
 
 Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen können.
 
@@ -73,10 +73,10 @@ Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in
 `MyGame` erbt von `MainController`. Wie der Name schon vermuten lässt, ist der MainController die Haupt-Steuerung des Spiels. Er bereitet alles für den Start des Spieles vor, verwaltet die anderen Controller und enthält die Game-Loop. Wir nutzen `MyGame`, um selbst in die Game-Loop einzugreifen und unsere eigenen Objekte wie Helden und Monster zu verwalten. Der `MainController` ist der Punkt, an dem alle Fäden des Dungeons zusammenlaufen.
 
 `MyGame` implementiert bereits einige Methoden:
-- `setup` wird zu Beginn der Anwendung aufgerufen. In dieser Methode werden später die Objekte initialisiert und konfiguriert, welche bereits vor dem Spielstart existieren müssen. In der Vorgabe wird hier bereits das erste Level geladen.  
-- `beginFrame` wird am Anfang jedes Frames aufgerufen. Hier werden später Abfragen und Berechnungen, wie zum Beispiel Kampfsituationen, implementiert.  
-- `endFrame` wird am Ende jedes Frames aufgerufen. Hier werden später Abfragen und Berechnungen, wie zum Beispiel Kollisionsüberprüfungen, implementiert.  
-- `onLevelLoad` wird immer dann aufgerufen, wenn ein Level geladen wird. Hier werden später Monster und Items erstellt, die initial im Level verteilt werden. 
+- `setup` wird zu Beginn der Anwendung aufgerufen. In dieser Methode werden später die Objekte initialisiert und konfiguriert, welche bereits vor dem Spielstart existieren müssen. In der Vorgabe wird hier bereits das erste Level geladen.
+- `beginFrame` wird am Anfang jedes Frames aufgerufen. Hier werden später Abfragen und Berechnungen, wie zum Beispiel Kampfsituationen, implementiert.
+- `endFrame` wird am Ende jedes Frames aufgerufen. Hier werden später Abfragen und Berechnungen, wie zum Beispiel Kollisionsüberprüfungen, implementiert.
+- `onLevelLoad` wird immer dann aufgerufen, wenn ein Level geladen wird. Hier werden später Monster und Items erstellt, die initial im Level verteilt werden.
 - `main` startet das Spiel.
 
 ## Eigener Held
@@ -87,12 +87,12 @@ Fangen wir damit an, eine neue Klasse für den Helden anzulegen. Unser Held soll
 
 Das Interface `IEntity` liefert einige Methoden, welche wir implementieren müssen.
 
-- `update`: Diese Methode wird später vom `EntityController` in jedem Frame einmal aufgerufen. Änderungen am Status des Helden, wie zum Beispiel die Position, werden hier berechnet. 
-- `removeable`: Wenn diese Methode `true` zurückgibt, wird das Objekt aus dem `EntityController` entfernt und nicht mehr verwaltet. Besiegt unser Held beispielsweise später ein Monster, sollte dieses nach dem Ableben `true` zurückgeben. 
-- `getBatch`: Die SpriteBatch ist die Zeichenfläche, auf dem unser Objekt gezeichnet werden soll. Jede Entität muss wissen, worauf sie gezeichnet werden soll. 
-- `getPainter` ist der Zeichner, der unser Objekt zeichnet. Jede Entität muss wissen, von wem es gezeichnet wird.
-- `getPosition` gibt an, wo unser Held im Dungeon steht. Weiter unten folgt eine genauere Erklärung des verwendeten Koordinaten- und Positionssystem.
-- `getTexture` gibt an, welche Textur verwendet werden soll, wenn unser Held gezeichnet wird. 
+- `update`: Diese Methode wird später vom `EntityController` in jedem Frame einmal aufgerufen. Änderungen am Status des Helden, wie zum Beispiel die Position, werden hier berechnet.
+- `removeable`: Wenn diese Methode `true` zurückgibt, wird das Objekt aus dem `EntityController` entfernt und nicht mehr verwaltet. Besiegt unser Held beispielsweise später ein Monster, sollte dieses nach dem Ableben `true` zurückgeben.
+- `getBatch`: Die SpriteBatch ist die Zeichenfläche, auf dem unser Objekt gezeichnet werden soll. Jede Entität muss wissen, worauf sie gezeichnet werden soll.
+- `getPainter` ist der Zeichner, der unser Objekt zeichnet. Jede Entität muss wissen, von wem es gezeichnet wird.
+- `getPosition` gibt an, wo unser Held im Dungeon steht. Weiter unten folgt eine genauere Erklärung des verwendeten Koordinaten- und Positionssystem.
+- `getTexture` gibt an, welche Textur verwendet werden soll, wenn unser Held gezeichnet wird.
 
 Wir sollten einige dieser Methoden mit Code füllen.
 Die `SpriteBatch` und den `Painter` bekommt unser Held bei der Erstellung übergeben. Daher legen wir Attribute an und erstellen einen Konstruktor für unseren Helden. Die Textur für unseren Helden können wir auch schon implementieren. Dafür geben wir den Pfad zu unserer Textur als String an.
