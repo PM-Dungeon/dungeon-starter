@@ -64,6 +64,8 @@ The game should now start and you should be able to see a section of the level f
 
 ![first_start](figs/pm-dungeon_start.png)
 
+*Note: We use randomly generated levels in our example, so you probably won't see the exact same level as in our illustrations.
+
 ## A look at the code
 
 Now, before we implement our hero we should understand how the sample project and its corresponding code is structured.
