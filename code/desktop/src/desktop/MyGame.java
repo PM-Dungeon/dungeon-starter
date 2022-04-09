@@ -15,22 +15,19 @@ public class MyGame extends MainController {
             levelAPI.loadLevel();
         } catch (NoSolutionException e) {
             System.out.println(
-                "Es konnte kein Level geladen werden, bitte den \"assets\" Ordner überprüfen.");
+                    "Es konnte kein Level geladen werden, bitte den \"assets\" Ordner überprüfen.");
             Gdx.app.exit();
         }
     }
 
     @Override
-    protected void beginFrame() {
-    }
+    protected void beginFrame() {}
 
     @Override
-    protected void endFrame() {
-    }
+    protected void endFrame() {}
 
     @Override
-    public void onLevelLoad() {
-    }
+    public void onLevelLoad() {}
 
     public static void main(String[] args) {
         // start the game
