@@ -1,6 +1,6 @@
 # Quickstart
 
-This document provides an introduction to the PM-Dungeon. It explains the installation of the framework and the first steps to add your own content to the dungeon. 
+This document provides an introduction to the PM-Dungeon. It explains the installation of the framework and the first steps to add your own content to the dungeon.
 The framework is divided into `core` and `desktop`, where `core` is the framework and `desktop` is a basic starter.
 
 
@@ -280,7 +280,7 @@ When you now start the game, you should be able to move your hero through the ga
 
 ## Level generator
 
-The PM Dungeon uses its own procedural level generator. Actually, you don't have to bother with it, but under certain circumstances, the calculation of levels can take a lot of time on your machine. You can therefore use saved levels instead of "freshly generated" levels. To do this, simply add `levelAPI.setGenerator(new LevelLoader());` to the beginning of the `MyGame#setup` method. The levels are loaded from `.json` files in the `assets/level/files/` directory.
+The PM Dungeon has its own procedural level generator. This is not enabled by default, because in some circumstances the calculation of levels can take a lot of time on your machine. To use the procedural level generator, delete the line `levelAPI.setGenerator(new LevelLoader());` in `MyGame#setup()`.
 
 ## Final words
 
@@ -288,7 +288,7 @@ You have now made the first steps in the dungeon. From now on, you have to decid
 
 ## Additional functions
 
-Here you will find additional functions that you may want to use. 
+Here you will find additional functions that you may want to use.
 
 ### Head-up Display (HUD)
 
