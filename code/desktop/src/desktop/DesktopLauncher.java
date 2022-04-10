@@ -1,20 +1,17 @@
 package desktop;
 
-import com.badlogic.gdx.Files;
-import com.badlogic.gdx.backends.lwjgl.DungeonApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import controller.LibgdxSetup;
 import controller.MainController;
 import tools.Constants;
 
 public final class DesktopLauncher {
     public static void run(MainController mc) {
-        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-        config.width = Constants.WINDOW_WIDTH;
-        config.height = Constants.WINDOW_HEIGHT;
-        config.foregroundFPS = Constants.FRAME_RATE;
-        config.title = Constants.WINDOW_TITLE;
-        config.addIcon(Constants.LOGO_PATH, Files.FileType.Internal);
-        new DungeonApplication(new LibgdxSetup(mc), config, 0);
+        Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+        config.setForegroundFPS(Constants.FRAME_RATE);
+        config.setWindowIcon(Constants.LOGO_PATH);
+        config.disableAudio(true);
+        new Lwjgl3Application(new LibgdxSetup(mc), config);
     }
 }
