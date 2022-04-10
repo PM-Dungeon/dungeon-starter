@@ -92,7 +92,7 @@ Diese abstrakte Klasse `basiselements.Entity` liefert einige Methoden, welche wi
 - `getTexture` gibt an, welche Textur verwendet werden soll, wenn unser Held gezeichnet wird.
 
 Wir sollten einige dieser Methoden mit Code füllen.
-Zuerst erstellen wir einen Konstruktor für unsere Klasse. Das Framework benötigt eine `SpriteBatch` und einen `Painter` um unseren Helden am Ende zeichnen zu können.
+Zuerst erstellen wir einen Konstruktor für unsere Klasse. Das Framework benötigt eine `com.badlogic.gdx.graphics.g2d.SpriteBatch` und einen `graphic.Painter` um unseren Helden am Ende zeichnen zu können.
 Diese bekommt unser Held im Konstruktor als Parameter übergeben und gibt sie im `super()` Aufruf an die Oberklasse weiter. Wir müssen uns nun nicht mehr damit beschäftigen.
 
 ```java
@@ -372,16 +372,25 @@ public class MyHero extends Animatable {
         // Unser Held soll sich pro Schritt um 0.1 Felder bewegen.
         float movementSpeed = 0.1f;
         // Wenn die Taste W gedrückt ist, bewege dich nach oben
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) newPosition.y += movementSpeed;
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            newPosition.y += movementSpeed;
+        }
         // Wenn die Taste S gedrückt ist, bewege dich nach unten
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) newPosition.y -= movementSpeed;
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            newPosition.y -= movementSpeed;
+        }
         // Wenn die Taste D gedrückt ist, bewege dich nach rechts
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) newPosition.x += movementSpeed;
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            newPosition.x += movementSpeed;
+        }
         // Wenn die Taste A gedrückt ist, bewege dich nach links
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) newPosition.x -= movementSpeed;
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            newPosition.x -= movementSpeed;
+        }
         // Wenn der übergebene Punkt betretbar ist, ist das nun die aktuelle Position
-        if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible())
+        if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible()) {
             this.position = newPosition;
+        }    
     }
 
     @Override
