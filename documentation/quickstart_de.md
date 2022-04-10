@@ -63,7 +63,7 @@ Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen k
 
 ![first_start](figs/pm-dungeon_start.png)
 
-*Anmerkung: Wir verwenden in unserem Beispiel zufällig generierte Level, daher werden Sie vermutlich nicht das exakt gleiche Level sehen wie auf unseren Abbildungen.*
+**Anmerkung**: Wir verwenden in unserem Beispiel zufällig generierte Level, daher werden Sie vermutlich nicht das exakt gleiche Level sehen wie auf unseren Abbildungen.
 
 ## Blick in den Code
 
