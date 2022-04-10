@@ -262,8 +262,6 @@ Beachten Sie, dass der Ordner nur innerhalb von `desktop/code/` umbenannt bzw. v
 
 Später werden Sie es wahrscheinlich praktischer finden, anstelle von relativen Pfaden den [`textures/TextureHandler.java`](https://github.com/PM-Dungeon/core/blob/master/code/core/src/textures/TextureHandler.java) zu verwenden, der reguläre Ausdrücke entgegennehmen und entsprechende Textur-Pfade zurückgeben kann.
 
-***
-
 ### Der bewegte (animierte) Held
 
 Aktuell besitzt unser Held nur eine feste Textur, in diesem Abschnitt animieren wir unseren Helden.
