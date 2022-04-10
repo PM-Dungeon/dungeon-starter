@@ -1,4 +1,4 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>410</x><y>408</y><w>240</w><h>190</h></coordinates><panel_attributes>/MainController/
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>410</x><y>398</y><w>240</w><h>190</h></coordinates><panel_attributes>/MainController/
 --
 # batch: SpriteBatch
 # hudBatch: SpriteBatch
@@ -9,17 +9,17 @@
 # beginFrame(): void
 # endFrame():void
 + render(delta: float): void
-+ setSpriteBatch(batch: SpriteBatch): void </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>438</y><w>250</w><h>50</h></coordinates><panel_attributes>EntityController
++ setSpriteBatch(batch: SpriteBatch): void </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>428</y><w>250</w><h>50</h></coordinates><panel_attributes>EntityController
 --
 + add(t: Entity): boolean
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>298</y><w>300</w><h>70</h></coordinates><panel_attributes>HUDController
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>288</y><w>300</w><h>70</h></coordinates><panel_attributes>HUDController
 --
 - textStage: Stage
 --
 + add(t: HUDElement): boolean
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>340</x><y>668</y><w>340</w><h>190</h></coordinates><panel_attributes>LevelAPI
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>340</x><y>658</y><w>340</w><h>190</h></coordinates><panel_attributes>LevelAPI
 --
 - batch: SpriteBatch
 - painter: Painter
@@ -31,7 +31,7 @@
 + update(): void
 + getCurrentLevel(): Level
 + setGenerator(generator: IGenerator): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>800</x><y>618</y><w>270</w><h>140</h></coordinates><panel_attributes>DungeonCamera
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>800</x><y>608</y><w>270</w><h>140</h></coordinates><panel_attributes>DungeonCamera
 -
 - follows: Entity
 - focusPoint: Point
@@ -40,30 +40,30 @@
 + follow(entity: Entity): void
 + getFollowedObject(): IEntity
 + setFocusPoint(point: Point): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>448</y><w>170</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;10;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>528</y><w>330</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;310;10;310;90</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>588</y><w>30</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>388</y><w>240</w><h>70</h></coordinates><panel_attributes>&lt;interface&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>438</y><w>170</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;60;10;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>518</y><w>330</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;310;10;310;90</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>578</y><w>30</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>378</y><w>240</w><h>70</h></coordinates><panel_attributes>&lt;interface&gt;
 IOnLevelLoader
 -
 -
 + onLevelLoad(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>428</y><w>200</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;180;10</additional_attributes></element><element><id>Relation</id><coordinates><x>510</x><y>358</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>820</x><y>288</y><w>190</w><h>90</h></coordinates><panel_attributes>/AbstractController/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>418</y><w>200</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;180;10</additional_attributes></element><element><id>Relation</id><coordinates><x>510</x><y>348</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>820</x><y>278</y><w>190</w><h>90</h></coordinates><panel_attributes>/AbstractController/
 -
 -
 + update(): void
 + contains(o: Object): boolean
-+ remove(o: Object): boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>890</x><y>368</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>318</y><w>190</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>170;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>820</x><y>238</y><w>180</w><h>30</h></coordinates><panel_attributes>/LinkedHashSet/
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>890</x><y>258</y><w>30</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;30</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1120</x><y>418</y><w>250</w><h>110</h></coordinates><panel_attributes>/IEntity/
++ remove(o: Object): boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>890</x><y>358</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>308</y><w>190</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>170;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>820</x><y>228</y><w>180</w><h>30</h></coordinates><panel_attributes>/LinkedHashSet/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>890</x><y>248</y><w>30</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;30</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1120</x><y>408</y><w>250</w><h>110</h></coordinates><panel_attributes>/Entity/
 -
 - painter: Painter
 -
 + Entity(painter: Painter, batch: SpriteBatch)
 + getPainter(): Painter
 + draw(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1110</x><y>628</y><w>290</w><h>70</h></coordinates><panel_attributes>/Animatable/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1110</x><y>618</y><w>290</w><h>70</h></coordinates><panel_attributes>/Animatable/
 -
 -
 + Animatable (painter: Painter, batch: SpriteBatch)
 + getActiveAnimation(): Animation
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>88</y><w>240</w><h>110</h></coordinates><panel_attributes>/IHUDElement/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>78</y><w>240</w><h>110</h></coordinates><panel_attributes>/HUDElement/
 -
 - painter: HUDPainter
 -
@@ -71,7 +71,7 @@ IOnLevelLoader
 + getPainter(): HUDPainter
 + draw(): void
 + drawWithScaling(xScaling: float, yScaling: float): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1030</x><y>458</y><w>110</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1220</x><y>518</y><w>30</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>448</y><w>260</w><h>350</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>240;330;10;330;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1120</x><y>88</y><w>240</w><h>150</h></coordinates><panel_attributes>/DungeonElement/
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1030</x><y>448</y><w>110</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1220</x><y>508</y><w>30</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>438</y><w>260</w><h>350</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>240;330;10;330;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1120</x><y>78</y><w>240</w><h>150</h></coordinates><panel_attributes>/DungeonElement/
 -
 - batch: SpriteBatch
 -
@@ -82,4 +82,4 @@ IOnLevelLoader
 + getPosition(): Point
 + getTexturePath(): String
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1219</x><y>228</y><w>30</w><h>210</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>138</y><w>310</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;160;10;10;290;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1019</x><y>138</y><w>120</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1219</x><y>218</y><w>30</w><h>210</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>128</y><w>310</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;160;10;10;290;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1019</x><y>128</y><w>120</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element></diagram>
