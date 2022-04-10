@@ -84,16 +84,16 @@ Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in
 
 Jetzt, wo Sie sichergestellt haben, dass das Dungeon ausgeführt werden kann, geht es darum, das Spiel mit Ihren Inhalten zu erweitern. Im Folgenden wird ein rudimentärer Held implementiert, um Ihnen die verschiedenen Aspekte des Dungeon zu erläutern.
 
-Fangen wir damit an, eine neue Klasse für den Helden anzulegen. Unser Held soll grafisch dargestellt werden und vom `EntityController` verwaltet werden können. Daher erbt er von der abtrakten Klassen `basiselements.Entity`.
+Fangen wir damit an, eine neue Klasse für den Helden anzulegen. Unser Held soll grafisch dargestellt werden und vom `EntityController` verwaltet werden können. Daher erbt er von der abtrakten Klasse `basiselements.Entity`.
 
-Die abstrakte Klasse `Entity` liefert einige Methoden, welche wir implementieren müssen.
+Diese abstrakte Klasse `basiselements.Entity` liefert einige Methoden, welche wir implementieren müssen.
 
 - `getPosition` gibt an, wo unser Held im Dungeon steht. Weiter unten folgt eine genauere Erklärung des verwendeten Koordinaten- und Positionssystem.
 - `getTexture` gibt an, welche Textur verwendet werden soll, wenn unser Held gezeichnet wird.
 
 Wir sollten einige dieser Methoden mit Code füllen.
 Zuerst erstellen wir einen Konstruktor für unsere Klasse. Das Framework benötigt eine `SpriteBatch` und einen `Painter` um unseren Helden am Ende zeichnen zu können.
-Diese bekommt unser Held im Konstruktor als Parameter übergeben und gibt Sie im `super()` Aufruf an die Oberklasse weiter. Wir müssen uns nun nicht mehr damit beschäftigen.
+Diese bekommt unser Held im Konstruktor als Parameter übergeben und gibt sie im `super()` Aufruf an die Oberklasse weiter. Wir müssen uns nun nicht mehr damit beschäftigen.
 
 ```java
 import basiselements.Entity;
@@ -118,7 +118,7 @@ public class MyHero extends Entity {
 }
 ```
 
-Zuerst benötigt unser Held eine Textur die gezeichnet werden soll, um den Helden darzustellen. Im Framework arbeiten wir immer mit den relativen Pfaden (ausgehend vom `asset/` Verzeichniss) um die Texturen zu laden.
+Zuerst benötigt unser Held eine Textur, die gezeichnet werden soll, um den Helden darzustellen. Im Framework arbeiten wir immer mit den relativen Pfaden (ausgehend vom `asset/` Verzeichnis), um die Texturen zu laden.
 Daher speichern wir einen String mit dem Pfad zu der Textur ab und geben diesen in `getTexturePath()` zurück.
 
 ```java
@@ -142,7 +142,7 @@ public class MyHero extends Entity {
 
     @Override
     public String getTexturePath() {
-        return texturePath
+        return texturePath;
     }
 }
 ```
@@ -232,7 +232,7 @@ public class MyGame extends MainController {
 }
 ```
 
-Möchsten Sie, dass eine Entität nicht mehr vom `EntityController` verwaltet wird, z.B wenn sie stirbt, überschrieben Sie dafür die Methode `removeable` der `Entity` Klasse und geben Sie `true` zurück, dann wird die Entität im nächsten Frame aus dem `EntityController` entfernt.
+Möchten Sie, dass eine Entität nicht mehr weiter vom `EntityController` verwaltet wird, z.B. wenn sie "stirbt", überschreiben Sie dafür die Methode `removeable` der `Entity`-Klasse. Sobald diese Methode den Wert `true` zurückgibt, wird die Instanz im nächsten Frame aus dem `EntityController` entfernt.
 
 ```java
     @Override
@@ -486,7 +486,7 @@ Hier finden Sie weitere Funktionen, welche Sie im Verlauf des Praktikums gebrauc
 
 Dieser Abschnitt soll Ihnen die Werkzeuge nahebringen, welche Sie für die Darstellung eines HUD benötigen.
 
-Um eine Grafik auf dem HUD anzeigen zu können, erstellen wir zuerst eine neue Klasse, welche von der abstrakte Klasse `HUDElement` erbt.
+Um eine Grafik auf dem HUD anzeigen zu können, erstellen wir zuerst eine neue Klasse, welche von der abstrakte Klasse `basiselements.HUDElement` erbt.
 `HUDElement` ist vergleichbar mit der bereits bekannten Klasse `Entity`.
 
 ```java
