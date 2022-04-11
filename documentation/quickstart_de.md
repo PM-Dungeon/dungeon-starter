@@ -2,6 +2,7 @@
 
 Dieses Dokument liefert einen Einstieg in das PM-Dungeon. Es erläutert die Installation des Frameworks und die ersten Schritte, um eigene Inhalte zum Dungeon hinzuzufügen. Es dient als Grundlage für alle weiteren Praktika. Lesen Sie das Dokument daher aufmerksam durch und versuchen Sie sich zusätzlich selbst mit dem Aufbau vertraut zu machen.
 Das Framework ist in `core` und `desktop` aufgeteilt, wobei `core` das Framework und `desktop` ein Basis-Starter ist.
+Sie benötigen nur das Frontend (desktop) für die Aufgaben, das Backend wird automatisch über Gradle als externe Bibliothek eingebunden.
 
 *Hinweis: Achten Sie darauf, Daten nur dann in öffentliche Git-Repos zu laden, wenn Sie die nötigen Rechte an diesen Daten haben. Dies gilt insbesondere auch für Artefakte wie Bilder, Bitmaps, Musik oder Soundeffekte.*
 
@@ -9,7 +10,7 @@ Das Framework ist in `core` und `desktop` aufgeteilt, wobei `core` das Framework
 
 Sie werden das Java SE Development Kit 17.0.x oder höher benötigen.
 
-Um das PM-Dungeon-Framework zu nutzen erstellen Sie sich einen Fork des [`desktop`-Repository](https://github.com/PM-Dungeon/desktop) und ziehen sich einen lokalen Klon auf Ihr Gerät.
+Um das Projekt in Ihre IDE zu laden, schauen Sie bitte in das [Desktop-Wiki](https://github.com/PM-Dungeon/desktop/wiki/Import-Project).
 
 ## Arbeiten mit dem Framework
 
@@ -51,7 +52,7 @@ Das untenstehende UML-Klassendiagramm soll Ihnen einen reduzierten und vereinfac
 ## Erster Start
 
 Die Vorgaben sind bereits lauffähig und können direkt ausgeführt werden.
-Dafür können Sie die Vorgaben entweder als Projekt in Ihrer IDE laden und die Anwendung über die Run-Funktion starten oder Sie starten die Anwendung über die Kommandozeile.
+Dafür können Sie die Vorgaben entweder als Projekt in Ihrer IDE laden (siehe oben unter "Installation") und die Anwendung über die Run-Funktion starten oder Sie starten die Anwendung über die Kommandozeile.
 Gehen Sie dafür in das `desktop/code`-Verzeichnis und öffnen Sie die Kommandozeile und geben Sie folgenden Befehl ein:
 - Unter Windows: `bash gradlew run`
 - Unter Linux: `./gradlew run`
@@ -64,10 +65,12 @@ Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen k
 
 **Anmerkung**: Wir verwenden in unserem Beispiel zufällig generierte Level, daher werden Sie vermutlich nicht das exakt gleiche Level sehen wie auf unseren Abbildungen.
 
-## Blick in den Code
+## Laden des Projekts in der IDE
 
 Bevor wir nun unseren Helden implementieren sollten wir verstehen, wie genau die Vorgaben aufgebaut sind.
 Öffnen Sie dafür das `desktop/code`-Verzeichnis als Gradle-Projekt in Ihrer bevorzugten IDE.
+
+## Blick in den Code
 
 Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in den Dungeon. Hier werden Sie später Ihre Inhalte erzeugen und in den Dungeon hinzufügen.
 
@@ -388,7 +391,7 @@ public class MyHero extends Animatable {
         // Wenn der übergebene Punkt betretbar ist, ist das nun die aktuelle Position
         if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible()) {
             this.position = newPosition;
-        }    
+        }
     }
 
     @Override
