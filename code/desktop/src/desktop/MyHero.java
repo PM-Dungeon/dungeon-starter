@@ -13,7 +13,7 @@ public class MyHero extends Animatable {
     private Animation idleAnimation;
     private Point position;
     private Level currentLevel;
-    private int lebenpunkte = 100;
+    private int lebenspunkte = 100;
 
     public MyHero(Painter painter, SpriteBatch batch) {
         super(painter, batch);
@@ -44,6 +44,6 @@ public class MyHero extends Animatable {
 
     @Override
     public boolean removable() {
-        return lebenpunkte==0;
+        return lebenspunkte==0;
     }
 }
