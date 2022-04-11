@@ -3,6 +3,7 @@ package desktop;
 import basiselements.Animatable;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.Animation;
 import graphic.Painter;
@@ -11,12 +12,15 @@ import tools.Point;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MyHero extends Animatable {
     private final Animation idleAnimation;
     private Point position;
     private Level currentLevel;
     private int lebenspunkte = 100;
+    private Sound soundFx;
+    private long soundFxId;
 
     public MyHero(Painter painter, SpriteBatch batch) {
         super(painter, batch);
@@ -28,6 +32,9 @@ public class MyHero extends Animatable {
         // Erstellen einer Animation, als Parameter wird die Liste mit den Texturen
         // und die Wartezeit (in Frames) zwischen den Wechsel der Texturen angegeben
         idleAnimation = new Animation(animation, 8);
+
+        // load sound effect
+        this.soundFx = Gdx.audio.newSound(Gdx.files.internal("sound/sound_f0" + ".mp3"));
     }
 
     public void setLevel(Level level) {
@@ -61,6 +68,21 @@ public class MyHero extends Animatable {
         if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible()) {
             this.position = newPosition;
         }
+
+        // Play random soundFx when Keys F is pressed
+        if (Gdx.input.isKeyPressed(Input.Keys.F)) {
+            Random rand = new Random();
+            float max = 2.0f;
+            float min = 0.24f;
+            if (Gdx.input.isKeyPressed(Input.Keys.F)) {
+                this.soundFxId = this.soundFx.play(0f);
+                this.soundFx.setPitch(this.soundFxId, min + rand.nextFloat() * (max - min));
+                this.soundFx.setPan(
+                        this.soundFxId,
+                        min + rand.nextFloat() * (max - min),
+                        min + rand.nextFloat() * (max - min));
+            }
+        }
     }
 
     @Override
@@ -75,6 +97,6 @@ public class MyHero extends Animatable {
 
     @Override
     public boolean removable() {
-        return lebenspunkte==0;
+        return lebenspunkte == 0;
     }
 }
