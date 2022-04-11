@@ -69,7 +69,7 @@ public class MyHero extends Animatable {
             this.position = newPosition;
         }
 
-        // Play random soundFx when Keys F is pressed
+        // Play random soundFx when Key F is pressed
         if (Gdx.input.isKeyPressed(Input.Keys.F)) {
             Random rand = new Random();
             float max = 2.0f;
