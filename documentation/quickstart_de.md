@@ -9,7 +9,8 @@ Das Framework ist in `core` und `desktop` aufgeteilt, wobei `core` das Framework
 
 Sie werden das Java SE Development Kit 17.0.x oder höher benötigen.
 
-Um das PM-Dungeon-Framework zu nutzen erstellen Sie sich einen Fork des [`desktop`-Repository](https://github.com/PM-Dungeon/desktop) und ziehen sich einen lokalen Klon auf Ihr Gerät.
+Um das PM-Dungeon-Framework zu nutzen, erstellen Sie sich einen Fork des
+[`desktop`-Repository](https://github.com/PM-Dungeon/desktop) und ziehen sich einen lokalen Klon auf Ihr Gerät.
 
 ## Arbeiten mit dem Framework
 
@@ -17,7 +18,9 @@ Zu Beginn einige grundlegende Prinzipien, die Sie verstanden haben sollten, bevo
 
 Das PM-Dungeon benutzt aktuell das Cross-Plattform Java-Framework [`libGDX`](https://libgdx.com) als Backend. Dieses ist im `core`- und `desktop`-Projekt bereits als Abhängigkeit in die Gradle-Konfiguration integriert, Sie müssen dieses nicht extra installieren. Die Ihnen zur Verfügung gestellten Vorgaben sind so umgesetzt, dass Sie kein tieferes Verständnis für das Framework oder `libGDX` benötigen, um die Aufgaben zu lösen. Sollten Sie allerdings einmal auf Probleme stoßen, kann es unter Umständen helfen, einen Blick in die Dokumentation von `libGDX` zu werfen.
 
-Das Framework ist in ein Frontend ([`desktop`](https://github.com/PM-Dungeon/desktop))) und ein Backend ([`core`](https://github.com/PM-Dungeon/core))) aufgeteilt.
+Das Framework ist in ein Frontend ([`desktop`](https://github.
+com/PM-Dungeon/desktop)) und ein Backend ([`core`](https://github.
+com/PM-Dungeon/core)) aufgeteilt.
 Das Frontend setzt die Parameter, erzeugt ein Fenster und startet die Anwendung.
 Das Backend liefert die Schnittstellen, mit denen Sie arbeiten, und integriert die `libGDX`.
 
@@ -40,12 +43,13 @@ Bevor wir mit der eigentlichen Implementierung des Spiels anfangen, eine kurze E
   - `LevelAPI`: Kümmert sich darum, dass neue Level erzeugt und geladen werden.
   - `HUDController`: Verwaltet alle Bildschirmanzeigen die Sie implementieren.
   - `MainController` Verwaltet die anderen `Controller` und beinhaltet die Game-Loop. Ihre Implementierung wird Teil des `MainController`
-- Game-Loop: Die Game-Loop ist die wichtigste Komponente des Spieles. Sie ist eine Endlosschleife, welche einmal pro [Frame](https://de.wikipedia.org/wiki/Bildfrequenz) aufgerufen wird. Das Spiel läuft in 30-FPS (also 30 *frames per seconds*, zu Deutsch 30 Bildern pro Sekunde), die Game-Loop wird also 30mal in der Sekunde aufgerufen. Alle Aktionen, die wiederholt ausgeführt werden müssen, wie zum Beispiel das Bewegen und Zeichnen von Figuren, müssen innerhalb der Game-Loop stattfinden. Das Framework ermöglicht es Ihnen, eigene Aktionen in die Game-Loop zu integrieren. Wie genau das geht, erfahren Sie im Laufe dieser Anleitung. *Hinweis: Die Game-Loop wird automatisch ausgeführt, Sie müssen sie nicht aktiv aufrufen.*
+- Game-Loop: Die Game-Loop ist die wichtigste Komponente des Spieles. Sie ist eine Endlosschleife, welche einmal pro [Frame](https://de.wikipedia.org/wiki/Bildfrequenz) aufgerufen wird. Das Spiel läuft in 30-FPS (also 30 *frames per seconds*, zu Deutsch 30 Bildern pro Sekunde), die Game-Loop wird also 30-mal in der Sekunde aufgerufen. Alle Aktionen, die wiederholt ausgeführt werden müssen, wie zum Beispiel das Bewegen und Zeichnen von Figuren, müssen innerhalb der Game-Loop stattfinden. Das Framework ermöglicht es Ihnen, eigene Aktionen in die Game-Loop zu integrieren. Wie genau das geht, erfahren Sie im Laufe dieser Anleitung. *Hinweis: Die Game-Loop wird automatisch ausgeführt, Sie müssen sie nicht aktiv aufrufen.*
 - Zusätzlich existieren noch eine Vielzahl an weiteren Helferklassen mit dem Sie mal mehr oder mal weniger Kontakt haben werden.
 - `Painter`: Kümmert sich darum, dass die Inhalte grafisch dargestellt werden.
 - `DungeonCamera`: Ihr Auge in das Dungeon.
 
-Das untenstehende UML-Klassendiagramm soll Ihnen einen reduzierten und vereinfachten Überblick über den Aufbau des Frameworks geben. Es bildet daher nicht alle Klassen/Methoden/Attribute ab. Nutzen Sie es als Starpunkt und erforschen Sie die Codebase auf eigene Faust.
+Das untenstehende UML-Klassendiagramm soll Ihnen einen reduzierten und
+vereinfachten Überblick über den Aufbau des Frameworks geben. Es bildet daher nicht alle Klassen/Methoden/Attribute ab. Nutzen Sie es als Startpunkt und erforschen Sie die Codebase auf eigene Faust.
 
 ![simple_uml](figs/simple_uml.png)
 
@@ -58,7 +62,8 @@ Gehen Sie dafür in das `desktop/code`-Verzeichnis und öffnen Sie die Kommandoz
 - Unter Windows: `bash gradlew run`
 - Unter Linux: `./gradlew run`
 
-_Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie in die [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
+_Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie
+in die [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt). Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
 
 Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen können.
 
@@ -87,7 +92,7 @@ Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in
 
 Jetzt, wo Sie sichergestellt haben, dass das Dungeon ausgeführt werden kann, geht es darum, das Spiel mit Ihren Inhalten zu erweitern. Im Folgenden wird ein rudimentärer Held implementiert, um Ihnen die verschiedenen Aspekte des Dungeon zu erläutern.
 
-Fangen wir damit an, eine neue Klasse für den Helden anzulegen. Unser Held soll grafisch dargestellt werden und vom `EntityController` verwaltet werden können. Daher erbt er von der abtrakten Klasse `basiselements.Entity`.
+Fangen wir damit an, eine neue Klasse für den Helden anzulegen. Unser Held soll grafisch dargestellt werden und vom `EntityController` verwaltet werden können. Daher erbt er von der abstrakten Klasse `basiselements.Entity`.
 
 Diese abstrakte Klasse `basiselements.Entity` liefert einige Methoden, welche wir implementieren müssen.
 
@@ -186,7 +191,7 @@ public class MyHero extends Entity {
 }
 ```
 
-Bevor wir weiter machen, sollten wir uns einmal den Aufbau des Level anschauen. Level werden als 2D-Tile-Array gespeichert. Ein `Tile` ist dabei ein Feld im Level, also eine Wand oder ein Bodenfeld. Jedes `Tile` hat eine feste `Coordinate` im Array (also einen Index, wo im Array das `Tile` abgespeichert ist). Diese `Coordinate` gibt auch an, wo das `Tile` im Level liegt. `Coordinate` sind zwei Integerwerte (`x` und `y`). Die Position von Entitäten geben wir als `Point` an. Ein `Point` sind zwei Floatwerte (`x` und `y`). Das machen wir, weil unsere Entitäten auch zwischen zwei `Tiles` stehen können. Wenn wir später die Steuerung für unseren Helden implementieren, wird dieses noch deutlicher. Jetzt ist wichtig, dass wir mit `Coordinate.toPoint()` unseren Helden auf die Position des Starttiles setzen können.
+Bevor wir weiter machen, sollten wir uns einmal den Aufbau des Levels anschauen. Level werden als 2D-Tile-Array gespeichert. Ein `Tile` ist dabei ein Feld im Level, also eine Wand oder ein Bodenfeld. Jedes `Tile` hat eine feste `Coordinate` im Array (also einen Index, wo im Array das `Tile` abgespeichert ist). Diese `Coordinate` gibt auch an, wo das `Tile` im Level liegt. `Coordinate` sind zwei Integerwerte (`x` und `y`). Die Position von Entitäten geben wir als `Point` an. Ein `Point` sind zwei Floatwerte (`x` und `y`). Das machen wir, weil unsere Entitäten auch zwischen zwei `Tiles` stehen können. Wenn wir später die Steuerung für unseren Helden implementieren, wird dieses noch deutlicher. Jetzt ist wichtig, dass wir mit `Coordinate.toPoint()` unseren Helden auf die Position des Starttiles setzen können.
 
 Wir haben die erste Version unseres Helden implementiert. Jetzt müssen wir ihn noch im Spiel instantiieren.
 Dafür gehen wir wieder in `MyGame` und legen eine Variable `MyHero hero` an.
@@ -259,7 +264,8 @@ Bitte finden Sie selbst heraus, welche Texturen es gibt und verwendet werden kö
 
 Der Assets-Ordner kann übrigens auch **umbenannt** oder an eine andere Stelle **verschoben** werden: Passen Sie dafür die Pfadangabe `sourceSets.main.resources.srcDirs = ["assets/"]` in der [`build.gradle`](https://github.com/PM-Dungeon/desktop/blob/master/code/build.gradle)-Datei an.
 
-**Beispiel:** Sie möchten den Ordner `desktop/code/assets/` nach `desktop/code/bar/wuppie/` verschieben, dann ändern Sie `sourceSets.main.resources.srcDirs = ["assets/"]` in `sourceSets.main.resources.srcDirs = ["bar/wuppie/"]`.
+**Beispiel: ** Sie möchten den Ordner `desktop/code/assets/` nach
+`desktop/code/bar/wuppie/` verschieben, dann ändern Sie `sourceSets.main.resources.srcDirs = ["assets/"]` in `sourceSets.main.resources.srcDirs = ["bar/wuppie/"]`.
 
 Beachten Sie, dass der Ordner nur innerhalb von `desktop/code/` umbenannt bzw. verschoben werden kann.
 
@@ -317,9 +323,10 @@ public class MyHero extends Animatable {
 }
 ```
 
-Um eine Animation zu erstellen benötigen Sie eine Liste mit verschiedenen Texturen. Dann können Sie mit `new Animation()` eine Animation erstellen. Dabei übergeben Sie die Liste mit den Texturen und einen Integerwert, der angibt, nach wie vielen Frames die nächste Textur geladen werden soll (hier im Beispiel der Wert 8). In unserem Beispiel wird also 8 Frames lang die Textur `texture_1` angezeigt, dann 8 Frames die Textur `texture_2` und dann wieder 8 Frames die Textur `texture_1` usw.
+Um eine Animation zu erstellen, benötigen Sie eine Liste mit verschiedenen Texturen. Dann können Sie mit `new Animation()` eine Animation erstellen. Dabei übergeben Sie die Liste mit den Texturen und einen Integerwert, der angibt, nach wie vielen Frames die nächste Textur geladen werden soll (hier im Beispiel der Wert 8). In unserem Beispiel wird also 8 Frames lang die Textur `texture_1` angezeigt, dann 8 Frames die Textur `texture_2` und dann wieder 8 Frames die Textur `texture_1` usw.
 
-Sie können (und sollten) auch verschiedene Animationen für verschiedene Situationen ertellen (Stehen, Laufen, ...). Geben Sie einfach in `getActiveAnimation` immer die Animation zurück, die gerade verwendet werden soll.
+Sie können (und sollten) auch verschiedene Animationen für verschiedene
+Situationen erstellen (Stehen, Laufen, ...). Geben Sie einfach in `getActiveAnimation` immer die Animation zurück, die gerade verwendet werden soll.
 
 Wenn Sie das Spiel nun starten, sollten Sie Ihren animierten (aber immer noch unbeweglichen) Helden sehen.
 
@@ -366,7 +373,8 @@ public class MyHero extends Animatable {
 
     @Override
     public void update() {
-        // Temporären Point um den Held nur zu bewegen, wenn es keine Kollision gab
+        // Temporären Point um den Helden nur zu bewegen, wenn es keine
+        Kollision gab
         Point newPosition = new Point(this.position);
         // Unser Held soll sich pro Schritt um 0.1 Felder bewegen.
         float movementSpeed = 0.1f;
@@ -478,7 +486,7 @@ Wenn Sie nun das Spiel starten, sollten Sie Ihren Helden durch die Spielwelt bew
 
 ## Levelgenerator
 
-Das PM-Dungeon verfügt über einen eigenen prozeduralen Levelgenerator. Dieser ist standardmäßig nicht aktiviert, da unter Umständen die Berechnung von Leveln viel Zeit auf Ihrer Maschine benötigen kann.
+Das PM-Dungeon verfügt über einen eigenen prozeduralen Levelgenerator. Dieser ist standardmäßig nicht aktiviert, da unter Umständen die Berechnung von Level viel Zeit auf Ihrer Maschine benötigen kann.
 Um den prozeduralen Levelgenerator zu verwenden, löschen Sie die Zeile `levelAPI.setGenerator(new LevelLoader());` in `MyGame#setup()`.
 
 ## Abschlussworte
