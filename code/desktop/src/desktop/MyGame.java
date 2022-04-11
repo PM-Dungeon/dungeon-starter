@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import controller.MainController;
 import level.generator.LevelLoader.LevelLoader;
 import level.generator.dungeong.graphg.NoSolutionException;
+import tools.Point;
 
 public class MyGame extends MainController {
     private MyHero hero;
@@ -21,6 +22,10 @@ public class MyGame extends MainController {
         }
         camera.follow(hero);
         entityController.add(hero);
+        // hinzufügen eines Elementes zum HUD
+        hudController.add(new MyIcon(hudPainter, hudBatch, new Point(0f, 0f)));
+        // so entfernt man ein Element
+        // hud.remove(OBJECT);
     }
 
     @Override
