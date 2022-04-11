@@ -10,7 +10,7 @@ public class MyGame extends MainController {
 
     @Override
     protected void setup() {
-//        levelAPI.setGenerator(new LevelLoader());
+        levelAPI.setGenerator(new LevelLoader());
         hero = new MyHero(painter, batch);
         try {
             levelAPI.loadLevel();
