@@ -1,21 +1,30 @@
 package desktop;
 
-import basiselements.Entity;
+import basiselements.Animatable;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import graphic.Animation;
 import graphic.Painter;
 import level.elements.Level;
 import tools.Point;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MyHero extends Entity {
-
-    private int lebenspunkte = 100;
-    private String texturePath;
+public class MyHero extends Animatable {
+    private Animation idleAnimation;
     private Point position;
     private Level currentLevel;
+    private int lebenpunkte = 100;
 
     public MyHero(Painter painter, SpriteBatch batch) {
         super(painter, batch);
-        texturePath = "character/knight/knight_m_idle_anim_f0.png";
+        // Erstellen einer ArrayList
+        List<String> animation = new ArrayList<>();
+        // Laden der Texturen für die Animation (relativen Pfad angeben)
+        animation.add("character/knight/knight_m_idle_anim_f0.png");
+        animation.add("character/knight/knight_m_idle_anim_f1.png");
+        // Erstellen einer Animation, als Parameter wird die Liste mit den Texturen
+        // und die Wartezeit (in Frames) zwischen den Wechsel der Texturen angegeben
+        idleAnimation = new Animation(animation, 8);
     }
 
     public void setLevel(Level level) {
@@ -29,12 +38,12 @@ public class MyHero extends Entity {
     }
 
     @Override
-    public String getTexturePath() {
-        return texturePath;
+    public Animation getActiveAnimation() {
+        return idleAnimation;
     }
 
     @Override
     public boolean removable() {
-        return lebenspunkte==0;
+        return lebenpunkte==0;
     }
 }
