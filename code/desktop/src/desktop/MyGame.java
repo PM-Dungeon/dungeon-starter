@@ -27,7 +27,15 @@ public class MyGame extends MainController {
     protected void beginFrame() {}
 
     @Override
-    protected void endFrame() {}
+    protected void endFrame() {
+        if (levelAPI.getCurrentLevel().isOnEndTile(hero)) {
+            try {
+                levelAPI.loadLevel();
+            } catch (NoSolutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @Override
     public void onLevelLoad() {
