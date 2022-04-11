@@ -7,6 +7,8 @@ import level.elements.Level;
 import tools.Point;
 
 public class MyHero extends Entity {
+
+    private int lebenspunkte;
     private String texturePath;
     private Point position;
     private Level currentLevel;
@@ -29,5 +31,10 @@ public class MyHero extends Entity {
     @Override
     public String getTexturePath() {
         return texturePath;
+    }
+
+    @Override
+    public boolean removable() {
+        return lebenspunkte==0;
     }
 }
