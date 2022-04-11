@@ -1,6 +1,8 @@
 package desktop;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import controller.MainController;
 import level.generator.LevelLoader.LevelLoader;
 import level.generator.dungeong.graphg.NoSolutionException;
@@ -8,6 +10,13 @@ import tools.Point;
 
 public class MyGame extends MainController {
     private MyHero hero;
+    private Label levelLabel;
+    private int levelCounter = 0;
+
+    public static void main(String[] args) {
+        // start the game
+        DesktopLauncher.run(new MyGame());
+    }
 
     @Override
     protected void setup() {
@@ -17,7 +26,7 @@ public class MyGame extends MainController {
             levelAPI.loadLevel();
         } catch (NoSolutionException e) {
             System.out.println(
-                "Es konnte kein Level geladen werden, bitte den \"assets\" Ordner überprüfen.");
+                    "Es konnte kein Level geladen werden, bitte den \"assets\" Ordner überprüfen.");
             Gdx.app.exit();
         }
         camera.follow(hero);
@@ -45,10 +54,21 @@ public class MyGame extends MainController {
     @Override
     public void onLevelLoad() {
         hero.setLevel(levelAPI.getCurrentLevel());
-    }
 
-    public static void main(String[] args) {
-        // start the game
-        DesktopLauncher.run(new MyGame());
+        levelCounter++;
+        if (levelCounter == 1) {
+            levelLabel =
+                    hudController.drawText(
+                            "Level " + levelCounter,
+                            "C:\\USERS\\JEDI\\APPDATA\\LOCAL\\MICROSOFT\\WINDOWS\\FONTS\\DIABLO.TTF",
+                            Color.RED,
+                            30,
+                            50,
+                            50,
+                            30,
+                            30);
+        } else {
+            levelLabel.setText("Level " + levelCounter);
+        }
     }
 }
