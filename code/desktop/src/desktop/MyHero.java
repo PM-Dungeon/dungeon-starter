@@ -15,7 +15,7 @@ public class MyHero extends Entity {
 
     public MyHero(Painter painter, SpriteBatch batch) {
         super(painter, batch);
-        texturePath = "character/knight/knight.png";
+        texturePath = "character/knight/knight_m_idle_anim_f0.png";
     }
 
     public void setLevel(Level level) {
