@@ -1,16 +1,19 @@
 package desktop;
 
 import basiselements.Animatable;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import graphic.Animation;
 import graphic.Painter;
 import level.elements.Level;
 import tools.Point;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyHero extends Animatable {
-    private Animation idleAnimation;
+    private final Animation idleAnimation;
     private Point position;
     private Level currentLevel;
     private int lebenspunkte = 100;
@@ -30,6 +33,34 @@ public class MyHero extends Animatable {
     public void setLevel(Level level) {
         currentLevel = level;
         position = level.getStartTile().getCoordinate().toPoint();
+    }
+
+    @Override
+    public void update() {
+        // Temporären Point um den Held nur zu bewegen, wenn es keine Kollision gab
+        Point newPosition = new Point(this.position);
+        // Unser Held soll sich pro Schritt um 0.1 Felder bewegen.
+        float movementSpeed = 0.2f;
+        // Wenn die Taste W gedrückt ist, bewege dich nach oben
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            newPosition.y += movementSpeed;
+        }
+        // Wenn die Taste S gedrückt ist, bewege dich nach unten
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            newPosition.y -= movementSpeed;
+        }
+        // Wenn die Taste D gedrückt ist, bewege dich nach rechts
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            newPosition.x += movementSpeed;
+        }
+        // Wenn die Taste A gedrückt ist, bewege dich nach links
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            newPosition.x -= movementSpeed;
+        }
+        // Wenn der übergebene Punkt betretbar ist, ist das nun die aktuelle Position
+        if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible()) {
+            this.position = newPosition;
+        }
     }
 
     @Override
