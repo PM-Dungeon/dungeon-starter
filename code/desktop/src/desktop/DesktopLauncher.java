@@ -11,7 +11,7 @@ public final class DesktopLauncher {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setForegroundFPS(Constants.FRAME_RATE);
         config.setWindowIcon(Constants.LOGO_PATH);
-        config.disableAudio(true);
+        // config.disableAudio(true);
         new Lwjgl3Application(new LibgdxSetup(mc), config);
     }
 }
