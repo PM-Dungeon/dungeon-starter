@@ -8,7 +8,7 @@ import tools.Point;
 
 public class MyHero extends Entity {
 
-    private int lebenspunkte;
+    private int lebenspunkte = 100;
     private String texturePath;
     private Point position;
     private Level currentLevel;
