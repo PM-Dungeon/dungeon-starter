@@ -10,7 +10,7 @@ Sie benötigen nur das Frontend (desktop) für die Aufgaben, das Backend wird au
 
 Sie werden das Java SE Development Kit 17.0.x oder höher benötigen.
 
-Um das Projekt in Ihre IDE zu laden, schauen Sie bitte in das [Desktop-Wiki](https://github.com/PM-Dungeon/desktop/wiki/Import-Project).
+Für eine Anleitung, wie Sie das Projekt in Ihrer IDE laden können, schauen Sie bitte in das [Desktop-Wiki: "Import Project"](https://github.com/PM-Dungeon/desktop/wiki/Import-Project).
 
 ## Arbeiten mit dem Framework
 
@@ -52,7 +52,7 @@ Das untenstehende UML-Klassendiagramm soll Ihnen einen reduzierten und vereinfac
 ## Erster Start
 
 Die Vorgaben sind bereits lauffähig und können direkt ausgeführt werden.
-Dafür können Sie die Vorgaben entweder als Projekt in Ihrer IDE laden (siehe oben unter "Installation") und die Anwendung über die Run-Funktion starten oder Sie starten die Anwendung über die Kommandozeile.
+Dafür können Sie die Vorgaben entweder als Projekt in Ihrer IDE laden (siehe ["Import Project"](https://github.com/PM-Dungeon/desktop/wiki/Import-Project).) und die Anwendung über die Run-Funktion Ihrer IDE starten oder Sie starten die Anwendung über die Kommandozeile per `./gradlew run`.
 Gehen Sie dafür in das `desktop/code`-Verzeichnis und öffnen Sie die Kommandozeile und geben Sie folgenden Befehl ein:
 - Unter Windows: `bash gradlew run`
 - Unter Linux: `./gradlew run`
@@ -85,7 +85,7 @@ Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in
 
 ## Eigener Held
 
-Jetzt, wo Sie sichergestellt haben, dass das Dungeon ausgeführt werden kann, geht es darum, das Spiel mit Ihren Inhalten zu erweitern. Im Folgenden wird ein rudimentärer Held implementiert, um Ihnen die verschiedenen Aspekte des Dungeon zu erläutern.
+Jetzt, wo Sie sichergestellt haben, dass das Dungeon ausgeführt werden kann, geht es darum, das Spiel mit Ihren Inhalten zu erweitern. Im Folgenden wird schrittweise ein rudimentärer Held implementiert, um Ihnen die verschiedenen Aspekte des Dungeon zu erläutern.
 
 Fangen wir damit an, eine neue Klasse für den Helden anzulegen. Unser Held soll grafisch dargestellt werden und vom `EntityController` verwaltet werden können. Daher erbt er von der abtrakten Klasse `basiselements.Entity`.
 
@@ -135,7 +135,7 @@ public class MyHero extends Entity {
 
     public MyHero(Painter painter, SpriteBatch batch) {
         super(painter, batch);
-        texturePath="character/knight/knight.png";
+        texturePath = "character/knight/knight_m_idle_anim_f0.png";
     }
 
     @Override
@@ -235,7 +235,7 @@ public class MyGame extends MainController {
 }
 ```
 
-Möchten Sie, dass eine Entität nicht mehr weiter vom `EntityController` verwaltet wird, z.B. wenn sie "stirbt", überschreiben Sie dafür die Methode `removeable` der `Entity`-Klasse. Sobald diese Methode den Wert `true` zurückgibt, wird die Instanz im nächsten Frame aus dem `EntityController` entfernt.
+Möchten Sie, dass Ihr Hero oder eine andere Entität nicht mehr weiter vom `EntityController` verwaltet wird, z.B. wenn sie "stirbt", überschreiben Sie dafür in der jeweiligen Klasse die Methode `removeable`, die von der `Entity`-Klasse geerbt wurde. Sobald diese Methode den Wert `true` zurückgibt, wird die Instanz im nächsten Frame aus dem `EntityController` entfernt.
 
 ```java
     @Override
@@ -596,7 +596,7 @@ Im unteren Beispiel wird ein Text implementiert, welcher das aktuelle Level ausg
 public class MyGame extends MainController {
     ...
 
-    private Label levelLabel;
+    private com.badlogic.gdx.scenes.scene2d.ui.Label levelLabel;
     private int levelCounter=0;
 
     public void onLevelLoad() {
