@@ -1,8 +1,8 @@
 # Quickstart
 
 Dieses Dokument liefert einen Einstieg in das PM-Dungeon. Es erläutert die Installation des Frameworks und die ersten Schritte, um eigene Inhalte zum Dungeon hinzuzufügen. Es dient als Grundlage für alle weiteren Praktika. Lesen Sie das Dokument daher aufmerksam durch und versuchen Sie sich zusätzlich selbst mit dem Aufbau vertraut zu machen.
-Das Framework ist in `core` und `desktop` aufgeteilt, wobei `core` das Framework und `desktop` ein Basis-Starter ist.
-Sie benötigen nur das Frontend (desktop) für die Aufgaben, das Backend wird automatisch über Gradle als externe Bibliothek eingebunden.
+Das Framework ist in `core` und `dungeon-starter` aufgeteilt, wobei `core` das Framework und `dungeon-starter` ein Basis-Starter ist.
+Sie benötigen nur das Frontend (dungeon-starter) für die Aufgaben, das Backend wird automatisch über Gradle als externe Bibliothek eingebunden.
 
 *Hinweis: Achten Sie darauf, Daten nur dann in öffentliche Git-Repos zu laden, wenn Sie die nötigen Rechte an diesen Daten haben. Dies gilt insbesondere auch für Artefakte wie Bilder, Bitmaps, Musik oder Soundeffekte.*
 
@@ -10,15 +10,15 @@ Sie benötigen nur das Frontend (desktop) für die Aufgaben, das Backend wird au
 
 Sie werden das Java SE Development Kit 17.0.x oder höher benötigen.
 
-Für eine Anleitung, wie Sie das Projekt in Ihrer IDE laden können, schauen Sie bitte in das [Desktop-Wiki: "Import Project"](https://github.com/PM-Dungeon/desktop/wiki/Import-Project).
+Für eine Anleitung, wie Sie das Projekt in Ihrer IDE laden können, schauen Sie bitte in das [Dungeon-Starter-Wiki: "Import Project"](https://github.com/PM-Dungeon/dungeon-starter/wiki/Import-Project).
 
 ## Arbeiten mit dem Framework
 
 Zu Beginn einige grundlegende Prinzipien, die Sie verstanden haben sollten, bevor Sie mit dem Dungeon arbeiten.
 
-Das PM-Dungeon benutzt aktuell das Cross-Plattform Java-Framework [`libGDX`](https://libgdx.com) als Backend. Dieses ist im `core`- und `desktop`-Projekt bereits als Abhängigkeit in die Gradle-Konfiguration integriert, Sie müssen dieses nicht extra installieren. Die Ihnen zur Verfügung gestellten Vorgaben sind so umgesetzt, dass Sie kein tieferes Verständnis für das Framework oder `libGDX` benötigen, um die Aufgaben zu lösen. Sollten Sie allerdings einmal auf Probleme stoßen, kann es unter Umständen helfen, einen Blick in die Dokumentation von `libGDX` zu werfen.
+Das PM-Dungeon benutzt aktuell das Cross-Plattform Java-Framework [`libGDX`](https://libgdx.com) als Backend. Dieses ist im `core`- und `dungeon-starter`-Projekt bereits als Abhängigkeit in die Gradle-Konfiguration integriert, Sie müssen dieses nicht extra installieren. Die Ihnen zur Verfügung gestellten Vorgaben sind so umgesetzt, dass Sie kein tieferes Verständnis für das Framework oder `libGDX` benötigen, um die Aufgaben zu lösen. Sollten Sie allerdings einmal auf Probleme stoßen, kann es unter Umständen helfen, einen Blick in die Dokumentation von `libGDX` zu werfen.
 
-Das Framework ist in ein Frontend ([`desktop`]((https://github.com/PM-Dungeon/desktop))) und ein Backend ([`core`]((https://github.com/PM-Dungeon/core))) aufgeteilt.
+Das Framework ist in ein Frontend ([`dungeon-starter`]((https://github.com/PM-Dungeon/dungeon-starter))) und ein Backend ([`core`]((https://github.com/PM-Dungeon/core))) aufgeteilt.
 Das Frontend setzt die Parameter, erzeugt ein Fenster und startet die Anwendung.
 Das Backend liefert die Schnittstellen, mit denen Sie arbeiten, und integriert die `libGDX`.
 
@@ -52,12 +52,12 @@ Das untenstehende UML-Klassendiagramm soll Ihnen einen reduzierten und vereinfac
 ## Erster Start
 
 Die Vorgaben sind bereits lauffähig und können direkt ausgeführt werden.
-Dafür können Sie die Vorgaben entweder als Projekt in Ihrer IDE laden (siehe ["Import Project"](https://github.com/PM-Dungeon/desktop/wiki/Import-Project).) und die Anwendung über die Run-Funktion Ihrer IDE starten oder Sie starten die Anwendung über die Kommandozeile per `./gradlew run`.
-Gehen Sie dafür in das `desktop/code`-Verzeichnis und öffnen Sie die Kommandozeile und geben Sie folgenden Befehl ein:
+Dafür können Sie die Vorgaben entweder als Projekt in Ihrer IDE laden (siehe ["Import Project"](https://github.com/PM-Dungeon/dungeon-starter/wiki/Import-Project)) und die Anwendung über die Run-Funktion Ihrer IDE starten oder Sie starten die Anwendung über die Kommandozeile per `./gradlew run`.
+Gehen Sie dafür in das `dungeon-starter/code`-Verzeichnis und öffnen Sie die Kommandozeile und geben Sie folgenden Befehl ein:
 - Unter Windows: `bash gradlew run`
 - Unter Linux: `./gradlew run`
 
-_Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie in die [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
+_Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie in die [FAQ](https://github.com/PM-Dungeon/dungeon-starter/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
 
 Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen können.
 
@@ -68,7 +68,7 @@ Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen k
 ## Laden des Projekts in der IDE
 
 Bevor wir nun unseren Helden implementieren sollten wir verstehen, wie genau die Vorgaben aufgebaut sind.
-Öffnen Sie dafür das `desktop/code`-Verzeichnis als Gradle-Projekt in Ihrer bevorzugten IDE.
+Öffnen Sie dafür das `dungeon-starter/code`-Verzeichnis als Gradle-Projekt in Ihrer bevorzugten IDE.
 
 ## Blick in den Code
 
@@ -250,18 +250,18 @@ Wenn Sie das Spiel nun starten, sollten Sie ihren (unbeweglichen) Helden im Dung
 
 ### Intermezzo: Der Assets-Ordner
 
-Im Ordner [`code/assets/`](https://github.com/PM-Dungeon/desktop/tree/master/code/assets) werden alle Assets gespeichert, die im Dungeon verwendet werden. Assets sind dabei im Prinzip die Texturen, die später gezeichnet werden sollen.
+Im Ordner [`code/assets/`](https://github.com/PM-Dungeon/dungeon-starter/tree/master/code/assets) werden alle Assets gespeichert, die im Dungeon verwendet werden. Assets sind dabei im Prinzip die Texturen, die später gezeichnet werden sollen.
 Der `assets`-Ordner hat aber eine spezielle Adressierung.
 Wenn der absolute Pfad zu einer Textur zum Beispiel `code/assets/character/knight/knight_m_idle_anim_f0.png` ist, dann geben wir den relativen Pfad zur Textur mit `character/knight/knight_m_idle_anim_f0.png` an.
 Das Präfix `code/assets/` wird dabei also einfach weggelassen.
 
 Bitte finden Sie selbst heraus, welche Texturen es gibt und verwendet werden können.
 
-Der Assets-Ordner kann übrigens auch **umbenannt** oder an eine andere Stelle **verschoben** werden: Passen Sie dafür die Pfadangabe `sourceSets.main.resources.srcDirs = ["assets/"]` in der [`build.gradle`](https://github.com/PM-Dungeon/desktop/blob/master/code/build.gradle)-Datei an.
+Der Assets-Ordner kann übrigens auch **umbenannt** oder an eine andere Stelle **verschoben** werden: Passen Sie dafür die Pfadangabe `sourceSets.main.resources.srcDirs = ["assets/"]` in der [`build.gradle`](https://github.com/PM-Dungeon/dungeon-starter/blob/master/code/build.gradle)-Datei an.
 
-**Beispiel:** Sie möchten den Ordner `desktop/code/assets/` nach `desktop/code/bar/wuppie/` verschieben, dann ändern Sie `sourceSets.main.resources.srcDirs = ["assets/"]` in `sourceSets.main.resources.srcDirs = ["bar/wuppie/"]`.
+**Beispiel:** Sie möchten den Ordner `dungeon-starter/code/assets/` nach `dungeon-starter/code/bar/wuppie/` verschieben, dann ändern Sie `sourceSets.main.resources.srcDirs = ["assets/"]` in `sourceSets.main.resources.srcDirs = ["bar/wuppie/"]`.
 
-Beachten Sie, dass der Ordner nur innerhalb von `desktop/code/` umbenannt bzw. verschoben werden kann.
+Beachten Sie, dass der Ordner nur innerhalb von `dungeon-starter/code/` umbenannt bzw. verschoben werden kann.
 
 Später werden Sie es wahrscheinlich praktischer finden, anstelle von relativen Pfaden den [`textures/TextureHandler.java`](https://github.com/PM-Dungeon/core/blob/master/code/core/src/textures/TextureHandler.java) zu verwenden, der reguläre Ausdrücke entgegennehmen und entsprechende Textur-Pfade zurückgeben kann.
 
