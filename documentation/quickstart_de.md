@@ -166,7 +166,7 @@ public class MyHero extends Entity {
 
     public MyHero(Painter painter, SpriteBatch batch) {
         super(painter, batch);
-        texturePath = "character/knight/knight.png";
+        texturePath = "character/knight/knight_m_idle_anim_f0.png";
     }
 
     public void setLevel(Level level) {
@@ -235,18 +235,18 @@ public class MyGame extends MainController {
 }
 ```
 
-Möchten Sie, dass Ihr Hero oder eine andere Entität nicht mehr weiter vom `EntityController` verwaltet wird, z.B. wenn sie "stirbt", überschreiben Sie dafür in der jeweiligen Klasse die Methode `removeable`, die von der `Entity`-Klasse geerbt wurde. Sobald diese Methode den Wert `true` zurückgibt, wird die Instanz im nächsten Frame aus dem `EntityController` entfernt.
+Möchten Sie, dass Ihr Hero oder eine andere Entität nicht mehr weiter vom `EntityController` verwaltet wird, z.B. wenn sie "stirbt", überschreiben Sie dafür in der jeweiligen Klasse die Methode `removeable`, die von der `Entity`-Klasse geerbt wurde. Sobald diese Methode den Wert `true` zurückgibt, wird die Instanz im nächsten Frame aus dem `EntityController` entfernt. Wie im Beispiel zu sehen, wird die Entität dann entfernt, wenn die Lebenspunkte auf 0 gefallen sind. Das Beispiel ist für unseren Helden noch nicht anwendbar, aber vielleicht wollen Sie diese Funktionalität irgendwann selbst implementieren. 
 
 ```java
     @Override
     public boolean removable() {
-        return lebenpunkte == 0;
+        return lebenspunkte == 0;
     }
 ```
 
 Wenn Sie das Spiel nun starten, sollten Sie ihren (unbeweglichen) Helden im Dungeon sehen können.
 
-![first_start](figs/pm-dungeon_myhero.png)
+![my_hero](figs/pm-dungeon_myhero.png)
 
 ### Intermezzo: Der Assets-Ordner
 
@@ -294,8 +294,8 @@ public class MyHero extends Animatable {
         // Erstellen einer ArrayList
         List<String> animation = new ArrayList<>();
         // Laden der Texturen für die Animation (relativen Pfad angeben)
-        animation.add("assets_path_to_texture/texture_1.png");
-        animation.add("assets_path_to_texture/texture_2.png");
+        animation.add("character/knight/knight_m_idle_anim_f0.png";);
+        animation.add("character/knight/knight_m_idle_anim_f1.png";);
         // Erstellen einer Animation, als Parameter wird die Liste mit den Texturen
         // und die Wartezeit (in Frames) zwischen den Wechsel der Texturen angegeben
         idleAnimation = new Animation(animation, 8);
@@ -318,13 +318,13 @@ public class MyHero extends Animatable {
 }
 ```
 
-Um eine Animation zu erstellen benötigen Sie eine Liste mit verschiedenen Texturen. Dann können Sie mit `new Animation()` eine Animation erstellen. Dabei übergeben Sie die Liste mit den Texturen und einen Integerwert, der angibt, nach wie vielen Frames die nächste Textur geladen werden soll (hier im Beispiel der Wert 8). In unserem Beispiel wird also 8 Frames lang die Textur `texture_1` angezeigt, dann 8 Frames die Textur `texture_2` und dann wieder 8 Frames die Textur `texture_1` usw.
+Um eine Animation zu erstellen benötigen Sie eine Liste mit verschiedenen Texturen. Dann können Sie mit `new Animation()` eine Animation erstellen. Dabei übergeben Sie die Liste mit den Texturen und einen Integerwert, der angibt, nach wie vielen Frames die nächste Textur geladen werden soll (hier im Beispiel der Wert 8). In unserem Beispiel wird also 8 Frames lang die Textur `knight_m_idle_anim_f0` angezeigt, dann 8 Frames die Textur `knight_m_idle_anim_f1` und dann wieder 8 Frames die Textur `knight_m_idle_anim_f0` usw.
 
 Sie können (und sollten) auch verschiedene Animationen für verschiedene Situationen ertellen (Stehen, Laufen, ...). Geben Sie einfach in `getActiveAnimation` immer die Animation zurück, die gerade verwendet werden soll.
 
 Wenn Sie das Spiel nun starten, sollten Sie Ihren animierten (aber immer noch unbeweglichen) Helden sehen.
 
-![first_start](figs/pm-dungeon_wasd.png)
+![controll](figs/pm-dungeon_wasd.png)
 
 
 ### WASD oder die Steuerung des Helden über die Tastatur
@@ -354,8 +354,8 @@ public class MyHero extends Animatable {
         // Erstellen einer ArrayList
         List<String> animation = new ArrayList<>();
         // Laden der Texturen für die Animation (relativen Pfad angeben)
-        animation.add("assets_path_to_texture/texture_1.png");
-        animation.add("assets_path_to_texture/texture_2.png");
+        animation.add("character/knight/knight_m_idle_anim_f0.png";);
+        animation.add("character/knight/knight_m_idle_anim_f1.png";);
         // Erstellen einer Animation, als Parameter wird die Liste mit den Texturen
         // und die Wartezeit (in Frames) zwischen den Wechsel der Texturen angegeben
         idleAnimation = new Animation(animation, 8);
@@ -476,7 +476,7 @@ _Anmerkung_: Später werden Sie viele weitere Entitäten im Level platziert habe
 
 Wenn Sie nun das Spiel starten, sollten Sie Ihren Helden durch die Spielwelt bewegen können und auch in das nächste Level gelangen.
 
-![first_start](figs/pm-dungeon_level_unknown.png)
+![level](figs/pm-dungeon_level_unknown.png)
 
 
 ## Levelgenerator
@@ -594,6 +594,7 @@ Im unteren Beispiel wird ein Text implementiert, welcher das aktuelle Level ausg
 
 ```java
 public class MyGame extends MainController {
+    import com.badlogic.gdx.graphics.Color;
     ...
 
     private com.badlogic.gdx.scenes.scene2d.ui.Label levelLabel;
@@ -613,9 +614,13 @@ public class MyGame extends MainController {
 }
 ```
 
+Beachten Sie dabei, dass `PATH/TO/FONT.ttf` wieder ein relativer Pfad, ausgehend vom `asset`-Verzeichnis ist. 
+Freie Fonts können Sie im Internet finden. Achten Sie bitte genau darauf, ob Sie die von Ihnen verwendete Font weiterverbreiten dürfen,bevor Sie diese in Ihr Git-Repository hochladen. 
+Aktuell wissen wir, dass Fonts vom Typen `.ttf` unterstützt werden, ob andere Fonts Typen, wie `.otf` unterstützt werden, wissen wir leider nicht.Sollten Sie Erfahrungen mit anderen Font-Typen gemacht haben/machen, dann informieren Sie uns bitte.
+
 Genauere Informationen zu den Parametern entnehmen Sie bitte der JavaDoc.
 
-![first_start](figs/pm-dungeon_hud_icons.png)
+![hud_icon](figs/pm-dungeon_hud_icons.png)
 
 ### Level-API
 
