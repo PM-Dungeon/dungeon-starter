@@ -1,5 +1,7 @@
 # Quickstart
 
+**THIS QUICKSTART USES CORE 3.0.+ IS OUTDATED FOR CORE 4.0.+**
+
 This document provides an introduction to the PM-Dungeon. It explains the installation of the framework and the first steps to add your own content to the dungeon.
 The framework is divided into `core` and `desktop`, where `core` is the framework and `desktop` is a basic starter.
 
