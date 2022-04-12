@@ -1,5 +1,7 @@
 # Quickstart
 
+**THIS QUICKSTART USES CORE 3.0.+ IS OUTDATED FOR CORE 4.0.+**
+
 This document provides an introduction to the PM-Dungeon. It explains the installation of the framework and the first steps to add your own content to the dungeon.
 The framework is divided into `core` and `desktop`, where `core` is the framework and `desktop` is a basic starter.
 
@@ -63,6 +65,8 @@ _Note_: If you have problems starting the application, please check the [FAQ](ht
 The game should now start and you should be able to see a section of the level for the first time.
 
 ![first_start](figs/pm-dungeon_start.png)
+
+**Note**: We use randomly generated levels in our example, so you probably won't see the exact same level as in our illustrations.
 
 ## A look at the code
 
@@ -214,7 +218,7 @@ public MyHero(SpriteBatch batch, Painter painter) {
     // creation of the animation. As parameter the list of animation textures and
     // the time between swapping of animation textures must be specified during
     // creation.
-    idle = new Animation(idle, 8);
+    idle = new Animation(animation, 8);
 }
 ```
 
@@ -381,10 +385,10 @@ public class MyGame extends MainController {
     public void onLevelLoad() {
         levelCounter++;
         if (levelCounter==1){
-            levelLabel=hudController.drawText("Level"+x,"PATH/TO/FONT.ttf",Color.RED,30,50,50,30,30);
+            levelLabel=hudController.drawText("Level "+levelCounter,"PATH/TO/FONT.ttf",Color.RED,30,50,50,30,30);
         }
         else{
-            levelLabel.setText("Level"+x);
+            levelLabel.setText("Level "+levelCounter);
         }
     }
     //remove label

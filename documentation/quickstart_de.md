@@ -1,7 +1,8 @@
 # Quickstart
 
 Dieses Dokument liefert einen Einstieg in das PM-Dungeon. Es erläutert die Installation des Frameworks und die ersten Schritte, um eigene Inhalte zum Dungeon hinzuzufügen. Es dient als Grundlage für alle weiteren Praktika. Lesen Sie das Dokument daher aufmerksam durch und versuchen Sie sich zusätzlich selbst mit dem Aufbau vertraut zu machen.
-Das Framework ist in `core` und `desktop` aufgeteilt, wobei `core` das Framework und `desktop` ein Basis-Starter ist.
+Das Framework ist in [`core`](https://github.com/PM-Dungeon/core) und [`dungeon-starter`](https://github.com/PM-Dungeon/dungeon-starter) aufgeteilt, wobei `core` das Framework und `dungeon-starter` ein Basis-Starter ist.
+Sie benötigen nur das Frontend (`dungeon-starter`) für die Aufgaben, das Backend wird automatisch über Gradle als externe Bibliothek eingebunden.
 
 *Hinweis: Achten Sie darauf, Daten nur dann in öffentliche Git-Repos zu laden, wenn Sie die nötigen Rechte an diesen Daten haben. Dies gilt insbesondere auch für Artefakte wie Bilder, Bitmaps, Musik oder Soundeffekte.*
 
@@ -9,15 +10,15 @@ Das Framework ist in `core` und `desktop` aufgeteilt, wobei `core` das Framework
 
 Sie werden das Java SE Development Kit 17.0.x oder höher benötigen.
 
-Um das PM-Dungeon-Framework zu nutzen erstellen Sie sich einen Fork des [`desktop`-Repository](https://github.com/PM-Dungeon/desktop) und ziehen sich einen lokalen Klon auf Ihr Gerät.
+Für eine Anleitung, wie Sie das Projekt in Ihrer IDE laden können, schauen Sie bitte in das [Dungeon-Starter-Wiki: "Import Project"](https://github.com/PM-Dungeon/dungeon-starter/wiki/Import-Project).
 
 ## Arbeiten mit dem Framework
 
 Zu Beginn einige grundlegende Prinzipien, die Sie verstanden haben sollten, bevor Sie mit dem Dungeon arbeiten.
 
-Das PM-Dungeon benutzt aktuell das Cross-Plattform Java-Framework [`libGDX`](https://libgdx.com) als Backend. Dieses ist im `core`- und `desktop`-Projekt bereits als Abhängigkeit in die Gradle-Konfiguration integriert, Sie müssen dieses nicht extra installieren. Die Ihnen zur Verfügung gestellten Vorgaben sind so umgesetzt, dass Sie kein tieferes Verständnis für das Framework oder `libGDX` benötigen, um die Aufgaben zu lösen. Sollten Sie allerdings einmal auf Probleme stoßen, kann es unter Umständen helfen, einen Blick in die Dokumentation von `libGDX` zu werfen.
+Das PM-Dungeon benutzt aktuell das Cross-Plattform Java-Framework [`libGDX`](https://libgdx.com) als Backend. Dieses ist im `core`- und `dungeon-starter`-Projekt bereits als Abhängigkeit in die Gradle-Konfiguration integriert, Sie müssen dieses nicht extra installieren. Die Ihnen zur Verfügung gestellten Vorgaben sind so umgesetzt, dass Sie kein tieferes Verständnis für das Framework oder `libGDX` benötigen, um die Aufgaben zu lösen. Sollten Sie allerdings einmal auf Probleme stoßen, kann es unter Umständen helfen, einen Blick in die Dokumentation von `libGDX` zu werfen.
 
-Das Framework ist in ein Frontend ([`desktop`]((https://github.com/PM-Dungeon/desktop))) und ein Backend ([`core`]((https://github.com/PM-Dungeon/core))) aufgeteilt.
+Das Framework ist in ein Frontend ([`dungeon-starter`]((https://github.com/PM-Dungeon/dungeon-starter))) und ein Backend ([`core`]((https://github.com/PM-Dungeon/core))) aufgeteilt.
 Das Frontend setzt die Parameter, erzeugt ein Fenster und startet die Anwendung.
 Das Backend liefert die Schnittstellen, mit denen Sie arbeiten, und integriert die `libGDX`.
 
@@ -40,33 +41,36 @@ Bevor wir mit der eigentlichen Implementierung des Spiels anfangen, eine kurze E
     - `HUDController`: Verwaltet alle Bildschirmanzeigen die Sie implementieren.
     - `MainController` Verwaltet die anderen `Controller` und beinhaltet die Game-Loop. Ihre Implementierung wird Teil des `MainController`
 - Game-Loop: Die Game-Loop ist die wichtigste Komponente des Spieles. Sie ist eine Endlosschleife, welche einmal pro [Frame](https://de.wikipedia.org/wiki/Bildfrequenz) aufgerufen wird. Das Spiel läuft in 30-FPS (also 30 *frames per seconds*, zu Deutsch 30 Bildern pro Sekunde), die Game-Loop wird also 30mal in der Sekunde aufgerufen. Alle Aktionen, die wiederholt ausgeführt werden müssen, wie zum Beispiel das Bewegen und Zeichnen von Figuren, müssen innerhalb der Game-Loop stattfinden. Das Framework ermöglicht es Ihnen, eigene Aktionen in die Game-Loop zu integrieren. Wie genau das geht, erfahren Sie im Laufe dieser Anleitung. *Hinweis: Die Game-Loop wird automatisch ausgeführt, Sie müssen sie nicht aktiv aufrufen.*
-- Zusätzlich existieren noch eine Vielzahl an weiteren Helferklassen mit dem Sie mal mehr oder mal weniger Kontakt haben werden.
+- Zusätzlich existieren noch eine Vielzahl an weiteren Helferklassen, mit denen Sie mal mehr oder mal weniger Kontakt haben werden.
 - `Painter`: Kümmert sich darum, dass die Inhalte grafisch dargestellt werden.
 - `DungeonCamera`: Ihr Auge in das Dungeon.
-- Unterschiedliche Interfaces, welche Sie im Verlauf dieses Dokumentes kennen lernen werden.
 
-Das untenstehende UML-Klassendiagramm soll Ihnen einen reduzierten und vereinfachten Überblick über den Aufbau des Frameworks geben. Es bildet daher nicht alle Klassen/Methoden/Attribute ab. Nutzen Sie es als Starpunkt und erforschen Sie die Codebase auf eigene Faust.
+Das untenstehende UML-Klassendiagramm soll Ihnen einen reduzierten und vereinfachten Überblick über den Aufbau des Frameworks geben. Es bildet daher nicht alle Klassen/Methoden/Attribute ab. Nutzen Sie es als Startpunkt und erforschen Sie die Codebase auf eigene Faust.
 
 ![simple_uml](figs/simple_uml.png)
 
 ## Erster Start
 
 Die Vorgaben sind bereits lauffähig und können direkt ausgeführt werden.
-Dafür können Sie die Vorgaben entweder als Projekt in Ihrer IDE laden und die Anwendung über die Run-Funktion starten oder Sie starten die Anwendung über die Kommandozeile.
-Gehen Sie dafür in das `desktop/code`-Verzeichnis und öffnen Sie die Kommandozeile und geben Sie folgenden Befehl ein:
+Dafür können Sie die Vorgaben entweder als Projekt in Ihrer IDE laden (siehe ["Import Project"](https://github.com/PM-Dungeon/dungeon-starter/wiki/Import-Project)) und die Anwendung über die Run-Funktion Ihrer IDE starten oder Sie starten die Anwendung über die Kommandozeile per `./gradlew run`.
+Gehen Sie dafür in das `dungeon-starter/code`-Verzeichnis und öffnen Sie die Kommandozeile und geben Sie folgenden Befehl ein:
 - Unter Windows: `bash gradlew run`
 - Unter Linux: `./gradlew run`
 
-_Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie in die [FAQ](https://github.com/PM-Dungeon/desktop/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
+_Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie in die [FAQ](https://github.com/PM-Dungeon/dungeon-starter/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
 
 Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen können.
 
 ![first_start](figs/pm-dungeon_start.png)
 
-## Blick in den Code
+**Anmerkung**: Wir verwenden in unserem Beispiel zufällig generierte Level, daher werden Sie vermutlich nicht das exakt gleiche Level sehen wie auf unseren Abbildungen.
+
+## Laden des Projekts in der IDE
 
 Bevor wir nun unseren Helden implementieren sollten wir verstehen, wie genau die Vorgaben aufgebaut sind.
-Öffnen Sie dafür das `desktop/code`-Verzeichnis als Gradle-Projekt in Ihrer bevorzugten IDE.
+Öffnen Sie dafür das `dungeon-starter/code`-Verzeichnis als Gradle-Projekt in Ihrer bevorzugten IDE.
+
+## Blick in den Code
 
 Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in den Dungeon. Hier werden Sie später Ihre Inhalte erzeugen und in den Dungeon hinzufügen.
 
@@ -81,169 +85,329 @@ Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in
 
 ## Eigener Held
 
-Jetzt, wo Sie sichergestellt haben, dass das Dungeon ausgeführt werden kann, geht es darum, das Spiel mit Ihren Inhalten zu erweitern. Im Folgenden wird ein rudimentärer Held implementiert, um Ihnen die verschiedenen Aspekte des Dungeon zu erläutern.
+Jetzt, wo Sie sichergestellt haben, dass das Dungeon ausgeführt werden kann, geht es darum, das Spiel mit Ihren Inhalten zu erweitern. Im Folgenden wird schrittweise ein rudimentärer Held implementiert, um Ihnen die verschiedenen Aspekte des Dungeon zu erläutern.
 
-Fangen wir damit an, eine neue Klasse für den Helden anzulegen. Unser Held soll grafisch dargestellt werden und vom `EntityController` verwaltet werden können. Daher implementiert er das Interface `IEntity`.
+Fangen wir damit an, eine neue Klasse für den Helden anzulegen. Unser Held soll grafisch dargestellt werden und vom `EntityController` verwaltet werden können. Daher erbt er von der abtrakten Klasse `basiselements.Entity`.
 
-Das Interface `IEntity` liefert einige Methoden, welche wir implementieren müssen.
+Diese abstrakte Klasse `basiselements.Entity` liefert einige Methoden, welche wir implementieren müssen.
 
-- `update`: Diese Methode wird später vom `EntityController` in jedem Frame einmal aufgerufen. Änderungen am Status des Helden, wie zum Beispiel die Position, werden hier berechnet.
-- `removeable`: Wenn diese Methode `true` zurückgibt, wird das Objekt aus dem `EntityController` entfernt und nicht mehr verwaltet. Besiegt unser Held beispielsweise später ein Monster, sollte dieses nach dem Ableben `true` zurückgeben.
-- `getBatch`: Die SpriteBatch ist die Zeichenfläche, auf dem unser Objekt gezeichnet werden soll. Jede Entität muss wissen, worauf sie gezeichnet werden soll.
-- `getPainter` ist der Zeichner, der unser Objekt zeichnet. Jede Entität muss wissen, von wem es gezeichnet wird.
 - `getPosition` gibt an, wo unser Held im Dungeon steht. Weiter unten folgt eine genauere Erklärung des verwendeten Koordinaten- und Positionssystem.
 - `getTexture` gibt an, welche Textur verwendet werden soll, wenn unser Held gezeichnet wird.
 
 Wir sollten einige dieser Methoden mit Code füllen.
-Die `SpriteBatch` und den `Painter` bekommt unser Held bei der Erstellung übergeben. Daher legen wir Attribute an und erstellen einen Konstruktor für unseren Helden. Die Textur für unseren Helden können wir auch schon implementieren. Dafür geben wir den Pfad zu unserer Textur als String an.
+Zuerst erstellen wir einen Konstruktor für unsere Klasse. Das Framework benötigt eine `com.badlogic.gdx.graphics.g2d.SpriteBatch` und einen `graphic.Painter` um unseren Helden am Ende zeichnen zu können.
+Diese bekommt unser Held im Konstruktor als Parameter übergeben und gibt sie im `super()` Aufruf an die Oberklasse weiter. Wir müssen uns nun nicht mehr damit beschäftigen.
 
 ```java
-    private Painter painter;
-    private SpriteBatch batch;
-    private String texture;
+import basiselements.Entity;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import graphic.Painter;
+import tools.Point;
 
-    public MyHero(SpriteBatch batch, Painter painter){
-        this.batch=batch;
-        this.painter=painter;
-        texture=("assets_path_to_texture/held.png");
+public class MyHero extends Entity {
+    public MyHero(Painter painter, SpriteBatch batch) {
+        super(painter, batch);
     }
+
+    @Override
+    public Point getPosition() {
+        return null;
+    }
+
+    @Override
+    public String getTexturePath() {
+        return null;
+    }
+}
 ```
 
-In den jeweiligen `get`-Methoden geben wir nun die jeweiligen Werte zurück.
+Zuerst benötigt unser Held eine Textur, die gezeichnet werden soll, um den Helden darzustellen. Im Framework arbeiten wir immer mit den relativen Pfaden (ausgehend vom `asset/` Verzeichnis), um die Texturen zu laden.
+Daher speichern wir einen String mit dem Pfad zu der Textur ab und geben diesen in `getTexturePath()` zurück.
+
+```java
+import basiselements.Entity;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import graphic.Painter;
+import tools.Point;
+
+public class MyHero extends Entity {
+    private String texturePath;
+
+    public MyHero(Painter painter, SpriteBatch batch) {
+        super(painter, batch);
+        texturePath = "character/knight/knight_m_idle_anim_f0.png";
+    }
+
+    @Override
+    public Point getPosition() {
+        return null;
+    }
+
+    @Override
+    public String getTexturePath() {
+        return texturePath;
+    }
+}
+```
 
 Unser Held benötigt aber noch eine Position im Level. Dafür muss unser Held auch das Level kennen. Wir implementieren daher eine `setLevel`-Methode in unserem Helden, speichern das Level ab (das werden wir später noch brauchen) und suchen uns die Startposition im Level und platzieren unseren Helden darauf.
 
 ```java
-   public void setLevel(Level level){
-        this.level=level;
-        position=level.getStartTile().getCoordinate().toPoint();
+import basiselements.Entity;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import graphic.Painter;
+import level.elements.Level;
+import tools.Point;
+
+public class MyHero extends Entity {
+    private String texturePath;
+    private Point position;
+    private Level currentLevel;
+
+    public MyHero(Painter painter, SpriteBatch batch) {
+        super(painter, batch);
+        texturePath = "character/knight/knight_m_idle_anim_f0.png";
     }
+
+    public void setLevel(Level level) {
+        currentLevel = level;
+        position = level.getStartTile().getCoordinate().toPoint();
+    }
+
+    @Override
+    public Point getPosition() {
+        return position;
+    }
+
+    @Override
+    public String getTexturePath() {
+        return texturePath;
+    }
+}
 ```
 
 Bevor wir weiter machen, sollten wir uns einmal den Aufbau des Level anschauen. Level werden als 2D-Tile-Array gespeichert. Ein `Tile` ist dabei ein Feld im Level, also eine Wand oder ein Bodenfeld. Jedes `Tile` hat eine feste `Coordinate` im Array (also einen Index, wo im Array das `Tile` abgespeichert ist). Diese `Coordinate` gibt auch an, wo das `Tile` im Level liegt. `Coordinate` sind zwei Integerwerte (`x` und `y`). Die Position von Entitäten geben wir als `Point` an. Ein `Point` sind zwei Floatwerte (`x` und `y`). Das machen wir, weil unsere Entitäten auch zwischen zwei `Tiles` stehen können. Wenn wir später die Steuerung für unseren Helden implementieren, wird dieses noch deutlicher. Jetzt ist wichtig, dass wir mit `Coordinate.toPoint()` unseren Helden auf die Position des Starttiles setzen können.
 
-Wir müssen noch dafür sorgen, dass unser Held auch gezeichnet wird. Da unser Held später vom `EntityController` verwaltet wird, nutzen wir dafür die `update`-Methode.
-
-```java
-    @Override
-    public void update() {
-        draw();
-    }
-```
-Die Methode `draw()` ist eine im Interface `IEntity` vorimplementierte Methode (was das bedeutet lernen Sie im Laufe des Semesters) und sorgt dafür, dass unser Held an der entsprechenden Position im Dungeon gezeichnet wird.
-
 Wir haben die erste Version unseres Helden implementiert. Jetzt müssen wir ihn noch im Spiel instantiieren.
 Dafür gehen wir wieder in `MyGame` und legen eine Variable `MyHero hero` an.
 In `setup` erstellen wir nun unseren Helden und registrieren ihn im `EntityController`. Außerdem wollen wir, dass die Kamera auf unseren Helden zentriert wird.
-
-```java
-    @Override
-    protected void setup() {
-        hero = new MyHero(batch, painter);
-        entityController.add(hero);
-        camera.follow(hero);
-        // load the first level
-        ...
-    }
-```
-
 Jetzt müssen wir den Helden nur noch im Dungeon platzieren. Dafür rufen wir die `setLevel`-Methode auf, nachdem ein Level geladen wurde.
 
 ```java
+import com.badlogic.gdx.Gdx;
+import controller.MainController;
+import level.generator.LevelLoader.LevelLoader;
+import level.generator.dungeong.graphg.NoSolutionException;
+
+public class MyGame extends MainController {
+    private MyHero hero;
+
+    @Override
+    protected void setup() {
+        levelAPI.setGenerator(new LevelLoader());
+        hero = new MyHero(painter, batch);
+        try {
+            levelAPI.loadLevel();
+        } catch (NoSolutionException e) {
+            System.out.println(
+                    "Es konnte kein Level geladen werden, bitte den \"assets\" Ordner überprüfen.");
+            Gdx.app.exit();
+        }
+        camera.follow(hero);
+        entityController.add(hero);
+    }
+
+    @Override
+    protected void beginFrame() {}
+
+    @Override
+    protected void endFrame() {}
+
     @Override
     public void onLevelLoad() {
         hero.setLevel(levelAPI.getCurrentLevel());
+    }
+
+    public static void main(String[] args) {
+        // start the game
+        DesktopLauncher.run(new MyGame());
+    }
+}
+```
+
+Möchten Sie, dass Ihr Hero oder eine andere Entität nicht mehr weiter vom `EntityController` verwaltet wird, z.B. wenn sie "stirbt", überschreiben Sie dafür in der jeweiligen Klasse die Methode `removeable`, die von der `Entity`-Klasse geerbt wurde. Sobald diese Methode den Wert `true` zurückgibt, wird die Instanz im nächsten Frame aus dem `EntityController` entfernt. Wie im Beispiel zu sehen, wird die Entität dann entfernt, wenn die Lebenspunkte auf 0 gefallen sind.
+
+Das folgende Beispiel ist für unseren Helden noch nicht direkt anwendbar (`lebenspunkte` ist noch nicht definiert), aber vielleicht wollen Sie diese Funktionalität irgendwann selbst implementieren.
+
+```java
+    @Override
+    public boolean removable() {
+        return lebenspunkte == 0;
     }
 ```
 
 Wenn Sie das Spiel nun starten, sollten Sie ihren (unbeweglichen) Helden im Dungeon sehen können.
 
-![first_start](figs/pm-dungeon_myhero.png)
+![my_hero](figs/pm-dungeon_myhero.png)
 
 ### Intermezzo: Der Assets-Ordner
 
-Im Ordner [`code/assets/`](https://github.com/PM-Dungeon/desktop/tree/master/code/assets) werden alle Assets gespeichert, die im Dungeon verwendet werden. Assets sind dabei im Prinzip die Texturen, die später gezeichnet werden sollen.
+Im Ordner [`code/assets/`](https://github.com/PM-Dungeon/dungeon-starter/tree/master/code/assets) werden alle Assets gespeichert, die im Dungeon verwendet werden. Assets sind dabei im Prinzip die Texturen, die später gezeichnet werden sollen.
 Der `assets`-Ordner hat aber eine spezielle Adressierung.
 Wenn der absolute Pfad zu einer Textur zum Beispiel `code/assets/character/knight/knight_m_idle_anim_f0.png` ist, dann geben wir den relativen Pfad zur Textur mit `character/knight/knight_m_idle_anim_f0.png` an.
 Das Präfix `code/assets/` wird dabei also einfach weggelassen.
 
 Bitte finden Sie selbst heraus, welche Texturen es gibt und verwendet werden können.
 
-Der Assets-Ordner kann übrigens auch **umbenannt** oder an eine andere Stelle **verschoben** werden: Passen Sie dafür die Pfadangabe `sourceSets.main.resources.srcDirs = ["assets/"]` in der [`build.gradle`](https://github.com/PM-Dungeon/desktop/blob/master/code/build.gradle)-Datei an.
+Der Assets-Ordner kann übrigens auch **umbenannt** oder an eine andere Stelle **verschoben** werden: Passen Sie dafür die Pfadangabe `sourceSets.main.resources.srcDirs = ["assets/"]` in der [`build.gradle`](https://github.com/PM-Dungeon/dungeon-starter/blob/master/code/build.gradle)-Datei an.
 
-**Beispiel:** Sie möchten den Ordner `desktop/code/assets/` nach `desktop/code/bar/wuppie/` verschieben, dann ändern Sie `sourceSets.main.resources.srcDirs = ["assets/"]` in `sourceSets.main.resources.srcDirs = ["bar/wuppie/"]`.
+**Beispiel:** Sie möchten den Ordner `dungeon-starter/code/assets/` nach `dungeon-starter/code/bar/wuppie/` verschieben, dann ändern Sie `sourceSets.main.resources.srcDirs = ["assets/"]` in `sourceSets.main.resources.srcDirs = ["bar/wuppie/"]`.
 
-Beachten Sie, dass der Ordner nur innerhalb von `desktop/code/` umbenannt bzw. verschoben werden kann.
+Beachten Sie, dass der Ordner nur innerhalb von `dungeon-starter/code/` umbenannt bzw. verschoben werden kann.
 
 Später werden Sie es wahrscheinlich praktischer finden, anstelle von relativen Pfaden den [`textures/TextureHandler.java`](https://github.com/PM-Dungeon/core/blob/master/code/core/src/textures/TextureHandler.java) zu verwenden, der reguläre Ausdrücke entgegennehmen und entsprechende Textur-Pfade zurückgeben kann.
-
-***
 
 ### Der bewegte (animierte) Held
 
 Aktuell besitzt unser Held nur eine feste Textur, in diesem Abschnitt animieren wir unseren Helden.
 Im PM-Dungeon ist eine Animation ein Loop verschiedener Texturen, die im Wechsel gezeichnet werden.
-Um unseren Helden zu animieren, nutzen wir eine erweiterte Version des `IEntity`-Interfaces `IAnimatable`.
+Um unseren Helden zu animieren, nutzen wir eine erweiterte Version von `Entity` mit dem Namen `Animatable`.
 
-`public class MyHero implements IAnimatable`
-
-Die Methode `getTexture` müssen wir nun mit der Methode `getActiveAnimation` ersetzen. Ebenso ersetzen wir unser `texture`-Attribut durch ein Attribut `idle` (`private Animation idle`).
+Die Methode `getTexture` müssen wir nun mit der Methode `getActiveAnimation` ersetzen. Ebenso ersetzen wir unser `texture`-Attribut durch ein Attribut `Animation idleAnimation`.
 
 
 ```java
+import basiselements.Animatable;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import graphic.Animation;
+import graphic.Painter;
+import level.elements.Level;
+import tools.Point;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyHero extends Animatable {
+    private Animation idleAnimation;
+    private Point position;
+    private Level currentLevel;
+
+    public MyHero(Painter painter, SpriteBatch batch) {
+        super(painter, batch);
+        // Erstellen einer ArrayList
+        List<String> animation = new ArrayList<>();
+        // Laden der Texturen für die Animation (relativen Pfad angeben)
+        animation.add("character/knight/knight_m_idle_anim_f0.png";);
+        animation.add("character/knight/knight_m_idle_anim_f1.png";);
+        // Erstellen einer Animation, als Parameter wird die Liste mit den Texturen
+        // und die Wartezeit (in Frames) zwischen den Wechsel der Texturen angegeben
+        idleAnimation = new Animation(animation, 8);
+    }
+
+    public void setLevel(Level level) {
+        currentLevel = level;
+        position = level.getStartTile().getCoordinate().toPoint();
+    }
+
+    @Override
+    public Point getPosition() {
+        return position;
+    }
+
     @Override
     public Animation getActiveAnimation() {
-        return idle;
+        return idleAnimation;
     }
-```
-Jetzt müssen wir die Animation noch erstellen. Dafür gehen wir wieder in den Konstruktor unseres Helden.
-
-```java
-public MyHero(SpriteBatch batch, Painter painter) {
-    this.batch=batch;
-    this.painter=painter;
-
-    // Erstellen einer ArrayList
-    List<String> animation = new ArrayList<>();
-    // Laden der Texturen für die Animation (relativen Pfad angeben)
-    animation.add("assets_path_to_texture/texture_1.png");
-    animation.add("assets_path_to_texture/texture_2.png");
-    // Erstellen einer Animation, als Parameter wird die Liste mit den Texturen
-    // und die Wartezeit (in Frames) zwischen den Wechsel der Texturen angegeben
-    idle = new Animation(idle, 8);
 }
 ```
 
-Um eine Animation zu erstellen benötigen Sie eine Liste mit verschiedenen Texturen. Dann können Sie mit `new Animation()` eine Animation erstellen. Dabei übergeben Sie die Liste mit den Texturen und einen Integerwert, der angibt, nach wie vielen Frames die nächste Textur geladen werden soll (hier im Beispiel der Wert 8). In unserem Beispiel wird also 8 Frames lang die Textur `texture_1` angezeigt, dann 8 Frames die Textur `texture_2` und dann wieder 8 Frames die Textur `texture_1` usw.
+Um eine Animation zu erstellen benötigen Sie eine Liste mit verschiedenen Texturen. Dann können Sie mit `new Animation()` eine Animation erstellen. Dabei übergeben Sie die Liste mit den Texturen und einen Integerwert, der angibt, nach wie vielen Frames die nächste Textur geladen werden soll (hier im Beispiel der Wert 8). In unserem Beispiel wird also 8 Frames lang die Textur `knight_m_idle_anim_f0` angezeigt, dann 8 Frames die Textur `knight_m_idle_anim_f1` und dann wieder 8 Frames die Textur `knight_m_idle_anim_f0` usw.
 
 Sie können (und sollten) auch verschiedene Animationen für verschiedene Situationen ertellen (Stehen, Laufen, ...). Geben Sie einfach in `getActiveAnimation` immer die Animation zurück, die gerade verwendet werden soll.
 
 Wenn Sie das Spiel nun starten, sollten Sie Ihren animierten (aber immer noch unbeweglichen) Helden sehen.
 
-![first_start](figs/pm-dungeon_wasd.png)
+![controll](figs/pm-dungeon_wasd.png)
 
 
 ### WASD oder die Steuerung des Helden über die Tastatur
 
-Es wird Zeit, dass unser Held sich bewegen kann. Dafür fügen wir Steuerungsoptionen in der `MyHero#update`-Methode hinzu:
+Es wird Zeit, dass unser Held sich bewegen kann. Dafür überschreiben wir die `Entity#update`-Methode in `MyHero` und fügen die Steuerungsoptionen hinzu.
 
 ```java
-    // Temporären Point um den Held nur zu bewegen, wenn es keine Kollision gab
-    Point newPosition = new Point(this.position);
-    // Unser Held soll sich pro Schritt um 0.1 Felder bewegen.
-    float movementSpeed = 0.1f;
-    // Wenn die Taste W gedrückt ist, bewege dich nach oben
-    if (Gdx.input.isKeyPressed(Input.Keys.W)) newPosition.y += movementSpeed;
-    // Wenn die Taste S gedrückt ist, bewege dich nach unten
-    if (Gdx.input.isKeyPressed(Input.Keys.S)) newPosition.y -= movementSpeed;
-    // Wenn die Taste D gedrückt ist, bewege dich nach rechts
-    if (Gdx.input.isKeyPressed(Input.Keys.D)) newPosition.x += movementSpeed;
-    // Wenn die Taste A gedrückt ist, bewege dich nach links
-    if (Gdx.input.isKeyPressed(Input.Keys.A)) newPosition.x -= movementSpeed;
-    // Wenn der übergebene Punkt betretbar ist, ist das nun die aktuelle Position
-    if(level.getTileAt(newPosition.toCoordinate()).isAccessible())
-        this.position = newPosition;
+import basiselements.Animatable;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import graphic.Animation;
+import graphic.Painter;
+import level.elements.Level;
+import tools.Point;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyHero extends Animatable {
+    private Animation idleAnimation;
+    private Point position;
+    private Level currentLevel;
+
+    public MyHero(Painter painter, SpriteBatch batch) {
+        super(painter, batch);
+        // Erstellen einer ArrayList
+        List<String> animation = new ArrayList<>();
+        // Laden der Texturen für die Animation (relativen Pfad angeben)
+        animation.add("character/knight/knight_m_idle_anim_f0.png";);
+        animation.add("character/knight/knight_m_idle_anim_f1.png";);
+        // Erstellen einer Animation, als Parameter wird die Liste mit den Texturen
+        // und die Wartezeit (in Frames) zwischen den Wechsel der Texturen angegeben
+        idleAnimation = new Animation(animation, 8);
+    }
+
+    public void setLevel(Level level) {
+        currentLevel = level;
+        position = level.getStartTile().getCoordinate().toPoint();
+    }
+
+    @Override
+    public void update() {
+        // Temporären Point um den Held nur zu bewegen, wenn es keine Kollision gab
+        Point newPosition = new Point(this.position);
+        // Unser Held soll sich pro Schritt um 0.1 Felder bewegen.
+        float movementSpeed = 0.1f;
+        // Wenn die Taste W gedrückt ist, bewege dich nach oben
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            newPosition.y += movementSpeed;
+        }
+        // Wenn die Taste S gedrückt ist, bewege dich nach unten
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            newPosition.y -= movementSpeed;
+        }
+        // Wenn die Taste D gedrückt ist, bewege dich nach rechts
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            newPosition.x += movementSpeed;
+        }
+        // Wenn die Taste A gedrückt ist, bewege dich nach links
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            newPosition.x -= movementSpeed;
+        }
+        // Wenn der übergebene Punkt betretbar ist, ist das nun die aktuelle Position
+        if (currentLevel.getTileAt(newPosition.toCoordinate()).isAccessible()) {
+            this.position = newPosition;
+        }
+    }
+
+    @Override
+    public Point getPosition() {
+        return position;
+    }
+
+    @Override
+    public Animation getActiveAnimation() {
+        return idleAnimation;
+    }
+}
 ```
+
 Damit unser Held sich nicht durch Wände bewegt, berechnen wir zuerst die neue Position, kontrollieren dann, ob diese gültig ist, und platzieren dann unseren Helden (oder auch nicht).
 Mit `Gdx.input.isKeyPressed` können wir überprüfen, ob eine Taste gedrückt ist.
 Je nachdem welche Taste gedrückt wurde, ändern wir die (nächste) Position des Helden.
@@ -261,18 +425,61 @@ Dafür nutzen wir die `endFrame`-Methode in `MyGame`. Mit `levelAPI.getCurrentLe
 Da wir unseren Helden in `onLevelLoad` beim Laden eines neuen Levels automatisch neu platzieren, müssen wir uns darum nicht mehr kümmern.
 
 ```java
+import com.badlogic.gdx.Gdx;
+import controller.MainController;
+import level.generator.LevelLoader.LevelLoader;
+import level.generator.dungeong.graphg.NoSolutionException;
+
+public class MyGame extends MainController {
+    private MyHero hero;
+
+    @Override
+    protected void setup() {
+        levelAPI.setGenerator(new LevelLoader());
+        hero = new MyHero(painter, batch);
+        try {
+            levelAPI.loadLevel();
+        } catch (NoSolutionException e) {
+            System.out.println(
+                    "Es konnte kein Level geladen werden, bitte den \"assets\" Ordner überprüfen.");
+            Gdx.app.exit();
+        }
+        camera.follow(hero);
+        entityController.add(hero);
+    }
+
+    @Override
+    protected void beginFrame() {}
+
     @Override
     protected void endFrame() {
-        if(levelAPI.getCurrentLevel().isOnEndTile(hero))
-            levelAPI.loadLevel();
+        if (levelAPI.getCurrentLevel().isOnEndTile(hero)) {
+            try {
+                levelAPI.loadLevel();
+            } catch (NoSolutionException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
+    @Override
+    public void onLevelLoad() {
+        hero.setLevel(levelAPI.getCurrentLevel());
+    }
+
+    public static void main(String[] args) {
+        // start the game
+        DesktopLauncher.run(new MyGame());
+    }
+}
 ```
 
 _Anmerkung_: Später werden Sie viele weitere Entitäten im Level platziert haben (Monster, Schatztruhen, Fallen ...). Diese sollten Sie beim Laden eines neuen Levels löschen oder in das nächste Level "mitnehmen".
 
 Wenn Sie nun das Spiel starten, sollten Sie Ihren Helden durch die Spielwelt bewegen können und auch in das nächste Level gelangen.
 
-![first_start](figs/pm-dungeon_level_unknown.png)
+![level](figs/pm-dungeon_level_unknown.png)
+
 
 ## Levelgenerator
 
@@ -291,36 +498,23 @@ Hier finden Sie weitere Funktionen, welche Sie im Verlauf des Praktikums gebrauc
 
 Dieser Abschnitt soll Ihnen die Werkzeuge nahebringen, welche Sie für die Darstellung eines HUD benötigen.
 
-Um eine Grafik auf dem HUD anzeigen zu können, erstellen wir zuerst eine neue Klasse, welche das Interface `IHUDElement` implementiert.
+Um eine Grafik auf dem HUD anzeigen zu können, erstellen wir zuerst eine neue Klasse, welche von der abstrakte Klasse `basiselements.HUDElement` erbt.
+`HUDElement` ist vergleichbar mit der bereits bekannten Klasse `Entity`.
 
 ```java
-public class MyIcon implements IHUDElement {
-    private SpriteBatch batch;
-    private HUDPainter painter;
+import basiselements.HUDElement;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import graphic.HUDPainter;
+import tools.Point;
+
+public class Icon extends HUDElement {
+    private String texturePath;
     private Point position;
-    private String texture;
 
-    public MyIcon(SpriteBatch batch, HUDPainter painter, Point position, String texture) {
-        this.batch = batch;
-        this.painter = painter;
+    public Icon(HUDPainter painter, SpriteBatch batch, Point position) {
+        super(painter, batch);
+        texturePath = "hud/ui_heart_full.png";
         this.position = position;
-        this.texture = texture;
-    }
-
-    @Override
-    public void update() {
-        this.draw();
-        // this.drawWithScaling(8, 4);
-    }
-
-    @Override
-    public boolean removable() {
-        return false;
-    }
-
-    @Override
-    public SpriteBatch getBatch() {
-        return batch;
     }
 
     @Override
@@ -329,35 +523,67 @@ public class MyIcon implements IHUDElement {
     }
 
     @Override
-    public String getTexture() {
-        return texture;
-    }
-
-    @Override
-    public HUDPainter getPainter() {
-        return painter;
+    public String getTexturePath() {
+        return texturePath;
     }
 }
 ```
 
-Die Methode `getTexture` gibt den Pfad zu der gewünschten Textur zurück, dies funktioniert identisch zur bereits bekannten Helden-Implementierung. Die Methode `getPosition` gibt die Position der Grafik auf dem HUD zurück. Es wird vorkommen, dass Sie Grafiken in Abhängigkeit zu anderen Grafiken positionieren möchten, überlegen Sie sich daher bereits jetzt eine gute Struktur, um Ihre HUD-Elemente abzuspeichern.
+Die Methode `getTexturePath` gibt den Pfad zu der gewünschten Textur zurück, dies funktioniert identisch zur bereits bekannten Helden-Implementierung. Die Methode `getPosition` gibt die Position der Grafik auf dem HUD zurück. Es wird vorkommen, dass Sie Grafiken in Abhängigkeit zu anderen Grafiken positionieren möchten, überlegen Sie sich daher bereits jetzt eine gute Struktur, um Ihre HUD-Elemente abzuspeichern.
 
 Jetzt müssen wir unsere Grafik nur noch anzeigen lassen. Ähnlich zu den bereits bekannten Controllern gibt es auch für das HUD eine Steuerungsklasse, welche im `MainController` mit `hud` angesprochen werden kann.
 
-```
-public class YourClass extends MainController {
-     @Override
+```java
+import com.badlogic.gdx.Gdx;
+import controller.MainController;
+import level.generator.LevelLoader.LevelLoader;
+import level.generator.dungeong.graphg.NoSolutionException;
+import tools.Point;
+
+public class MyGame extends MainController {
+    private MyHero hero;
+
+    @Override
     protected void setup() {
-        ...
+        levelAPI.setGenerator(new LevelLoader());
+        hero = new MyHero(painter, batch);
+        try {
+            levelAPI.loadLevel();
+        } catch (NoSolutionException e) {
+            System.out.println(
+                    "Es konnte kein Level geladen werden, bitte den \"assets\" Ordner überprüfen.");
+            Gdx.app.exit();
+        }
+        camera.follow(hero);
+        entityController.add(hero);
         // hinzufügen eines Elementes zum HUD
-        hudController.add(
-                new MyIcon(
-                        hudBatch,
-                        hudPainter,
-                        new Point(0f, 0f),
-                        TextureHandler.getInstance().getTextures("ui_heart_full.png").get(0)));
-        //so entfernt man ein Element
-        //hud.remove(OBJECT);
+        hudController.add(new Icon(hudPainter, hudBatch, new Point(0f, 0f)));
+        // so entfernt man ein Element
+        // hud.remove(OBJECT);
+    }
+
+    @Override
+    protected void beginFrame() {}
+
+    @Override
+    protected void endFrame() {
+        if (levelAPI.getCurrentLevel().isOnEndTile(hero)) {
+            try {
+                levelAPI.loadLevel();
+            } catch (NoSolutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onLevelLoad() {
+        hero.setLevel(levelAPI.getCurrentLevel());
+    }
+
+    public static void main(String[] args) {
+        // start the game
+        DesktopLauncher.run(new MyGame());
     }
 }
 ```
@@ -368,19 +594,21 @@ Verwenden Sie die Methode `HUDController#drawText`, um einen String auf Ihren Bi
 
 Im unteren Beispiel wird ein Text implementiert, welcher das aktuelle Level ausgibt.
 
-```
+```java
 public class MyGame extends MainController {
-    .....
-    Label levelLabel;
-    int levelCounter=0;
+    import com.badlogic.gdx.graphics.Color;
+    ...
+
+    private com.badlogic.gdx.scenes.scene2d.ui.Label levelLabel;
+    private int levelCounter=0;
 
     public void onLevelLoad() {
         levelCounter++;
         if (levelCounter==1){
-            levelLabel=hudController.drawText("Level"+x,"PATH/TO/FONT.ttf",Color.RED,30,50,50,30,30);
+            levelLabel=hudController.drawText("Level "+levelCounter,"PATH/TO/FONT.ttf",Color.RED,30,50,50,30,30);
         }
         else{
-            levelLabel.setText("Level"+x);
+            levelLabel.setText("Level "+levelCounter);
         }
     }
     //remove label
@@ -388,31 +616,15 @@ public class MyGame extends MainController {
 }
 ```
 
+Beachten Sie dabei, dass `PATH/TO/FONT.ttf` wieder ein relativer Pfad, ausgehend vom `asset`-Verzeichnis ist.
+Freie Fonts können Sie im Internet finden. Achten Sie bitte genau darauf, ob Sie die von Ihnen verwendeten Fonts weiterverbreiten dürfen, bevor Sie diese in Ihr Git-Repository hochladen.
+Aktuell wissen wir, dass Fonts vom Typ `.ttf` unterstützt werden; ob andere Font-Typen wie `.otf` ebenfalls unterstützt werden, wissen wir leider nicht. Sollten Sie Erfahrungen mit anderen Font-Typen gemacht haben/machen, dann informieren Sie uns bitte.
+
 Genauere Informationen zu den Parametern entnehmen Sie bitte der JavaDoc.
 
-![first_start](figs/pm-dungeon_hud_icons.png)
+![hud_icon](figs/pm-dungeon_hud_icons.png)
 
 ### Level-API
 
 Sie haben viele Möglichkeiten mit dem Level zu interagieren.
 Schauen Sie in die [Javadoc](https://github.com/PM-Dungeon/core) um herauszufinden, wie Sie optionale Räume identifizieren oder Wände wegsprengen können.
-
-### Sound
-
-Möchten Sie Soundeffekte oder Hintergrundmusik zu Ihrem Dungeon hinzufügen, bietet `libGDX` eine einfache Möglichkeit dafür.
-
-Es werden die Formate `.mp3`, `.wav` und `.ogg` unterstützt. Das Vorgehen unterscheidet sich zwischen den Formaten nicht.
-
-```Java
-//Datei als Sound-Objekt einladen
-Sound bumSound = Gdx.audio.newSound(Gdx.files.internal("assets/sound/sound.mp3"));
-bumSound.play();
-//Sound leise abspielen
-bumSound.play(0.1f);
-//Sound mit maximal Lautstärke abspielen
-bumSound.play(1f);
-//Soud endlos abspielen
-bumSound.loop();
-```
-
-Sie können noch weitere Parameter und Methoden verwenden, um den Sound Ihren Wünschen anzupassen. Schauen Sie dafür in die [`libGDX`-Dokumentation](https://libgdx.badlogicgames.com/ci/nightlies/docs/api/com/badlogic/gdx/audio/Sound.html).
