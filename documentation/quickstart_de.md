@@ -235,9 +235,9 @@ public class MyGame extends MainController {
 }
 ```
 
-Möchten Sie, dass Ihr Hero oder eine andere Entität nicht mehr weiter vom `EntityController` verwaltet wird, z.B. wenn sie "stirbt", überschreiben Sie dafür in der jeweiligen Klasse die Methode `removeable`, die von der `Entity`-Klasse geerbt wurde. Sobald diese Methode den Wert `true` zurückgibt, wird die Instanz im nächsten Frame aus dem `EntityController` entfernt. Wie im Beispiel zu sehen, wird die Entität dann entfernt, wenn die Lebenspunkte auf 0 gefallen sind. 
+Möchten Sie, dass Ihr Hero oder eine andere Entität nicht mehr weiter vom `EntityController` verwaltet wird, z.B. wenn sie "stirbt", überschreiben Sie dafür in der jeweiligen Klasse die Methode `removeable`, die von der `Entity`-Klasse geerbt wurde. Sobald diese Methode den Wert `true` zurückgibt, wird die Instanz im nächsten Frame aus dem `EntityController` entfernt. Wie im Beispiel zu sehen, wird die Entität dann entfernt, wenn die Lebenspunkte auf 0 gefallen sind.
 
-Das folgende Beispiel ist für unseren Helden noch nicht direkt anwendbar (`lebenspunkte` ist noch nicht definiert), aber vielleicht wollen Sie diese Funktionalität irgendwann selbst implementieren. 
+Das folgende Beispiel ist für unseren Helden noch nicht direkt anwendbar (`lebenspunkte` ist noch nicht definiert), aber vielleicht wollen Sie diese Funktionalität irgendwann selbst implementieren.
 
 ```java
     @Override
@@ -616,8 +616,8 @@ public class MyGame extends MainController {
 }
 ```
 
-Beachten Sie dabei, dass `PATH/TO/FONT.ttf` wieder ein relativer Pfad, ausgehend vom `asset`-Verzeichnis ist. 
-Freie Fonts können Sie im Internet finden. Achten Sie bitte genau darauf, ob Sie die von Ihnen verwendete Font weiterverbreiten dürfen,bevor Sie diese in Ihr Git-Repository hochladen. 
+Beachten Sie dabei, dass `PATH/TO/FONT.ttf` wieder ein relativer Pfad, ausgehend vom `asset`-Verzeichnis ist.
+Freie Fonts können Sie im Internet finden. Achten Sie bitte genau darauf, ob Sie die von Ihnen verwendeten Fonts weiterverbreiten dürfen, bevor Sie diese in Ihr Git-Repository hochladen.
 Aktuell wissen wir, dass Fonts vom Typ `.ttf` unterstützt werden; ob andere Font-Typen wie `.otf` ebenfalls unterstützt werden, wissen wir leider nicht. Sollten Sie Erfahrungen mit anderen Font-Typen gemacht haben/machen, dann informieren Sie uns bitte.
 
 Genauere Informationen zu den Parametern entnehmen Sie bitte der JavaDoc.
