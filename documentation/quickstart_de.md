@@ -1,8 +1,8 @@
 # Quickstart
 
 Dieses Dokument liefert einen Einstieg in das PM-Dungeon. Es erläutert die Installation des Frameworks und die ersten Schritte, um eigene Inhalte zum Dungeon hinzuzufügen. Es dient als Grundlage für alle weiteren Praktika. Lesen Sie das Dokument daher aufmerksam durch und versuchen Sie sich zusätzlich selbst mit dem Aufbau vertraut zu machen.
-Das Framework ist in `core` und `dungeon-starter` aufgeteilt, wobei `core` das Framework und `dungeon-starter` ein Basis-Starter ist.
-Sie benötigen nur das Frontend (dungeon-starter) für die Aufgaben, das Backend wird automatisch über Gradle als externe Bibliothek eingebunden.
+Das Framework ist in [`core`](https://github.com/PM-Dungeon/core) und [`dungeon-starter`](https://github.com/PM-Dungeon/dungeon-starter) aufgeteilt, wobei `core` das Framework und `dungeon-starter` ein Basis-Starter ist.
+Sie benötigen nur das Frontend (`dungeon-starter`) für die Aufgaben, das Backend wird automatisch über Gradle als externe Bibliothek eingebunden.
 
 *Hinweis: Achten Sie darauf, Daten nur dann in öffentliche Git-Repos zu laden, wenn Sie die nötigen Rechte an diesen Daten haben. Dies gilt insbesondere auch für Artefakte wie Bilder, Bitmaps, Musik oder Soundeffekte.*
 
@@ -235,7 +235,9 @@ public class MyGame extends MainController {
 }
 ```
 
-Möchten Sie, dass Ihr Hero oder eine andere Entität nicht mehr weiter vom `EntityController` verwaltet wird, z.B. wenn sie "stirbt", überschreiben Sie dafür in der jeweiligen Klasse die Methode `removeable`, die von der `Entity`-Klasse geerbt wurde. Sobald diese Methode den Wert `true` zurückgibt, wird die Instanz im nächsten Frame aus dem `EntityController` entfernt. Wie im Beispiel zu sehen, wird die Entität dann entfernt, wenn die Lebenspunkte auf 0 gefallen sind. Das Beispiel ist für unseren Helden noch nicht anwendbar, aber vielleicht wollen Sie diese Funktionalität irgendwann selbst implementieren. 
+Möchten Sie, dass Ihr Hero oder eine andere Entität nicht mehr weiter vom `EntityController` verwaltet wird, z.B. wenn sie "stirbt", überschreiben Sie dafür in der jeweiligen Klasse die Methode `removeable`, die von der `Entity`-Klasse geerbt wurde. Sobald diese Methode den Wert `true` zurückgibt, wird die Instanz im nächsten Frame aus dem `EntityController` entfernt. Wie im Beispiel zu sehen, wird die Entität dann entfernt, wenn die Lebenspunkte auf 0 gefallen sind. 
+
+Das folgende Beispiel ist für unseren Helden noch nicht direkt anwendbar (`lebenspunkte` ist noch nicht definiert), aber vielleicht wollen Sie diese Funktionalität irgendwann selbst implementieren. 
 
 ```java
     @Override
@@ -614,9 +616,9 @@ public class MyGame extends MainController {
 }
 ```
 
-Beachten Sie dabei, dass `PATH/TO/FONT.ttf` wieder ein relativer Pfad, ausgehend vom `asset`-Verzeichnis ist. 
+Beachten Sie dabei, dass `PATH/TO/FONT.ttf` wieder ein relativer Pfad, ausgehend vom `asset`-Verzeichnis ist. 
 Freie Fonts können Sie im Internet finden. Achten Sie bitte genau darauf, ob Sie die von Ihnen verwendete Font weiterverbreiten dürfen,bevor Sie diese in Ihr Git-Repository hochladen. 
-Aktuell wissen wir, dass Fonts vom Typen `.ttf` unterstützt werden, ob andere Fonts Typen, wie `.otf` unterstützt werden, wissen wir leider nicht.Sollten Sie Erfahrungen mit anderen Font-Typen gemacht haben/machen, dann informieren Sie uns bitte.
+Aktuell wissen wir, dass Fonts vom Typ `.ttf` unterstützt werden; ob andere Font-Typen wie `.otf` ebenfalls unterstützt werden, wissen wir leider nicht. Sollten Sie Erfahrungen mit anderen Font-Typen gemacht haben/machen, dann informieren Sie uns bitte.
 
 Genauere Informationen zu den Parametern entnehmen Sie bitte der JavaDoc.
 
