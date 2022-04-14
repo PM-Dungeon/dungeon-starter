@@ -58,6 +58,7 @@ task run(dependsOn: classes, type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
     ignoreExitValue = true
+    allJvmArgs += ["-XstartOnFirstThread"]
 }
 
 task debug(dependsOn: classes, type: JavaExec) {
@@ -66,6 +67,7 @@ task debug(dependsOn: classes, type: JavaExec) {
     standardInput = System.in
     ignoreExitValue = true
     debug = true
+    allJvmArgs += ["-XstartOnFirstThread"]
 }
 
 test {
