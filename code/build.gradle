@@ -53,8 +53,6 @@ sourceSets.test.java.srcDirs = ["desktop/test/"]
 project.ext.mainClassName = "desktop.MyGame"
 project.ext.assetsDir = new File("assets")
 
-eclipse.project.name = "pmdungeon-desktop"
-
 task run(dependsOn: classes, type: JavaExec) {
     mainClass = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
