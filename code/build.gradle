@@ -15,7 +15,7 @@ repositories {
 }
 
 ext {
-    gdxVersion = "1.10.0"
+    gdxVersion = "1.10.1-SNAPSHOT"
     aiVersion = "1.8.2"
     gsonVersion = "2.7"
 }
@@ -26,7 +26,7 @@ dependencies {
     // LibGDX
     implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
     implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
     implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
     implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
     implementation "com.badlogicgames.gdx:gdx-ai:$aiVersion"
@@ -53,11 +53,19 @@ sourceSets.test.java.srcDirs = ["desktop/test/"]
 project.ext.mainClassName = "desktop.MyGame"
 project.ext.assetsDir = new File("assets")
 
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+
 task run(dependsOn: classes, type: JavaExec) {
     mainClass = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
     ignoreExitValue = true
+    if (DefaultNativePlatform.currentOperatingSystem.isMacOsX()) {
+        allJvmArgs += ["-XstartOnFirstThread"]
+    }
+    doFirst {
+        println(DefaultNativePlatform.currentOperatingSystem)
+    }
 }
 
 task debug(dependsOn: classes, type: JavaExec) {
@@ -66,6 +74,12 @@ task debug(dependsOn: classes, type: JavaExec) {
     standardInput = System.in
     ignoreExitValue = true
     debug = true
+    if (DefaultNativePlatform.currentOperatingSystem.isMacOsX()) {
+        allJvmArgs += ["-XstartOnFirstThread"]
+    }
+    doFirst {
+        println(DefaultNativePlatform.currentOperatingSystem)
+    }
 }
 
 test {
