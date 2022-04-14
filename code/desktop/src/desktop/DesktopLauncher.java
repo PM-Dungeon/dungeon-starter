@@ -13,7 +13,7 @@ public final class DesktopLauncher {
         // The third and fourth parameters ("maxWidth" and "maxHeight") affect the resizing behavior
         // of the window. If the window is enlarged or maximized, then it can assume these
         // dimensions at maximum. If you have a larger screen resolution than 9999x9999 pixels,
-        // change these parameters.
+        // increase these parameters.
         config.setForegroundFPS(Constants.FRAME_RATE);
         config.setTitle(Constants.WINDOW_TITLE);
         config.setWindowIcon(Constants.LOGO_PATH);
