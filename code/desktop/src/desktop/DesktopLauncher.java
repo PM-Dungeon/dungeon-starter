@@ -9,8 +9,11 @@ import tools.Constants;
 public final class DesktopLauncher {
     public static void run(MainController mc) {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-        config.setWindowSizeLimits(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, 1000, 1000);
-        // maxWidth: 1000 and maxHeight: 1000 affects the fullscreen behavior
+        config.setWindowSizeLimits(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, 9999, 9999);
+        // The third and fourth parameters ("maxWidth" and "maxHeight") affect the resizing behavior
+        // of the window. If the window is enlarged or maximized, then it can assume these
+        // dimensions at maximum. If you have a larger screen resolution than 9999x9999 pixels,
+        // change these parameters.
         config.setForegroundFPS(Constants.FRAME_RATE);
         config.setTitle(Constants.WINDOW_TITLE);
         config.setWindowIcon(Constants.LOGO_PATH);
