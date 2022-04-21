@@ -14,7 +14,8 @@ Für eine Anleitung, wie Sie das Projekt in Ihrer IDE laden können, schauen Sie
 
 _Anmerkung_: Sollten bei der Installation Probleme auftreten, ist vielleicht
 ein Blick in das [Wiki](https://github.com/PM-Dungeon/dungeon-starter/wiki)
-des `dungeon-starter` bzw. die [Kompatibilitätsliste](https://github.com/PM-Dungeon/core/wiki/JDK-Kompatibilit%C3%A4t) hilfreich. Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
+des `PM-Dungeon/dungeon-starter` bzw. die [Kompatibilitätsliste](https://github.com/PM-Dungeon/core/wiki/JDK-Kompatibilit%C3%A4t) hilfreich. 
+Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
 
 ## Arbeiten mit dem Framework
 
