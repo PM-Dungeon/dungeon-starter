@@ -12,13 +12,18 @@ Sie werden das Java SE Development Kit 17.0.x oder höher benötigen.
 
 Für eine Anleitung, wie Sie das Projekt in Ihrer IDE laden können, schauen Sie bitte in das [Dungeon-Starter-Wiki: "Import Project"](https://github.com/PM-Dungeon/dungeon-starter/wiki/Import-Project).
 
+_Anmerkung_: Sollten bei der Installation Probleme auftreten, ist vielleicht
+ein Blick in das [Wiki](https://github.com/PM-Dungeon/dungeon-starter/wiki)
+des `PM-Dungeon/dungeon-starter` bzw. die [Kompatibilitätsliste](https://github.com/PM-Dungeon/core/wiki/JDK-Kompatibilit%C3%A4t) hilfreich. 
+Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
+
 ## Arbeiten mit dem Framework
 
 Zu Beginn einige grundlegende Prinzipien, die Sie verstanden haben sollten, bevor Sie mit dem Dungeon arbeiten.
 
 Das PM-Dungeon benutzt aktuell das Cross-Plattform Java-Framework [`libGDX`](https://libgdx.com) als Backend. Dieses ist im `core`- und `dungeon-starter`-Projekt bereits als Abhängigkeit in die Gradle-Konfiguration integriert, Sie müssen dieses nicht extra installieren. Die Ihnen zur Verfügung gestellten Vorgaben sind so umgesetzt, dass Sie kein tieferes Verständnis für das Framework oder `libGDX` benötigen, um die Aufgaben zu lösen. Sollten Sie allerdings einmal auf Probleme stoßen, kann es unter Umständen helfen, einen Blick in die Dokumentation von `libGDX` zu werfen.
 
-Das Framework ist in ein Frontend ([`dungeon-starter`]((https://github.com/PM-Dungeon/dungeon-starter))) und ein Backend ([`core`]((https://github.com/PM-Dungeon/core))) aufgeteilt.
+Das Framework ist in ein Frontend ([`dungeon-starter`](https://github.com/PM-Dungeon/dungeon-starter))) und ein Backend ([`core`](https://github.com/PM-Dungeon/core))) aufgeteilt.
 Das Frontend setzt die Parameter, erzeugt ein Fenster und startet die Anwendung.
 Das Backend liefert die Schnittstellen, mit denen Sie arbeiten, und integriert die `libGDX`.
 
@@ -27,19 +32,20 @@ Sie selbst schreiben die Logik des Spiels und implementieren die Helden/Monster/
 Bis auf seltene (dokumentierte) Ausnahmen werden Sie nicht gezwungen sein, an den Vorgaben Änderungen durchzuführen.
 
 Sie werden im Laufe der Praktika verschiedene Assets benötigen. Diese liegen per Default im `asset`-Verzeichnis. Sie können das Standardverzeichnis in der `build.gradle` anpassen.
-  - Standardpfad für Texturen: `assets/`
-  - Standardpfad für Level: `assets/level/files`
-  - Standardpfad für Level-Texturen: `assets/textures/level`
+
+- Standardpfad für Texturen: `assets/`
+- Standardpfad für Level: `assets/level/files`
+- Standardpfad für Level-Texturen: `assets/textures/level`
 
 ## Strukturen
 
 Bevor wir mit der eigentlichen Implementierung des Spiels anfangen, eine kurze Erklärung über den Aufbau des Frameworks.
 
 - Das Framework verwendet sogenannte `Controller` um die einzelnen Aspekte des Spiels zu managen und Ihnen das Leben einfacher zu machen.
-    - `EntityController`: Dieser verwaltet alle "aktiven" Elemente wie Helden, Monster, Items etc.
-    - `LevelAPI`: Kümmert sich darum, dass neue Level erzeugt und geladen werden.
-    - `HUDController`: Verwaltet alle Bildschirmanzeigen die Sie implementieren.
-    - `MainController` Verwaltet die anderen `Controller` und beinhaltet die Game-Loop. Ihre Implementierung wird Teil des `MainController`
+  - `EntityController`: Dieser verwaltet alle "aktiven" Elemente wie Helden, Monster, Items etc.
+  - `LevelAPI`: Kümmert sich darum, dass neue Level erzeugt und geladen werden.
+  - `HUDController`: Verwaltet alle Bildschirmanzeigen die Sie implementieren.
+  - `MainController` Verwaltet die anderen `Controller` und beinhaltet die Game-Loop. Ihre Implementierung wird Teil des `MainController`
 - Game-Loop: Die Game-Loop ist die wichtigste Komponente des Spieles. Sie ist eine Endlosschleife, welche einmal pro [Frame](https://de.wikipedia.org/wiki/Bildfrequenz) aufgerufen wird. Das Spiel läuft in 30-FPS (also 30 *frames per seconds*, zu Deutsch 30 Bildern pro Sekunde), die Game-Loop wird also 30mal in der Sekunde aufgerufen. Alle Aktionen, die wiederholt ausgeführt werden müssen, wie zum Beispiel das Bewegen und Zeichnen von Figuren, müssen innerhalb der Game-Loop stattfinden. Das Framework ermöglicht es Ihnen, eigene Aktionen in die Game-Loop zu integrieren. Wie genau das geht, erfahren Sie im Laufe dieser Anleitung. *Hinweis: Die Game-Loop wird automatisch ausgeführt, Sie müssen sie nicht aktiv aufrufen.*
 - Zusätzlich existieren noch eine Vielzahl an weiteren Helferklassen, mit denen Sie mal mehr oder mal weniger Kontakt haben werden.
 - `Painter`: Kümmert sich darum, dass die Inhalte grafisch dargestellt werden.
@@ -54,10 +60,12 @@ Das untenstehende UML-Klassendiagramm soll Ihnen einen reduzierten und vereinfac
 Die Vorgaben sind bereits lauffähig und können direkt ausgeführt werden.
 Dafür können Sie die Vorgaben entweder als Projekt in Ihrer IDE laden (siehe ["Import Project"](https://github.com/PM-Dungeon/dungeon-starter/wiki/Import-Project)) und die Anwendung über die Run-Funktion Ihrer IDE starten oder Sie starten die Anwendung über die Kommandozeile per `./gradlew run`.
 Gehen Sie dafür in das `dungeon-starter/code`-Verzeichnis und öffnen Sie die Kommandozeile und geben Sie folgenden Befehl ein:
-- Unter Windows: `bash gradlew run`
+
+- Unter Windows: `gradlew run`
 - Unter Linux: `./gradlew run`
 
-_Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie in die [FAQ](https://github.com/PM-Dungeon/dungeon-starter/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt).Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
+_Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie
+in die [FAQ](https://github.com/PM-Dungeon/dungeon-starter/wiki/FAQ#problem--gradle-konfiguration-wird-nicht-erkannt). Sollten Sie Ihr Problem dennoch nicht lösen können, melden Sie sich bitte **frühzeitig** bei uns.
 
 Das Spiel sollte nun starten und Sie sollten einen Ausschnitt des Levels sehen können.
 
@@ -77,6 +85,7 @@ Betrachten wir nun `desktop.MyGame.java`. Diese Klasse ist Ihr Einstiegspunkt in
 `MyGame` erbt von `MainController`. Wie der Name schon vermuten lässt, ist der MainController die Haupt-Steuerung des Spiels. Er bereitet alles für den Start des Spieles vor, verwaltet die anderen Controller und enthält die Game-Loop. Wir nutzen `MyGame`, um selbst in die Game-Loop einzugreifen und unsere eigenen Objekte wie Helden und Monster zu verwalten. Der `MainController` ist der Punkt, an dem alle Fäden des Dungeons zusammenlaufen.
 
 `MyGame` implementiert bereits einige Methoden:
+
 - `setup` wird zu Beginn der Anwendung aufgerufen. In dieser Methode werden später die Objekte initialisiert und konfiguriert, welche bereits vor dem Spielstart existieren müssen. In der Vorgabe wird hier bereits das erste Level geladen.
 - `beginFrame` wird am Anfang jedes Frames aufgerufen. Hier werden später Abfragen und Berechnungen, wie zum Beispiel Kampfsituationen, implementiert.
 - `endFrame` wird am Ende jedes Frames aufgerufen. Hier werden später Abfragen und Berechnungen, wie zum Beispiel Kollisionsüberprüfungen, implementiert.
@@ -275,7 +284,6 @@ Um unseren Helden zu animieren, nutzen wir eine erweiterte Version von `Entity` 
 
 Die Methode `getTexture` müssen wir nun mit der Methode `getActiveAnimation` ersetzen. Ebenso ersetzen wir unser `texture`-Attribut durch ein Attribut `Animation idleAnimation`.
 
-
 ```java
 import basiselements.Animatable;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -327,7 +335,6 @@ Sie können (und sollten) auch verschiedene Animationen für verschiedene Situat
 Wenn Sie das Spiel nun starten, sollten Sie Ihren animierten (aber immer noch unbeweglichen) Helden sehen.
 
 ![controll](figs/pm-dungeon_wasd.png)
-
 
 ### WASD oder die Steuerung des Helden über die Tastatur
 
@@ -479,7 +486,6 @@ _Anmerkung_: Später werden Sie viele weitere Entitäten im Level platziert habe
 Wenn Sie nun das Spiel starten, sollten Sie Ihren Helden durch die Spielwelt bewegen können und auch in das nächste Level gelangen.
 
 ![level](figs/pm-dungeon_level_unknown.png)
-
 
 ## Levelgenerator
 
