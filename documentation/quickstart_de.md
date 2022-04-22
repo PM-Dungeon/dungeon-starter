@@ -61,7 +61,7 @@ Die Vorgaben sind bereits lauffähig und können direkt ausgeführt werden.
 Dafür können Sie die Vorgaben entweder als Projekt in Ihrer IDE laden (siehe ["Import Project"](https://github.com/PM-Dungeon/dungeon-starter/wiki/Import-Project)) und die Anwendung über die Run-Funktion Ihrer IDE starten oder Sie starten die Anwendung über die Kommandozeile per `./gradlew run`.
 Gehen Sie dafür in das `dungeon-starter/code`-Verzeichnis und öffnen Sie die Kommandozeile und geben Sie folgenden Befehl ein:
 
-- Unter Windows: `bash gradlew run`
+- Unter Windows: `gradlew run`
 - Unter Linux: `./gradlew run`
 
 _Anmerkung_: Wenn Sie Probleme beim Starten der Anwendung haben, schauen Sie
