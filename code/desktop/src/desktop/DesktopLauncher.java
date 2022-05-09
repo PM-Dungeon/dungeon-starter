@@ -7,6 +7,11 @@ import controller.MainController;
 import tools.Constants;
 
 public final class DesktopLauncher {
+    /**
+     * Starts the dungeon and needs a <code>MainController</code>.
+     *
+     * @param mc the <code>MainController</code> used to start the dungeon.
+     */
     public static void run(MainController mc) {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setWindowSizeLimits(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, 9999, 9999);
