@@ -84,7 +84,7 @@ jobs:
                     java-version: '17'
                     distribution: 'temurin'
             -   name: Checkstyle
-                run: ./gradlew check
+                run: ./gradlew checkstyleMain
                 working-directory: code
             -   name: Checkstyle Report
                 uses: jwgmeligmeyling/checkstyle-github-action@master
