@@ -9,7 +9,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({DesktopLauncher.class})
 public class DesktopLauncherTest {
-    /** A set-up methode to initialize the tests. */
+    /** A set-up method to initialize the tests. */
     @Before
     public void setUp() {}
 
