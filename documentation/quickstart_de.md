@@ -101,7 +101,7 @@ Fangen wir damit an, eine neue Klasse für den Helden anzulegen. Unser Held soll
 Diese abstrakte Klasse `basiselements.Entity` liefert einige Methoden, welche wir implementieren müssen.
 
 - `getPosition` gibt an, wo unser Held im Dungeon steht. Weiter unten folgt eine genauere Erklärung des verwendeten Koordinaten- und Positionssystem.
-- `getTexture` gibt an, welche Textur verwendet werden soll, wenn unser Held gezeichnet wird.
+- `getTexturePath` gibt an, welche Textur verwendet werden soll, wenn unser Held gezeichnet wird.
 
 Wir sollten einige dieser Methoden mit Code füllen.
 Zuerst erstellen wir einen Konstruktor für unsere Klasse. Das Framework benötigt eine `com.badlogic.gdx.graphics.g2d.SpriteBatch` und einen `graphic.Painter` um unseren Helden am Ende zeichnen zu können.
@@ -282,7 +282,7 @@ Aktuell besitzt unser Held nur eine feste Textur, in diesem Abschnitt animieren 
 Im PM-Dungeon ist eine Animation ein Loop verschiedener Texturen, die im Wechsel gezeichnet werden.
 Um unseren Helden zu animieren, nutzen wir eine erweiterte Version von `Entity` mit dem Namen `Animatable`.
 
-Die Methode `getTexture` müssen wir nun mit der Methode `getActiveAnimation` ersetzen. Ebenso ersetzen wir unser `texture`-Attribut durch ein Attribut `Animation idleAnimation`.
+Die Methode `getTexturePath` müssen wir nun mit der Methode `getActiveAnimation` ersetzen. Ebenso ersetzen wir unser `texture`-Attribut durch ein Attribut `Animation idleAnimation`.
 
 ```java
 import basiselements.Animatable;
