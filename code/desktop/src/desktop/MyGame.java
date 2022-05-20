@@ -17,6 +17,9 @@ public class MyGame extends MainController {
                     "Es konnte kein Level geladen werden, bitte den \"assets\" Ordner überprüfen.");
             Gdx.app.exit();
         }
+
+        // Trick: Register a "fake" HUDElement
+        hudController.add(new MenuScreen(hudPainter, hudBatch));
     }
 
     @Override
