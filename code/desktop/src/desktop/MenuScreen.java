@@ -8,17 +8,20 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import graphic.HUDPainter;
+import java.util.ArrayList;
+import java.util.List;
 import tools.Point;
 
 public class MenuScreen extends HUDElement implements Screen {
     private final Stage stage;
-    private final Container<Table> tableContainer;
+    private final TextButton.TextButtonStyle buttonStyle;
+    private final List<TextButton> buttonList = new ArrayList<>();
+    private final Table table;
 
     public MenuScreen(HUDPainter hudPainter, SpriteBatch hudBatch) {
         super(hudPainter, hudBatch);
@@ -26,39 +29,40 @@ public class MenuScreen extends HUDElement implements Screen {
         stage = new Stage(new ScreenViewport(), hudBatch);
 
         // Create three TextButton with the same style.
-        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
-        style.font = new BitmapFont();
-        style.fontColor = Color.CORAL;
-        style.checkedFontColor =
+        buttonStyle = new TextButton.TextButtonStyle();
+        buttonStyle.font = new BitmapFont();
+        buttonStyle.fontColor = Color.CORAL;
+        buttonStyle.checkedFontColor =
                 Color.RED; // When the button is checked/highlighted, it appears red.
-        TextButton button1 = new TextButton("Datei 1", style);
-        TextButton button2 = new TextButton("Datei 2", style);
-        TextButton button3 = new TextButton("Datei 3", style);
+        buttonList.add(new TextButton("Speichern", buttonStyle));
+        buttonList.add(new TextButton("Laden", buttonStyle));
+        buttonList.add(new TextButton("Zurücksetzen", buttonStyle));
 
-        // Create a Table to group the TextButton. Each TextButton should have a 10 pixel distance
+        // Create a Table to group the TextButton. Place the table in the bottom left corner. Each
+        // TextButton should have a 20 pixel distance
         // to the next one.
-        Table table = new Table();
-        table.defaults().padRight(10);
-        table.padLeft(10).add(button1);
-        table.add(button2);
-        table.add(button3);
+        table = new Table().bottom().left();
+        table.defaults().padRight(20);
+        table.padLeft(20);
+        for (TextButton b : buttonList) {
+            table.add(b);
+        }
 
-        // Place the table in a table container in the bottom left corner.
-        tableContainer = new Container<>();
-        tableContainer.bottom().left();
-        tableContainer.setActor(table);
-        stage.addActor(tableContainer);
+        // Add the table to the stage.
+        stage.addActor(table);
 
         // Register the InputProcessor to the stage and a ClickListener to button1.
         Gdx.input.setInputProcessor(stage);
 
-        button1.addListener(
-                new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        System.out.println("event = " + event);
-                    }
-                });
+        buttonList
+                .get(0)
+                .addListener(
+                        new ClickListener() {
+                            @Override
+                            public void clicked(InputEvent event, float x, float y) {
+                                System.out.println("event = " + event);
+                            }
+                        });
     }
 
     @Override
@@ -112,4 +116,11 @@ public class MenuScreen extends HUDElement implements Screen {
     }
 
     // further methods
+
+    public void setFontSize(float scaleAmount) {
+        buttonStyle.font.getData().scale(scaleAmount);
+        for (TextButton b : buttonList) {
+            b.setStyle(buttonStyle);
+        }
+    }
 }

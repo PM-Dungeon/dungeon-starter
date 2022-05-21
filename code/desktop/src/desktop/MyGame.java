@@ -6,6 +6,9 @@ import level.generator.LevelLoader.LevelLoader;
 import level.generator.dungeong.graphg.NoSolutionException;
 
 public class MyGame extends MainController {
+    private int counter = 0;
+    private MenuScreen ms;
+
     @Override
     protected void setup() {
         levelAPI.setGenerator(new LevelLoader());
@@ -19,11 +22,18 @@ public class MyGame extends MainController {
         }
 
         // Trick: Register a "fake" HUDElement
-        hudController.add(new MenuScreen(hudPainter, hudBatch));
+        ms = new MenuScreen(hudPainter, hudBatch);
+        hudController.add(ms);
     }
 
     @Override
-    protected void beginFrame() {}
+    protected void beginFrame() {
+        counter++;
+        if (counter == 100) {
+            System.out.println("set font size");
+            ms.setFontSize(1.5f);
+        }
+    }
 
     @Override
     protected void endFrame() {}
