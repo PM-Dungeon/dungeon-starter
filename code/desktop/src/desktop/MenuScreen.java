@@ -65,13 +65,17 @@ public class MenuScreen extends HUDElement implements Screen {
     public void show() {}
 
     @Override
-    public void render(float delta) {}
+    public void render(float delta) {
+        stage.act(delta);
+        stage.draw();
+    }
 
+    /*
+    This method is not called because it is not registered yet, in LibgdxSetup.
+     */
     @Override
     public void resize(int width, int height) {
-        // won't work, because we don't know the real ScreenViewport:
-        // stage.getViewport().update(width, height, true);
-        // tableContainer.invalidate();
+        stage.getViewport().update(width, height);
     }
 
     @Override
@@ -99,9 +103,7 @@ public class MenuScreen extends HUDElement implements Screen {
     @Override
     public void update() {
         // crop super call
-        float delta = Gdx.graphics.getDeltaTime();
-        stage.act(delta);
-        stage.draw();
+        render(Gdx.graphics.getDeltaTime());
     }
 
     @Override
