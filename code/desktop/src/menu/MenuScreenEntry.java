@@ -3,42 +3,47 @@ package menu;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DropDownMenu {
+public class MenuScreenEntry {
+    public static final float defaultScaleXY = 1.5f;
+    public static final long defaultFadeOutTime = 2500;
     private final TextButton menuButton;
-    private final List<TextButton> entryButtons = new ArrayList<>();
+    private final List<MenuScreenDropEntry> entryButtons = new ArrayList<>();
 
-    public DropDownMenu(String menuText, List<String> entries, List<ClickListener> listeners) {
+    public MenuScreenEntry(String menuText) {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = new BitmapFont();
         style.fontColor = Color.BLUE;
         style.checkedFontColor = Color.YELLOW;
         menuButton = new TextButton(menuText, style);
-        for (int i = 0; i < entries.size(); i++) {
-            TextButton b = new TextButton(entries.get(i), style);
-            b.addListener(listeners.get(i));
-            entryButtons.add(b);
-        }
-        setFontSize(1.1f);
+        setFontSize(defaultScaleXY);
     }
 
-    public void setFontSize(float scaleAmount) {
+    public void add(MenuScreenDropEntry entry) {
+        entryButtons.add(entry);
+    }
+
+    public void remove(MenuScreenDropEntry entry) {
+        entryButtons.remove(entry);
+    }
+
+    public void clear() {
+        entryButtons.clear();
+    }
+
+    public void setFontSize(float scaleXY) {
         TextButton.TextButtonStyle style = menuButton.getStyle();
-        style.font.getData().scale(scaleAmount);
+        style.font.getData().setScale(scaleXY);
         menuButton.setStyle(style);
-        for (TextButton b : entryButtons) {
-            b.setStyle(style);
-        }
     }
 
     public TextButton getMenuButton() {
         return menuButton;
     }
 
-    public List<TextButton> getEntryButtons() {
+    public List<MenuScreenDropEntry> getEntryButtons() {
         return entryButtons;
     }
 }

@@ -13,19 +13,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import graphic.HUDPainter;
+import java.util.ArrayList;
 import java.util.List;
 import tools.Point;
 
 public class MenuScreen extends HUDElement implements Screen {
     private final Stage stage;
     private final Table table;
-    private final List<DropDownMenu> dropDownMenus;
+    private final List<MenuScreenEntry> menuScreenEntries = new ArrayList<>();
 
-    public MenuScreen(
-            HUDPainter hudPainter, SpriteBatch hudBatch, List<DropDownMenu> dropDownMenus) {
+    public MenuScreen(HUDPainter hudPainter, SpriteBatch hudBatch) {
         super(hudPainter, hudBatch);
-
-        this.dropDownMenus = dropDownMenus;
 
         stage = new Stage(new ScreenViewport(), hudBatch);
 
@@ -35,45 +33,6 @@ public class MenuScreen extends HUDElement implements Screen {
         table = new Table().bottom().left();
         table.defaults().padRight(20);
         table.padLeft(20);
-        for (DropDownMenu menu : dropDownMenus) {
-            TextButton b = menu.getMenuButton();
-            List<TextButton> entries = menu.getEntryButtons();
-            table.add(b);
-            VerticalGroup vg = new VerticalGroup();
-            table.add(vg);
-            b.addListener(
-                    new ClickListener() {
-                        @Override
-                        public void enter(
-                                InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                            if (vg.getColumns() == 1) {
-                                b.setChecked(true);
-                                for (TextButton entry : entries) {
-                                    vg.addActor(entry);
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void exit(
-                                InputEvent event, float x, float y, int pointer, Actor toActor) {
-                            new Thread(
-                                            () -> {
-                                                try {
-                                                    Thread.sleep(3000);
-                                                    for (TextButton entry : entries) {
-                                                        entry.setChecked(false);
-                                                    }
-                                                    b.setChecked(false);
-                                                    vg.clear();
-                                                } catch (InterruptedException e) {
-                                                    e.printStackTrace();
-                                                }
-                                            })
-                                    .start();
-                        }
-                    });
-        }
 
         // Add the table to the stage.
         stage.addActor(table);
@@ -134,9 +93,65 @@ public class MenuScreen extends HUDElement implements Screen {
 
     // further methods
 
-    public void setFontSize(float scaleAmount) {
-        for (DropDownMenu menu : dropDownMenus) {
-            menu.setFontSize(scaleAmount);
+    public void addMenuScreenEntry(MenuScreenEntry entry) {
+        menuScreenEntries.add(entry);
+        updateMenuScreenEntries();
+    }
+
+    public void removeMenuScreenEntry(MenuScreenEntry entry) {
+        menuScreenEntries.remove(entry);
+        updateMenuScreenEntries();
+    }
+
+    public void clearMenuScreenEntry() {
+        menuScreenEntries.clear();
+        updateMenuScreenEntries();
+    }
+
+    public void updateMenuScreenEntries() {
+        table.clear();
+        for (MenuScreenEntry menu : menuScreenEntries) {
+            TextButton button = menu.getMenuButton();
+            List<MenuScreenDropEntry> entries = menu.getEntryButtons();
+            table.add(button);
+            VerticalGroup vg = new VerticalGroup();
+            table.add(vg);
+            button.addListener(
+                    new ClickListener() {
+                        @Override
+                        public void enter(
+                                InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                            if (vg.getColumns() == 1) {
+                                button.setChecked(true);
+                                for (MenuScreenDropEntry entry : entries) {
+                                    vg.addActor(entry.getButton());
+                                }
+                                new Thread(
+                                                () -> {
+                                                    try {
+                                                        Thread.sleep(
+                                                                MenuScreenEntry.defaultFadeOutTime);
+                                                        button.setChecked(false);
+                                                        vg.clear();
+                                                    } catch (InterruptedException e) {
+                                                        e.printStackTrace();
+                                                    } catch (NullPointerException ignore) {
+                                                        // when button was removed
+                                                    }
+                                                })
+                                        .start();
+                            }
+                        }
+                    });
+        }
+    }
+
+    public void setFontSizeRecursive(float scaleXY) {
+        for (MenuScreenEntry entry : menuScreenEntries) {
+            entry.setFontSize(scaleXY);
+            for (MenuScreenDropEntry de : entry.getEntryButtons()) {
+                de.setFontSize(scaleXY);
+            }
         }
     }
 }

@@ -2,18 +2,18 @@ package desktop;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import controller.MainController;
-import java.util.List;
-import javax.swing.*;
 import level.generator.LevelLoader.LevelLoader;
 import level.generator.dungeong.graphg.NoSolutionException;
-import menu.DropDownMenu;
+import menu.EntryListener;
 import menu.MenuScreen;
+import menu.MenuScreenDropEntry;
+import menu.MenuScreenEntry;
 
 public class MyGame extends MainController {
     private int counter = 0;
     private MenuScreen ms;
+    private MenuScreenEntry entry1, entry2, entry3;
 
     @Override
     protected void setup() {
@@ -33,8 +33,16 @@ public class MyGame extends MainController {
     @Override
     protected void beginFrame() {
         counter++;
-        if (counter == 100) {
-            System.out.println("do something");
+        if (counter == 1000) {
+            System.out.println("do something 1");
+            ms.removeMenuScreenEntry(entry2);
+        }
+        if (counter == 2000) {
+            System.out.println("do something 2");
+            ms.clearMenuScreenEntry();
+            ms.addMenuScreenEntry(entry1);
+            ms.addMenuScreenEntry(entry2);
+            ms.addMenuScreenEntry(entry3);
         }
     }
 
@@ -46,86 +54,97 @@ public class MyGame extends MainController {
 
     public void createMenuScreen() {
         // Trick: Register a "fake" HUDElement
-        ms =
-                new MenuScreen(
-                        hudPainter,
-                        hudBatch,
-                        List.of(
-                                new DropDownMenu(
-                                        "Speichern",
-                                        List.of("Foo", "Bar", "Baz"),
-                                        List.of(
-                                                new ClickListener() {
-                                                    @Override
-                                                    public void clicked(
-                                                            InputEvent event, float x, float y) {
-                                                        System.out.println("Foo clicked ...");
-                                                    }
-                                                },
-                                                new ClickListener() {
-                                                    @Override
-                                                    public void clicked(
-                                                            InputEvent event, float x, float y) {
-                                                        System.out.println("Bar clicked ...");
-                                                    }
-                                                },
-                                                new ClickListener() {
-                                                    @Override
-                                                    public void clicked(
-                                                            InputEvent event, float x, float y) {
-                                                        System.out.println("Baz clicked ...");
-                                                    }
-                                                })),
-                                new DropDownMenu(
-                                        "Laden",
-                                        List.of("qux", "quux", "corge"),
-                                        List.of(
-                                                new ClickListener() {
-                                                    @Override
-                                                    public void clicked(
-                                                            InputEvent event, float x, float y) {
-                                                        System.out.println("Qux clicked ...");
-                                                    }
-                                                },
-                                                new ClickListener() {
-                                                    @Override
-                                                    public void clicked(
-                                                            InputEvent event, float x, float y) {
-                                                        System.out.println("Quux clicked ...");
-                                                    }
-                                                },
-                                                new ClickListener() {
-                                                    @Override
-                                                    public void clicked(
-                                                            InputEvent event, float x, float y) {
-                                                        System.out.println("Corge clicked ...");
-                                                    }
-                                                })),
-                                new DropDownMenu(
-                                        "Zurücksetzen",
-                                        List.of("grault", "gar ply", "spam"),
-                                        List.of(
-                                                new ClickListener() {
-                                                    @Override
-                                                    public void clicked(
-                                                            InputEvent event, float x, float y) {
-                                                        System.out.println("Grault clicked ...");
-                                                    }
-                                                },
-                                                new ClickListener() {
-                                                    @Override
-                                                    public void clicked(
-                                                            InputEvent event, float x, float y) {
-                                                        System.out.println("gar ply clicked ...");
-                                                    }
-                                                },
-                                                new ClickListener() {
-                                                    @Override
-                                                    public void clicked(
-                                                            InputEvent event, float x, float y) {
-                                                        System.out.println("Spam clicked ...");
-                                                    }
-                                                }))));
+
+        entry1 = new MenuScreenEntry("Speichern");
+        entry1.add(
+                new MenuScreenDropEntry(
+                        "Foo",
+                        new EntryListener() {
+                            @Override
+                            public void whenClicked(InputEvent event, float x, float y) {
+                                System.out.println("Foo clicked ...");
+                            }
+                        }));
+        entry1.add(
+                new MenuScreenDropEntry(
+                        "Bar",
+                        new EntryListener() {
+                            @Override
+                            public void whenClicked(InputEvent event, float x, float y) {
+                                System.out.println("Bar clicked ...");
+                            }
+                        }));
+        entry1.add(
+                new MenuScreenDropEntry(
+                        "Baz",
+                        new EntryListener() {
+                            @Override
+                            public void whenClicked(InputEvent event, float x, float y) {
+                                System.out.println("Baz clicked ...");
+                            }
+                        }));
+        entry2 = new MenuScreenEntry("Laden");
+        entry2.add(
+                new MenuScreenDropEntry(
+                        "qux",
+                        new EntryListener() {
+                            @Override
+                            public void whenClicked(InputEvent event, float x, float y) {
+                                System.out.println("Qux clicked ...");
+                            }
+                        }));
+        entry2.add(
+                new MenuScreenDropEntry(
+                        "quux",
+                        new EntryListener() {
+                            @Override
+                            public void whenClicked(InputEvent event, float x, float y) {
+                                System.out.println("Quux clicked ...");
+                            }
+                        }));
+        entry2.add(
+                new MenuScreenDropEntry(
+                        "corge",
+                        new EntryListener() {
+                            @Override
+                            public void whenClicked(InputEvent event, float x, float y) {
+                                System.out.println("Corge clicked ...");
+                            }
+                        }));
+        entry3 = new MenuScreenEntry("Zurücksetzen");
+        entry3.add(
+                new MenuScreenDropEntry(
+                        "grault",
+                        new EntryListener() {
+                            @Override
+                            public void whenClicked(InputEvent event, float x, float y) {
+                                System.out.println("Grault clicked ...");
+                            }
+                        }));
+        entry3.add(
+                new MenuScreenDropEntry(
+                        "gar ply",
+                        new EntryListener() {
+                            @Override
+                            public void whenClicked(InputEvent event, float x, float y) {
+                                System.out.println("Gar ply clicked ...");
+                            }
+                        }));
+        entry3.add(
+                new MenuScreenDropEntry(
+                        "Spam",
+                        new EntryListener() {
+                            @Override
+                            public void whenClicked(InputEvent event, float x, float y) {
+                                System.out.println("Spam clicked ...");
+                            }
+                        }));
+
+        ms = new MenuScreen(hudPainter, hudBatch);
+        ms.addMenuScreenEntry(entry1);
+        ms.addMenuScreenEntry(entry2);
+        ms.addMenuScreenEntry(entry3);
+
         hudController.add(ms);
     }
 
