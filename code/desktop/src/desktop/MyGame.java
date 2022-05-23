@@ -33,16 +33,20 @@ public class MyGame extends MainController {
     @Override
     protected void beginFrame() {
         counter++;
-        if (counter == 1000) {
+        if (counter == 500) {
             System.out.println("do something 1");
             ms.removeMenuScreenEntry(entry2);
         }
-        if (counter == 2000) {
+        if (counter == 1000) {
             System.out.println("do something 2");
             ms.clearMenuScreenEntry();
             ms.addMenuScreenEntry(entry1);
             ms.addMenuScreenEntry(entry2);
             ms.addMenuScreenEntry(entry3);
+        }
+        if (counter == 1500) {
+            System.out.println("do something 3");
+            ms.setFontSizeRecursive(1f);
         }
     }
 

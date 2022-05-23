@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuScreenEntry {
-    public static final float defaultScaleXY = 1.5f;
-    public static final long defaultFadeOutTime = 2500;
+    public static final float defaultScaleXY = 1.25f;
+    public static final long defaultFadeOutTime = 3000;
     private final TextButton menuButton;
     private final List<MenuScreenDropEntry> entryButtons = new ArrayList<>();
 

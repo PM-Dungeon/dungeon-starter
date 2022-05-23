@@ -113,7 +113,6 @@ public class MenuScreen extends HUDElement implements Screen {
         for (MenuScreenEntry menu : menuScreenEntries) {
             TextButton button = menu.getMenuButton();
             List<MenuScreenDropEntry> entries = menu.getEntryButtons();
-            table.add(button);
             VerticalGroup vg = new VerticalGroup();
             table.add(vg);
             button.addListener(
@@ -126,23 +125,33 @@ public class MenuScreen extends HUDElement implements Screen {
                                 for (MenuScreenDropEntry entry : entries) {
                                     vg.addActor(entry.getButton());
                                 }
-                                new Thread(
-                                                () -> {
-                                                    try {
-                                                        Thread.sleep(
-                                                                MenuScreenEntry.defaultFadeOutTime);
-                                                        button.setChecked(false);
-                                                        vg.clear();
-                                                    } catch (InterruptedException e) {
-                                                        e.printStackTrace();
-                                                    } catch (NullPointerException ignore) {
-                                                        // when button was removed
-                                                    }
-                                                })
-                                        .start();
                             }
                         }
+
+                        @Override
+                        public void exit(
+                                InputEvent event, float x, float y, int pointer, Actor toActor) {
+                            new Thread(
+                                            () -> {
+                                                try {
+                                                    Thread.sleep(
+                                                            MenuScreenEntry.defaultFadeOutTime);
+                                                    button.setChecked(false);
+                                                    vg.clear();
+                                                } catch (InterruptedException e) {
+                                                    e.printStackTrace();
+                                                } catch (NullPointerException ignore) {
+                                                    // when button was removed
+                                                }
+                                            })
+                                    .start();
+                        }
                     });
+        }
+        table.row();
+        for (MenuScreenEntry menu : menuScreenEntries) {
+            TextButton button = menu.getMenuButton();
+            table.add(button);
         }
     }
 
