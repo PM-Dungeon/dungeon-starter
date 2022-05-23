@@ -4,12 +4,10 @@ import basiselements.HUDElement;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import graphic.HUDPainter;
@@ -111,48 +109,41 @@ public class MenuScreen extends HUDElement implements Screen {
     public void updateMenuScreenEntries() {
         table.clear();
         for (MenuScreenEntry menu : menuScreenEntries) {
-            TextButton button = menu.getMenuButton();
-            List<MenuScreenDropEntry> entries = menu.getEntryButtons();
-            VerticalGroup vg = new VerticalGroup();
-            table.add(vg);
-            button.addListener(
-                    new ClickListener() {
-                        @Override
-                        public void enter(
-                                InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                            if (vg.getColumns() == 1) {
-                                button.setChecked(true);
-                                for (MenuScreenDropEntry entry : entries) {
-                                    vg.addActor(entry.getButton());
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void exit(
-                                InputEvent event, float x, float y, int pointer, Actor toActor) {
-                            new Thread(
-                                            () -> {
-                                                try {
-                                                    Thread.sleep(
-                                                            MenuScreenEntry.defaultFadeOutTime);
-                                                    button.setChecked(false);
-                                                    vg.clear();
-                                                } catch (InterruptedException e) {
-                                                    e.printStackTrace();
-                                                } catch (NullPointerException ignore) {
-                                                    // when button was removed
-                                                }
-                                            })
-                                    .start();
-                        }
-                    });
+            table.add(menu.getVg());
         }
         table.row();
         for (MenuScreenEntry menu : menuScreenEntries) {
-            TextButton button = menu.getMenuButton();
-            table.add(button);
+            TextButton b = menu.getMenuButton();
+            table.add(b);
+            stage.addListener(
+                    new ClickListener() {
+                        @Override
+                        public boolean mouseMoved(InputEvent event, float x, float y) {
+                            boolean checked = b.isChecked();
+                            if (checked && !checkIfMouseIsOverButton(menu)) {
+                                b.setChecked(false);
+                                menu.hideVg();
+                            }
+                            if (!checked && checkIfMouseIsOverButton(menu)) {
+                                b.setChecked(true);
+                                menu.showVg();
+                            }
+                            return true;
+                        }
+                    });
         }
+    }
+
+    public boolean checkIfMouseIsOverButton(MenuScreenEntry menuScreenEntry) {
+        if (menuScreenEntry.getMenuButton().isOver()) {
+            return true;
+        }
+        for (MenuScreenDropEntry e : menuScreenEntry.getEntryButtons()) {
+            if (e.getButton().isOver()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setFontSizeRecursive(float scaleXY) {
