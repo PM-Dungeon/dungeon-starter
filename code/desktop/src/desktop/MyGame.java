@@ -11,9 +11,7 @@ import menu.MenuScreenDropEntry;
 import menu.MenuScreenEntry;
 
 public class MyGame extends MainController {
-    private int counter = 0;
-    private MenuScreen ms;
-    private MenuScreenEntry entry1, entry2, entry3;
+    private MenuScreen menuScreen;
 
     @Override
     protected void setup() {
@@ -28,27 +26,12 @@ public class MyGame extends MainController {
         }
 
         createMenuScreen();
+        // optional:
+        addDemoMenuEntries();
     }
 
     @Override
-    protected void beginFrame() {
-        counter++;
-        if (counter == 500) {
-            System.out.println("do something 1");
-            ms.removeMenuScreenEntry(entry2);
-        }
-        if (counter == 1000) {
-            System.out.println("do something 2");
-            ms.clearMenuScreenEntry();
-            ms.addMenuScreenEntry(entry1);
-            ms.addMenuScreenEntry(entry2);
-            ms.addMenuScreenEntry(entry3);
-        }
-        if (counter == 1500) {
-            System.out.println("do something 3");
-            ms.setFontSizeRecursive(1f);
-        }
-    }
+    protected void beginFrame() {}
 
     @Override
     protected void endFrame() {}
@@ -56,100 +39,26 @@ public class MyGame extends MainController {
     @Override
     public void onLevelLoad() {}
 
-    public void createMenuScreen() {
+    private void createMenuScreen() {
         // Trick: Register a "fake" HUDElement
+        menuScreen = new MenuScreen(hudPainter, hudBatch);
+        hudController.add(menuScreen);
+    }
 
-        entry1 = new MenuScreenEntry("Speichern");
-        entry1.add(
-                new MenuScreenDropEntry(
-                        "Foo",
-                        new EntryListener() {
-                            @Override
-                            public void whenClicked(InputEvent event, float x, float y) {
-                                System.out.println("Foo clicked ...");
-                            }
-                        }));
-        entry1.add(
-                new MenuScreenDropEntry(
-                        "Bar",
-                        new EntryListener() {
-                            @Override
-                            public void whenClicked(InputEvent event, float x, float y) {
-                                System.out.println("Bar clicked ...");
-                            }
-                        }));
-        entry1.add(
-                new MenuScreenDropEntry(
-                        "Baz",
-                        new EntryListener() {
-                            @Override
-                            public void whenClicked(InputEvent event, float x, float y) {
-                                System.out.println("Baz clicked ...");
-                            }
-                        }));
-        entry2 = new MenuScreenEntry("Laden");
-        entry2.add(
-                new MenuScreenDropEntry(
-                        "qux",
-                        new EntryListener() {
-                            @Override
-                            public void whenClicked(InputEvent event, float x, float y) {
-                                System.out.println("Qux clicked ...");
-                            }
-                        }));
-        entry2.add(
-                new MenuScreenDropEntry(
-                        "quux",
-                        new EntryListener() {
-                            @Override
-                            public void whenClicked(InputEvent event, float x, float y) {
-                                System.out.println("Quux clicked ...");
-                            }
-                        }));
-        entry2.add(
-                new MenuScreenDropEntry(
-                        "corge",
-                        new EntryListener() {
-                            @Override
-                            public void whenClicked(InputEvent event, float x, float y) {
-                                System.out.println("Corge clicked ...");
-                            }
-                        }));
-        entry3 = new MenuScreenEntry("Zurücksetzen");
-        entry3.add(
-                new MenuScreenDropEntry(
-                        "grault",
-                        new EntryListener() {
-                            @Override
-                            public void whenClicked(InputEvent event, float x, float y) {
-                                System.out.println("Grault clicked ...");
-                            }
-                        }));
-        entry3.add(
-                new MenuScreenDropEntry(
-                        "gar ply",
-                        new EntryListener() {
-                            @Override
-                            public void whenClicked(InputEvent event, float x, float y) {
-                                System.out.println("Gar ply clicked ...");
-                            }
-                        }));
-        entry3.add(
-                new MenuScreenDropEntry(
-                        "Spam",
-                        new EntryListener() {
-                            @Override
-                            public void whenClicked(InputEvent event, float x, float y) {
-                                System.out.println("Spam clicked ...");
-                            }
-                        }));
-
-        ms = new MenuScreen(hudPainter, hudBatch);
-        ms.addMenuScreenEntry(entry1);
-        ms.addMenuScreenEntry(entry2);
-        ms.addMenuScreenEntry(entry3);
-
-        hudController.add(ms);
+    private void addDemoMenuEntries() {
+        EntryListener listener =
+                new EntryListener() {
+                    @Override
+                    public void whenClicked(InputEvent event, float x, float y) {
+                        System.out.println("A item clicked.");
+                    }
+                };
+        MenuScreenEntry demoEntry = new MenuScreenEntry("Demo 1");
+        MenuScreenDropEntry item1 = new MenuScreenDropEntry("Item 1", listener);
+        MenuScreenDropEntry item2 = new MenuScreenDropEntry("Item 2", listener);
+        demoEntry.add(item1);
+        demoEntry.add(item2);
+        menuScreen.addMenuScreenEntry(demoEntry);
     }
 
     /**

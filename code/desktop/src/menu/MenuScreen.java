@@ -120,11 +120,12 @@ public class MenuScreen extends HUDElement implements Screen {
                         @Override
                         public boolean mouseMoved(InputEvent event, float x, float y) {
                             boolean checked = b.isChecked();
-                            if (checked && !checkIfMouseIsOverButton(menu)) {
+                            boolean isOver = checkIfMouseIsOverButton(menu);
+                            if (checked && !isOver) {
                                 b.setChecked(false);
                                 menu.hideVg();
                             }
-                            if (!checked && checkIfMouseIsOverButton(menu)) {
+                            if (!checked && isOver) {
                                 b.setChecked(true);
                                 menu.showVg();
                             }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuScreenEntry {
-    public static final float defaultScaleXY = 1.25f;
+    public static final float defaultScaleXY = 1f;
     private final TextButton menuButton;
     private final List<MenuScreenDropEntry> entryButtons = new ArrayList<>();
     private final VerticalGroup vg = new VerticalGroup();
