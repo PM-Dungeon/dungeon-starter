@@ -25,9 +25,9 @@ public class MyGame extends MainController {
             Gdx.app.exit();
         }
 
-        createMenuScreen();
-        // optional:
-        addDemoMenuEntries();
+        // optional, uncomment this if you want a start menu:
+        // createMenuScreen();
+        // addDemoMenuEntries();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class MyGame extends MainController {
                 new EntryListener() {
                     @Override
                     public void whenClicked(InputEvent event, float x, float y) {
-                        System.out.println("A item clicked.");
+                        System.out.println("An item clicked.");
                     }
                 };
         MenuScreenEntry demoEntry = new MenuScreenEntry("Demo 1");
