@@ -50,7 +50,7 @@ public class MyGame extends MainController {
                 new EntryListener() {
                     @Override
                     public void whenClicked(InputEvent event, float x, float y) {
-                        System.out.println("An item clicked.");
+                        Gdx.app.log("CLICK", "TODO: An item clicked.");
                     }
                 };
         MenuScreenEntry demoEntry = new MenuScreenEntry("Demo 1");
