@@ -1,5 +1,7 @@
 # PM-Dungeon-Desktop
 
+**Der Dungeon-Starter wurde ab der Version 5.x in das [Dungeon-Projekt](https://github.com/PM-Dungeon/core) integriert. Dieses Repository wird nicht weiter gepflegt.**
+
 Das Desktop-Projekt liefert eine rudimentäre Basis-Implementation des PM-Dungeon und erlaubt einen schnellen Einstieg, um das eigene Dungeon zu entwickeln.
 
 Dieses Projekt wird für den einfacheren Zugriff als Git-Subtree im Unterordner "`desktop/`" im Semester-Repository bereitgestellt.
